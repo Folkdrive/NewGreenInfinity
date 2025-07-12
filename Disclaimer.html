@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenInfinity Products - Disclaimer</title>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Roboto (for all text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Tailwind Configuration (for theme colors) */
+        :root {
+            --color-pearl-white: #F8F8F8; /* A bright, soft white */
+            --color-silver-light: #E0E0E0; /* Very light gray/silver for subtle borders */
+            --color-silver-accent: #B0BEC5; /* Muted silver/blue-gray for accents */
+            --color-text-dark: #37474F; /* Dark slate gray for primary text */
+            --color-text-medium: #607D8B; /* Medium blue-gray for secondary text */
+            --color-teal-cta: #00897B; /* Teal for strong CTAs */
+            --color-teal-cta-dark: #00695C; /* Darker teal for hover/accents */
+            --color-footer-bg: #263238; /* Dark blue-gray for footer */
+            --color-red-600: #DC2626; /* Specific red for user's provided elements */
+            --color-red-700: #B91C1C; /* Specific red for user's provided elements */
+            --color-deepsea: #0A1128; /* Deepsea blue for product divs - original request */
+            --color-dark-green-teal: #004D40; /* Darker green/teal for product divs */
+            --color-light-gray: #D1D5DB; /* Light gray for nav background */
+
+            /* Custom colors for the inquiry modal and red theme */
+            --color-custom-red: #DC2626;
+            --color-custom-red-dark: #B91C1C;
+            --color-red-theme: #DC2626; /* Defined based on user's provided snippets */
+        }
+
+        /* Applying custom colors to Tailwind */
+        .bg-pearl-white { background-color: var(--color-pearl-white); }
+        .text-text-dark { color: var(--color-text-dark); }
+        .text-text-medium { color: var(--color-text-medium); }
+        .text-silver-accent { color: var(--color-silver-accent); }
+        .bg-silver-accent { background-color: var(--color-silver-accent); }
+        .hover\:bg-silver-dark:hover { background-color: #90A4AE; } /* Slightly darker silver for hover */
+        .border-silver-light { border-color: var(--color-silver-light); }
+        .text-teal-cta { color: var(--color-teal-cta); }
+        .bg-teal-cta { background-color: var(--color-teal-cta); }
+        .hover\:bg-teal-cta-dark:hover { background-color: var(--color-teal-cta-dark); }
+        .bg-footer-bg { background-color: var(--color-footer-bg); }
+        .bg-light-gray { background-color: var(--color-light-gray); } /* New class for light gray */
+
+        /* Override specific Tailwind colors if needed by user's HTML */
+        .text-gray-700 { color: #4A5568; }
+        .hover\:text-red-600:hover { color: var(--color-red-600); }
+        .bg-red-600 { background-color: var(--color-red-600); }
+        .hover\:bg-red-700:hover { background-color: var(--color-red-700); }
+
+        /* Custom colors for the inquiry modal and red theme */
+        .text-custom-red { color: var(--color-custom-red); }
+        .bg-custom-red { background-color: var(--color-custom-red); }
+        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
+        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
+        .text-red-theme { color: var(--color-red-theme); }
+        .bg-red-theme { background-color: var(--color-red-theme); }
+        .hover-red-theme:hover { background-color: var(--color-red-700); } /* Darker red for hover */
+
+
+        /* General Body Styles - All text in Roboto */
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-pearl-white);
+            color: var(--color-text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 128px; /* Adjusted padding to account for fixed navbar height (h-32 = 128px) */
+        }
+
+        /* Header/Navbar specific custom styles */
+        .fixed-navbar {
+            background-color: var(--color-light-gray); /* Changed to light gray */
+            border-bottom: 1px solid var(--color-silver-light);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .fixed-navbar img {
+            height: 100%; /* Image fills the h-32 parent div */
+            width: auto;
+            object-fit: contain;
+            opacity: 100%;
+        }
+
+        .nav-item {
+            font-weight: 500; /* Medium weight for navigation */
+            font-size: 1.1em; /* Increased font size for nav items */
+            color: var(--color-text-dark); /* Changed text color to dark for contrast */
+        }
+        .nav-item:hover {
+            color: var(--color-red-600); /* Red hover effect for nav items */
+        }
+
+        /* Floating Enquiry Button */
+        .enquiry-button {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--color-teal-cta);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+        }
+
+        .enquiry-button:hover {
+            background-color: var(--color-teal-cta-dark);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* Mobile Menu */
+        #navbar-menu {
+            display: none; /* Hidden by default */
+            background-color: var(--color-light-gray); /* Match header */
+            border-top: 1px solid var(--color-silver-light);
+        }
+        #navbar-menu.show {
+            display: block; /* Show when 'show' class is added by JS */
+        }
+        #navbar-menu a {
+            color: var(--color-text-dark); /* Ensure mobile menu links are dark */
+        }
+        #navbar-menu a:hover {
+            color: var(--color-red-600); /* Red hover for mobile menu links */
+        }
+        #menu-button { /* Adjust mobile menu button color for light background */
+            color: var(--color-text-dark);
+        }
+
+        /* Disclaimer Content Section */
+        .disclaimer-section {
+            padding: 3rem 1rem; /* py-12 px-4 */
+            max-width: 56rem; /* max-w-4xl */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .disclaimer-section h1 {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            text-align: center;
+            margin-bottom: 2rem; /* mb-8 */
+            color: var(--color-custom-red); /* text-custom-red */
+        }
+
+        .disclaimer-section h2 {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1rem; /* mb-4 */
+            color: var(--color-custom-red-dark); /* text-custom-red-dark */
+        }
+
+        .disclaimer-section p {
+            margin-bottom: 1.5rem; /* mb-6 */
+            color: #4A5568; /* text-gray-700 */
+        }
+
+        .disclaimer-section ul {
+            list-style: disc;
+            list-style-position: inside;
+            margin-left: 1rem; /* ml-4 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            color: #4A5568; /* text-gray-700 */
+        }
+
+        .disclaimer-section ul li {
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+
+        .disclaimer-section a {
+            color: var(--color-custom-red); /* text-custom-red */
+            text-decoration: none;
+        }
+
+        .disclaimer-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--color-footer-bg); /* Changed to dark blue-gray */
+            color: #fff; /* Ensure text is white on dark background */
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid var(--color-silver-light);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.03);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--color-silver-accent); /* Changed to silver accent for contrast */
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+            font-size: 1.1em; /* Increased font size for footer options */
+            font-family: "Roboto", sans-serif; /* Ensure Roboto font family */
+        }
+
+        .footer-section ul li a {
+            color: white; /* Changed to white as requested */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--color-red-600); /* Red hover effect for footer links */
+        }
+
+        .follow-us {
+            border-top: 1px solid rgba(255,255,255,0.1); /* Adjusted border color for dark background */
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .follow-us h3 {
+            color: var(--color-silver-accent); /* Changed to silver accent for contrast */
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.5em;
+        }
+
+        .social-icons a {
+            color: white; /* Changed to white as requested */
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--color-red-600); /* Red hover effect for social icons */
+        }
+        footer p.text-sm {
+            color: var(--color-silver-accent); /* Adjusted copyright text text-color for better contrast */
+        }
+
+        /* Inquiry Modal Styles */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            padding-top: 60px; /* Space from top for modal */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--color-teal-cta); /* Teal for modal heading */
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .modal-close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: var(--color-teal-cta);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color-text-dark);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea,
+        .form-group select {
+            width: calc(100% - 20px); /* Account for padding */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px; /* Rounded corners for inputs */
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Specific styles for the modal's inputs */
+        #enquiry-form input,
+        #enquiry-form select {
+            padding: 0.75rem; /* p-3 */
+            border: 1px solid var(--color-silver-light); /* border border-gray-300 */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+
+        #enquiry-form input:focus,
+        #enquiry-form select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--color-custom-red); /* focus:ring-2 focus:ring-custom-red */
+        }
+
+        #enquiry-form .md\:col-span-2 {
+            grid-column: span 2 / span 2;
+        }
+
+        #enquiry-form .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-group { /* New class for checkbox group */
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+            border-radius: 0.25rem; /* rounded */
+            color: var(--color-custom-red); /* text-custom-red */
+            outline: none;
+            box-shadow: none;
+        }
+
+        .checkbox-group input[type="checkbox"]:focus {
+            box-shadow: 0 0 0 2px var(--color-custom-red); /* focus:ring-custom-red */
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0; /* Override default label margin */
+            font-size: 0.875rem; /* text-sm */
+            color: #4B5563; /* text-gray-600 */
+        }
+
+        .checkbox-group a {
+            font-size: 0.875rem; /* text-sm */
+            color: var(--color-custom-red); /* text-custom-red */
+            margin-left: 1rem; /* ml-4 */
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .inquire-now-button { /* New class for submit button */
+            background-color: var(--color-custom-red); /* bg-custom-red */
+            color: white;
+            font-weight: 600; /* font-semibold */
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.375rem; /* rounded-md */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: background-color 0.3s ease;
+            margin-top: 1.5rem; /* mt-6 */
+            width: 100%; /* Full width */
+            border: none; /* Remove default button border */
+            cursor: pointer;
+        }
+
+        .inquire-now-button:hover {
+            background-color: var(--color-custom-red-dark); /* hover:bg-custom-red-dark */
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 992px) { /* Adjusted breakpoint for sidebar */
+            .main-content-wrapper {
+                flex-direction: column;
+            }
+
+            .filter-sidebar {
+                position: static; /* Remove sticky position on smaller screens */
+                width: 100%; /* Full width */
+                height: auto; /* Auto height */
+                margin-right: 0;
+                margin-bottom: 20px; /* Space below filter section */
+                border-right: none; /* Remove right border */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+
+            .main-content-area {
+                padding: 0 20px; /* Add horizontal padding to main content */
+            }
+
+            .disclaimer-section h1 {
+                font-size: 2.5em; /* Smaller font size for mobile */
+            }
+
+            .disclaimer-section h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .fixed-navbar .md\:flex {
+                display: none; /* Hide desktop nav on mobile */
+            }
+
+            .fixed-navbar .md\:hidden {
+                display: block; /* Show mobile menu button */
+            }
+
+            #navbar-menu.show {
+                display: block; /* Show mobile menu when active */
+            }
+
+            /* Adjust mobile menu positioning if it's fixed */
+            #navbar-menu {
+                top: 128px; /* Position below the fixed navbar */
+            }
+
+            /* Hide floating inquiry button on smaller screens if desired */
+            .enquiry-button {
+                display: none;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            #enquiry-form {
+                grid-template-columns: 1fr; /* Stack form fields on small screens */
+            }
+
+            #enquiry-form .md\:col-span-2 {
+                grid-column: span 1 / span 1; /* Reset span for small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fixed-navbar img {
+                height: 50px; /* Smaller logo on very small screens */
+            }
+            body {
+                padding-top: 70px; /* Adjust body padding for smaller header on mobile */
+            }
+            .fixed-navbar {
+                padding: 5px 0; /* Smaller header padding */
+            }
+            #navbar-menu {
+                top: 70px; /* Adjust mobile menu top for smaller header */
+            }
+            .disclaimer-section {
+                padding-left: 1rem; /* Adjust padding for very small screens */
+                padding-right: 1rem; /* Adjust padding for very small screens */
+            }
+        }
+    </style>
+</head>
+<body class="bg-pearl-white">
+    <nav class="fixed-navbar py-4 px-6 flex justify-between items-center">
+        <div class="h-32 w-auto flex justify-center items-center">
+            <!-- Logo updated: dark background, white text -->
+            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" class="h-full w-auto object-contain opacity-100 rounded-lg">
+        </div>
+        <div class="hidden md:flex space-x-8 pr-10">
+            <a href="./index.html" class="nav-item py-1">Consumer</a>
+            <a href="./about.html" class="nav-item py-1">About Us</a>
+            <a href="./Inspiration.html" class="nav-item py-1">Inspiration</a>
+            <a href="./products.html" class="nav-item py-1">Products</a>
+        </div>
+        <div class="md:hidden">
+            <button class="focus:outline-none" id="menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="navbar-menu" class="hidden md:hidden absolute w-full shadow-md py-4 z-50">
+            <a href="./index.html" class="block px-6 py-2 font-medium">Consumer</a>
+            <a href="./about.html" class="block px-6 py-2 font-medium">About Us</a>
+            <a href="./Inspiration.html" class="block px-6 py-2 font-medium">Inspiration</a>
+            <a href="./products.html" class="block px-6 py-2 font-medium">Products</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Disclaimer Content Section -->
+        <section class="container mx-auto px-4 py-12 max-w-4xl disclaimer-section">
+            <h1 class="text-4xl font-bold text-center mb-8 text-custom-red">Disclaimer</h1>
+
+            <p class="mb-6 text-gray-700">
+                Visitors to this website are requested to read the terms and conditions appearing hereinafter along with our privacy policy. Logging on and/or usage of this website is an acknowledgement and acceptance of all the terms and conditions. If you are using the website in the course of your employment or on behalf of an organisation, you agree that you are an authorised representative of your organisation and that you have authority to bind your organisation to these terms and conditions.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-custom-red-dark">Service</h2>
+            <p class="mb-6 text-gray-700">
+                The information, content and services of this website are indicative of the products and services offered by GreenInfinity Industries Limited and should not be taken as promises on the part of GreenInfinity Industries Limited. While GreenInfinity Industries Limited has endeavoured that the details and descriptions on this website are accurate, the same cannot be taken as a guarantee, neither express nor implied, as to the accuracy, correctness or completeness of the information.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-custom-red-dark">Limitation of liability</h2>
+            <p class="mb-4 text-gray-700">
+                No warranty, neither express nor implied, about the accuracy, completeness, reliability, suitability or timeliness of the information, content and products is being created by GreenInfinity Industries Limited by this website unless expressly stated. Consumers/customers should verify and assure themselves as to the specific qualities and features of each product and service prior to purchasing the same.
+            </p>
+            <p class="mb-4 text-gray-700">
+                GreenInfinity Industries Limited shall not be liable for any damages, whether direct or consequential, loss of business loss in profits or any other loss or damages resulting from the usage or the inability to use the information, content and services of this website and/or relying upon the information, content and services of this website.
+            </p>
+            <p class="mb-4 text-gray-700">
+                GreenInfinity Industries Limited has made reasonable efforts to keep this website free of virus and/or worm and/or malware. Nevertheless, users using and/or accessing this website and/or downloading information from it must take precautions and GreenInfinity Industries Limited does not accept any liability in respect thereof.
+            </p>
+            <p class="mb-6 text-gray-700">
+                GreenInfinity Industries Limited is not responsible for any third party advertisements and/or links displayed on the website. These links are provided for your convenience to provide further information. They do not signify that GreenInfinity Industries Limited endorses the websites and/or their products and services. GreenInfinity Industries Limited has no responsibility for the content of the linked websites and the visitors accessing third party websites from links provided on GreenInfinity Industries Limited's website should verify themselves of the security, genuineness and terms and conditions of any third party website.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-custom-red-dark">Intellectual property</h2>
+            <p class="mb-6 text-gray-700">
+                All intellectual property rights and goodwill relating to GreenInfinity Industries Limited including the name, logo and any associated rights, trademarks, copyrights, designs belong to and shall always remain the exclusive intellectual property of GreenInfinity Industries Limited.
+            </p>
+            <p class="mb-6 text-gray-700">
+                Users are prohibited from using the information, content or data available on the website for distribution, reproduction, copying, storing, selling, whether for self or for a third party for a commercial or gainful purpose.
+            </p>
+
+            <h2 class="text-3xl font-bold mb-4 text-custom-red-dark">General</h2>
+            <p class="mb-4 text-gray-700">
+                If any term at these terms and conditions is held to be invalid or unenforceable by judicial decision, the rest of the Terms shall remain valid and enforceable.
+            </p>
+            <p class="mb-4 text-gray-700">
+                GreenInfinity Industries Limited reserves the right to change these terms and conditions from time to time.
+            </p>
+            <p class="mb-4 text-gray-700">
+                The information, content or services of the website is only indicative in nature and shall not be used or adduced as evidence in a court of law.
+            </p>
+            <p class="mb-4 text-gray-700">
+                Unauthorised use of any content, information, intellectual property featured on this website may make the unauthorised user liable for civil claims and prosecution for criminal offences.
+            </p>
+            <p class="mb-6 text-gray-700">
+                Any dispute arising out of the use of the website is subject to the laws of India and to the jurisdiction of the Courts of Kolkata.
+            </p>
+        </section>
+
+        <!-- Fixed Enquiry Button -->
+        <div id="enquiry-button" class="enquiry-button">
+            <i class="fas fa-info"></i>
+        </div>
+
+        <!-- Enquiry Form Modal -->
+        <div id="enquiry-modal-overlay" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Inquire Now</h2>
+                    <button id="modal-close-button" class="modal-close">&times;</button>
+                </div>
+                <form id="enquiry-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number</label>
+                        <input type="tel" id="mobile" placeholder="Enter Your Mobile Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Pincode</label>
+                        <input type="text" id="pincode" placeholder="Enter Pincode">
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry-type">Inquiry Type</label>
+                        <select id="inquiry-type">
+                            <option value="">Select Inquiry Type</option>
+                            <option value="Product Inquiry">Product Inquiry</option>
+                            <option value="Service Inquiry">Service Inquiry</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="robot-checkbox">
+                        <label for="robot-checkbox">I'm not a robot</label>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                    <button type="submit" class="inquire-now-button">
+                        Inquire Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-footer-bg py-8">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex justify-around flex-wrap gap-8 mb-8">
+                <div class="footer-section">
+                    <h3>Brand</h3>
+                    <ul>
+                        <li><a href="./opulent.html">Opulent</a></li>
+                        <li><a href="./Aspire.html">Aspire</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Furniture Type</h3>
+                    <ul>
+                        <li><a href="./chair.html">Chair</a></li>
+                        <li><a href="./Study table.html">Study Table</a></li>
+                        <li><a href="./Sofa.html">Sofa</a></li>
+                        <li><a href="./bed.html">Bed</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links & More</h3>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                        <li><a href="./Sustainable.html">Sustainability</a></li>
+                        <li><a href="./privacy Policy.html">Privacy Policy</a></li>
+                        <li><a href="./Disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="follow-us">
+                <h3>Follow us on</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="mt-6 text-sm">Copyright © 2025 GreenInfinity.com. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const navbarMenu = document.getElementById('navbar-menu');
+
+            const enquiryButton = document.getElementById('enquiry-button');
+            const enquiryModalOverlay = document.getElementById('enquiry-modal-overlay');
+            const modalCloseButton = document.getElementById('modal-close-button');
+            const enquiryForm = document.getElementById('enquiry-form');
+
+            // --- Mobile Menu Toggle Logic ---
+            if (menuButton) {
+                menuButton.addEventListener('click', () => {
+                    navbarMenu.classList.toggle('hidden');
+                    navbarMenu.classList.toggle('show');
+                });
+            }
+
+            // --- Modal/Form Logic ---
+            if (enquiryButton) {
+                enquiryButton.addEventListener('click', () => {
+                    enquiryModalOverlay.style.display = 'flex';
+                });
+            }
+
+            if (modalCloseButton) {
+                modalCloseButton.addEventListener('click', () => {
+                    enquiryModalOverlay.style.display = 'none';
+                });
+            }
+
+            window.addEventListener('click', (event) => {
+                if (event.target == enquiryModalOverlay) {
+                    enquiryModalOverlay.style.display = 'none';
+                }
+            });
+
+            if (enquiryForm) {
+                enquiryForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const name = document.getElementById('name').value;
+                    const mobile = document.getElementById('mobile').value;
+                    const pincode = document.getElementById('pincode').value;
+                    const inquiryType = document.getElementById('inquiry-type').value;
+                    const robotCheckbox = document.getElementById('robot-checkbox').checked;
+
+                    if (!robotCheckbox) {
+                        const messageBox = document.createElement('div');
+                        messageBox.style.cssText = `
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background-color: #FFDDDD;
+                            color: var(--color-text-dark);
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                            z-index: 1001;
+                            text-align: center;
+                            font-size: 1.1em;
+                        `;
+                        messageBox.textContent = "Please confirm you are not a robot.";
+                        document.body.appendChild(messageBox);
+                        setTimeout(() => {
+                            document.body.removeChild(messageBox);
+                        }, 3000);
+                        return;
+                    }
+
+                    const whatsappNumber = '919876543210'; // <--- REPLACE THIS WITH YOUR NUMBER (e.g., 919876543210)
+                    const whatsappMessage = `Hello GreenInfinity, I have an enquiry.\n\n` +
+                                            `Name: ${name}\n` +
+                                            `Mobile: ${mobile}\n` +
+                                            `Pincode: ${pincode}\n` +
+                                            `Inquiry Type: ${inquiryType}`;
+
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+                    window.open(whatsappUrl, '_blank');
+
+                    enquiryModalOverlay.style.display = 'none';
+                    enquiryForm.reset();
+
+                    const messageBox = document.createElement('div');
+                    messageBox.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: #4CAF50;
+                        color: white;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                        z-index: 1001;
+                        text-align: center;
+                        font-size: 1.1em;
+                    `;
+                    messageBox.textContent = 'Thank you for your enquiry! You will be redirected to WhatsApp to send your message.';
+                    document.body.appendChild(messageBox);
+
+                    setTimeout(() => {
+                        document.body.removeChild(messageBox);
+                    }, 3000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

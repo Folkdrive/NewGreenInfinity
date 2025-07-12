@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenInfinity Products - Study Table Ideas</title>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Roboto (for all text) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Tailwind Configuration (for theme colors) */
+        :root {
+            --color-pearl-white: #F8F8F8; /* A bright, soft white */
+            --color-silver-light: #E0E0E0; /* Very light gray/silver for subtle borders */
+            --color-silver-accent: #B0BEC5; /* Muted silver/blue-gray for accents */
+            --color-text-dark: #37474F; /* Dark slate gray for primary text */
+            --color-text-medium: #607D8B; /* Medium blue-gray for secondary text */
+            --color-teal-cta: #00897B; /* Teal for strong CTAs */
+            --color-teal-cta-dark: #00695C; /* Darker teal for hover/accents */
+            --color-footer-bg: #263238; /* Dark blue-gray for footer */
+            --color-red-600: #DC2626; /* Specific red for user's provided elements */
+            --color-red-700: #B91C1C; /* Specific red for user's provided elements */
+            --color-deepsea: #0A1128; /* Deepsea blue for product divs - original request */
+            --color-dark-green-teal: #004D40; /* Darker green/teal for product divs */
+            --color-light-gray: #D1D5DB; /* Light gray for nav background */
+
+            /* Custom colors for the inquiry modal and red theme */
+            --color-custom-red: #DC2626;
+            --color-custom-red-dark: #B91C1C;
+            --color-red-theme: #DC2626; /* Defined based on user's provided snippets */
+        }
+
+        /* Applying custom colors to Tailwind */
+        .bg-pearl-white { background-color: var(--color-pearl-white); }
+        .text-text-dark { color: var(--color-text-dark); }
+        .text-text-medium { color: var(--color-text-medium); }
+        .text-silver-accent { color: var(--color-silver-accent); }
+        .bg-silver-accent { background-color: var(--color-silver-accent); }
+        .hover\:bg-silver-dark:hover { background-color: #90A4AE; } /* Slightly darker silver for hover */
+        .border-silver-light { border-color: var(--color-silver-light); }
+        .text-teal-cta { color: var(--color-teal-cta); }
+        .bg-teal-cta { background-color: var(--color-teal-cta); }
+        .hover\:bg-teal-cta-dark:hover { background-color: var(--color-teal-cta-dark); }
+        .bg-footer-bg { background-color: var(--color-footer-bg); }
+        .bg-light-gray { background-color: var(--color-light-gray); } /* New class for light gray */
+
+        /* Override specific Tailwind colors if needed by user's HTML */
+        .text-gray-700 { color: #4A5568; }
+        .hover\:text-red-600:hover { color: var(--color-red-600); }
+        .bg-red-600 { background-color: var(--color-red-600); }
+        .hover\:bg-red-700:hover { background-color: var(--color-red-700); }
+
+        /* Custom colors for the inquiry modal and red theme */
+        .text-custom-red { color: var(--color-custom-red); }
+        .bg-custom-red { background-color: var(--color-custom-red); }
+        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
+        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
+        .text-red-theme { color: var(--color-red-theme); }
+        .bg-red-theme { background-color: var(--color-red-theme); }
+        .hover-red-theme:hover { background-color: var(--color-red-700); } /* Darker red for hover */
+
+
+        /* General Body Styles - All text in Roboto */
+        body {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-pearl-white);
+            color: var(--color-text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding-top: 128px; /* Adjusted padding to account for fixed navbar height (h-32 = 128px) */
+        }
+
+        /* Header/Navbar specific custom styles */
+        .fixed-navbar {
+            background-color: var(--color-light-gray); /* Changed to light gray */
+            border-bottom: 1px solid var(--color-silver-light);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .fixed-navbar img {
+            height: 100%; /* Image fills the h-32 parent div */
+            width: auto;
+            object-fit: contain;
+            opacity: 100%;
+        }
+
+        .nav-item {
+            font-weight: 500; /* Medium weight for navigation */
+            font-size: 1.1em; /* Increased font size for nav items */
+            color: var(--color-text-dark); /* Changed text color to dark for contrast */
+        }
+        .nav-item:hover {
+            color: var(--color-red-600); /* Red hover effect for nav items */
+        }
+
+        /* Floating Enquiry Button */
+        .enquiry-button {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--color-teal-cta);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 1000;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+        }
+
+        .enquiry-button:hover {
+            background-color: var(--color-teal-cta-dark);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* Mobile Menu */
+        #navbar-menu {
+            display: none; /* Hidden by default */
+            background-color: var(--color-light-gray); /* Match header */
+            border-top: 1px solid var(--color-silver-light);
+        }
+        #navbar-menu.show {
+            display: block; /* Show when 'show' class is added by JS */
+        }
+        #navbar-menu a {
+            color: var(--color-text-dark); /* Ensure mobile menu links are dark */
+        }
+        #navbar-menu a:hover {
+            color: var(--color-red-600); /* Red hover for mobile menu links */
+        }
+        #menu-button { /* Adjust mobile menu button color for light background */
+            color: var(--color-text-dark);
+        }
+
+        /* Hero Section for Study Table */
+        .hero-study-table {
+            background-image: url('https://www.greenply.com:5001/banner1710848955363-890.png'); /* Using a placeholder image for now */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            height: 384px; /* h-96 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom-left-radius: 0.5rem; /* rounded-b-lg */
+            border-bottom-right-radius: 0.5rem; /* rounded-b-lg */
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+            padding-left: 1.5rem; /* px-6 */
+            padding-right: 1.5rem; /* px-6 */
+        }
+
+        .hero-study-table::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .hero-study-table .breadcrumbs {
+            position: relative;
+            z-index: 2;
+            font-size: 0.875rem; /* text-sm */
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-wider */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+
+        .hero-study-table h1 {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem; /* text-5xl */
+            font-weight: 700; /* font-bold */
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 2rem; /* mb-8 (adjusted from mt-10 in original to be mb-8 for h2) */
+            color: var(--color-text-dark);
+        }
+
+        /* Image Grid Cards (for Discover Study Table Ideas and Explore Other Furniture) */
+        .image-grid-card {
+            background-color: GhostWhite; /* bg-white */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            overflow: hidden;
+            border: 1px solid black; /* Added black border */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: pointer; /* Indicate clickability */
+        }
+
+        .image-grid-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255,0,0,0.4); /* Red hover effect */
+        }
+
+        .image-grid-card img {
+            width: 100%;
+            height: 16rem; /* h-64 */
+            object-fit: cover;
+        }
+
+        .image-grid-card p {
+            font-weight: 600; /* font-semibold */
+            font-size: 1.125rem; /* text-lg */
+            color: var(--color-text-dark); /* text-gray-800 */
+            padding: 1rem; /* p-4 */
+        }
+
+        /* Show More Button */
+        .show-more-button {
+            background-color: var(--color-teal-cta); /* Example color */
+            color: white;
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.375rem; /* rounded-md */
+            font-weight: 600; /* font-semibold */
+            margin-top: 2.5rem; /* mt-10 */
+            transition: background-color 0.3s ease;
+        }
+
+        .show-more-button:hover {
+            background-color: var(--color-teal-cta-dark);
+        }
+
+        /* Explore Greenply Products Section - Carousel */
+        .carousel-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2.5rem; /* mt-10 */
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            width: 100%;
+            max-width: 1200px; /* max-w-7xl */
+            gap: 2rem; /* gap-8 */
+            padding-bottom: 1rem; /* Space for scrollbar */
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .carousel-container::-webkit-scrollbar-thumb {
+            background-color: var(--color-silver-accent);
+            border-radius: 10px;
+        }
+
+        .carousel-container::-webkit-scrollbar-track {
+            background-color: var(--color-silver-light);
+            border-radius: 10px;
+        }
+
+        .carousel-card {
+            flex-shrink: 0;
+            width: 280px; /* Adjust as needed for desired card width */
+            padding: 1rem; /* p-4 */
+            border: 1px solid #E5E7EB; /* border border-gray-200 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            scroll-snap-align: center;
+            text-align: center;
+            cursor: pointer; /* Indicate clickability */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .carousel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255,0,0,0.4); /* Red hover effect */
+        }
+
+        .carousel-card-image {
+            border-radius: 0.5rem; /* rounded-lg */
+            margin-bottom: 1rem; /* mb-4 */
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            height: 160px; /* Fixed height for consistency */
+            object-fit: cover;
+        }
+
+        .carousel-card p {
+            font-weight: 600; /* font-semibold */
+            font-size: 1.125rem; /* text-lg */
+            color: var(--color-text-dark); /* text-gray-700 */
+        }
+
+        .carousel-nav-button {
+            background-color: #E5E7EB; /* bg-gray-200 */
+            border-radius: 9999px; /* rounded-full */
+            padding: 0.75rem; /* p-3 */
+            cursor: pointer;
+            transition-property: background-color;
+            transition-duration: 0.3s;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .carousel-nav-button.left {
+            left: 0;
+            margin-left: -2rem; /* Adjust to position outside the container */
+        }
+
+        .carousel-nav-button.right {
+            right: 0;
+            margin-right: -2rem; /* Adjust to position outside the container */
+        }
+
+        .carousel-nav-button:hover {
+            background-color: #D1D5DB; /* hover:bg-gray-300 */
+        }
+
+        .carousel-nav-button svg {
+            width: 1.5rem; /* w-6 */
+            height: 1.5rem; /* h-6 */
+            color: #4B5563; /* text-gray-700 */
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--color-footer-bg); /* Changed to dark blue-gray */
+            color: #fff; /* Ensure text is white on dark background */
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid var(--color-silver-light);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.03);
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 150px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: var(--color-silver-accent); /* Changed to silver accent for contrast */
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+            font-size: 1.1em; /* Increased font size for footer options */
+            font-family: "Roboto", sans-serif; /* Ensure Roboto font family */
+        }
+
+        .footer-section ul li a {
+            color: white; /* Changed to white as requested */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--color-red-600); /* Red hover effect for footer links */
+        }
+
+        .follow-us {
+            border-top: 1px solid rgba(255,255,255,0.1); /* Adjusted border color for dark background */
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .follow-us h3 {
+            color: var(--color-silver-accent); /* Changed to silver accent for contrast */
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.5em;
+        }
+
+        .social-icons a {
+            color: white; /* Changed to white as requested */
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--color-red-600); /* Red hover effect for social icons */
+        }
+        footer p.text-sm {
+            color: var(--color-silver-accent); /* Adjusted copyright text text-color for better contrast */
+        }
+
+        /* Inquiry Modal Styles */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            padding-top: 60px; /* Space from top for modal */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+        }
+
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--color-teal-cta); /* Teal for modal heading */
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .modal-close-button { /* Changed from .modal-close */
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close-button:hover, /* Changed from .modal-close */
+        .modal-close-button:focus { /* Changed from .modal-close */
+            color: var(--color-teal-cta);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color-text-dark);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea,
+        .form-group select {
+            width: calc(100% - 20px); /* Account for padding */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px; /* Rounded corners for inputs */
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Specific styles for the modal's inputs */
+        #enquiry-form input,
+        #enquiry-form select {
+            padding: 0.75rem; /* p-3 */
+            border: 1px solid var(--color-silver-light); /* border border-gray-300 */
+            border-radius: 0.375rem; /* rounded-md */
+        }
+
+        #enquiry-form input:focus,
+        #enquiry-form select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--color-custom-red); /* focus:ring-2 focus:ring-custom-red */
+        }
+
+        #enquiry-form .md\:col-span-2 {
+            grid-column: span 2 / span 2;
+        }
+
+        #enquiry-form .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-group { /* New class for checkbox group */
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 0.5rem;
+            border-radius: 0.25rem; /* rounded */
+            color: var(--color-custom-red); /* text-custom-red */
+            outline: none;
+            box-shadow: none;
+        }
+
+        .checkbox-group input[type="checkbox"]:focus {
+            box-shadow: 0 0 0 2px var(--color-custom-red); /* focus:ring-custom-red */
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0; /* Override default label margin */
+            font-size: 0.875rem; /* text-sm */
+            color: #4B5563; /* text-gray-600 */
+        }
+
+        .checkbox-group a {
+            font-size: 0.875rem; /* text-sm */
+            color: var(--color-custom-red); /* text-custom-red */
+            margin-left: 1rem; /* ml-4 */
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .inquire-now-button { /* New class for submit button */
+            background-color: var(--color-custom-red); /* bg-custom-red */
+            color: white;
+            font-weight: 600; /* font-semibold */
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.375rem; /* rounded-md */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: background-color 0.3s ease;
+            margin-top: 1.5rem; /* mt-6 */
+            width: 100%; /* Full width */
+            border: none; /* Remove default button border */
+            cursor: pointer;
+        }
+
+        .inquire-now-button:hover {
+            background-color: var(--color-custom-red-dark); /* hover:bg-custom-red-dark */
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 992px) { /* Adjusted breakpoint for sidebar */
+            .main-content-wrapper {
+                flex-direction: column;
+            }
+
+            .filter-sidebar {
+                position: static; /* Remove sticky position on smaller screens */
+                width: 100%; /* Full width */
+                height: auto; /* Auto height */
+                margin-right: 0;
+                margin-bottom: 20px; /* Space below filter section */
+                border-right: none; /* Remove right border */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+
+            .main-content-area {
+                padding: 0 20px; /* Add horizontal padding to main content */
+            }
+
+            .hero-study-table h1 {
+                font-size: 2.5em; /* Smaller font size for mobile */
+            }
+
+            .section-header {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .fixed-navbar .md\:flex {
+                display: none; /* Hide desktop nav on mobile */
+            }
+
+            .fixed-navbar .md\:hidden {
+                display: block; /* Show mobile menu button */
+            }
+
+            #navbar-menu.show {
+                display: block; /* Show mobile menu when active */
+            }
+
+            /* Adjust mobile menu positioning if it's fixed */
+            #navbar-menu {
+                top: 128px; /* Position below the fixed navbar */
+            }
+
+            .image-grid-card p,
+            .carousel-card p {
+                font-size: 1.1em;
+            }
+
+            /* Hide floating inquiry button on smaller screens if desired */
+            .enquiry-button {
+                display: none;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            #enquiry-form {
+                grid-template-columns: 1fr; /* Stack form fields on small screens */
+            }
+
+            #enquiry-form .md\:col-span-2 {
+                grid-column: span 1 / span 1; /* Reset span for small screens */
+            }
+
+            .carousel-nav-button.left {
+                left: -1rem; /* Adjust for smaller screens */
+            }
+
+            .carousel-nav-button.right {
+                right: -1rem; /* Adjust for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fixed-navbar img {
+                height: 50px; /* Smaller logo on very small screens */
+            }
+            body {
+                padding-top: 70px; /* Adjust body padding for smaller header on mobile */
+            }
+            .fixed-navbar {
+                padding: 5px 0; /* Smaller header padding */
+            }
+            #navbar-menu {
+                top: 70px; /* Adjust mobile menu top for smaller header */
+            }
+            .hero-study-table {
+                padding-left: 1rem; /* Adjust padding for very small screens */
+                padding-right: 1rem; /* Adjust padding for very small screens */
+            }
+        }
+    </style>
+</head>
+<body class="bg-pearl-white">
+    <nav class="fixed-navbar py-4 px-6 flex justify-between items-center">
+        <div class="h-32 w-auto flex justify-center items-center">
+            <!-- Logo updated: dark background, white text -->
+            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" class="h-full w-auto object-contain opacity-100 rounded-lg">
+        </div>
+        <div class="hidden md:flex space-x-8 pr-10">
+            <a href="./index.html" class="nav-item py-1">Consumer</a>
+            <a href="./about.html" class="nav-item py-1">About Us</a>
+            <a href="./Inspiration.html" class="nav-item py-1">Inspiration</a>
+            <a href="./products.html" class="nav-item py-1">Products</a>
+        </div>
+        <div class="md:hidden">
+            <button class="focus:outline-none" id="menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="navbar-menu" class="hidden md:hidden absolute w-full shadow-md py-4 z-50">
+            <a href="./index.html" class="block px-6 py-2 font-medium">Consumer</a>
+            <a href="./about.html" class="block px-6 py-2 font-medium">About Us</a>
+            <a href="./Inspiration.html" class="block px-6 py-2 font-medium">Inspiration</a>
+            <a href="./products.html" class="block px-6 py-2 font-medium">Products</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section for Study Table -->
+        <section class="hero-study-table">
+            <p class="breadcrumbs">Home > Inspiration > Study Table</p>
+            <h1>Study table ideas to match your interior style</h1>
+        </section>
+
+        <!-- Discover Study Table Ideas Section -->
+        <section class="bg-white py-16 px-6 md:px-12">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="section-header">Discover study table ideas</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10" id="study-table-grid">
+                    <div class="image-grid-card">
+                        <img src="https://www.greenply.com:5001/originalimage11731402504301-4789.jpg" alt="Classic wooden desk old charm">
+                        <p>Classic wooden desk old charm</p>
+                    </div>
+                    <div class="image-grid-card">
+                        <img src="https://www.greenply.com:5001/originalimage21731402504302-5454.jpg" alt="Modern Desk with Cozy Chair">
+                        <div class="p-4">
+                            <p>Modern Desk with Cozy Chair</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card">
+                        <img src="https://www.greenply.com:5001/originalimage41731402504379-2571.jpg" alt="Minimalistic Office with storage">
+                        <div class="p-4">
+                            <p>Minimalistic Office with storage</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card">
+                        <img src="https://www.greenply.com:5001/originalimage31731402504319-6430.jpg" alt="Wooden finished Home Office setup">
+                        <div class="p-4">
+                            <p>Wooden finished Home Office setup</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card">
+                        <img src="https://www.greenply.com:5001/originalimage51731402504400-6849.jpg" alt="Contemporary workplace home office">
+                        <div class="p-4">
+                            <p>Contemporary workplace home office</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card">
+                        <img src="https://www.greenply.com:5001/originalimage61731402504420-3254.jpg" alt="Light Brown table and chair">
+                        <div class="p-4">
+                            <p>Light Brown table and chair</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card hidden"> <!-- Hidden by default -->
+                        <img src="https://www.greenply.com:5001/originalimage11731411230640-2137.jpg" alt="Elegant wooden desk">
+                        <div class="p-4">
+                            <p>Elegant wooden desk</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card hidden"> <!-- Hidden by default -->
+                        <img src="https://www.greenply.com:5001/originalimage21731411230640-7608.jpg" alt="Luxury classic library sitting room">
+                        <div class="p-4">
+                            <p>Luxury classic library sitting room</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card hidden"> <!-- Hidden by default -->
+                        <img src="https://www.greenply.com:5001/originalimage41731411230723-9589.jpg" alt="Simple wooden worktable">
+                        <div class="p-4">
+                            <p>Simple wooden worktable</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card hidden"> <!-- Hidden by default -->
+                        <img src="https://www.greenply.com:5001/originalimage31731411230653-9341.jpg" alt="Antique Floral dark brown study table">
+                        <div class="p-4">
+                            <p>Antique Floral dark brown study table</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card hidden"> <!-- Hidden by default -->
+                        <img src="https://www.greenply.com:5001/originalimage51731411230927-8427.jpg" alt="Vintage wooden study or work table">
+                        <div class="p-4">
+                            <p>Vintage wooden study or work table</p>
+                        </div>
+                    </div>
+                    <div class="image-grid-card hidden"> <!-- Hidden by default -->
+                        <img src="https://www.greenply.com:5001/originalimage61731411230927-6706.jpg" alt="Classic style leather wood furniture">
+                        <div class="p-4">
+                            <p>Classic style leather wood furniture</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="show-more-button" id="show-more-study-tables">Show more</button>
+            </div>
+        </section>
+
+        <!-- Explore Other Furniture Section -->
+        <section class="bg-white py-16 px-6 md:px-12">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="section-header">Explore other furniture</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                    <div class="image-grid-card" data-navigate-to="./chair.html">
+                        <img src="https://www.greenply.com:5001/thumbnail1704784068044-4260.jpg" alt="Chair ideas to match your interior style">
+                        <p>Chair ideas to match your interior style</p>
+                    </div>
+                    <div class="image-grid-card" data-navigate-to="./bed.html">
+                        <img src="https://www.greenply.com:5001/thumbnail1721225695746-9846.jpg" alt="Discover bed ideas">
+                        <p>Discover bed ideas</p>
+                    </div>
+                    <div class="image-grid-card" data-navigate-to="./Sofa.html">
+                        <img src="https://www.greenply.com:5001/thumbnail1704786306364-9806.jpg" alt="Discover Sofa ideas">
+                        <p>Discover Sofa ideas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Enquiry Button -->
+    <div id="enquiry-button" class="enquiry-button">
+        <i class="fas fa-info"></i>
+    </div>
+
+    <!-- Enquiry Form Modal -->
+    <div id="inquiry-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Inquire Now</h2>
+                <button id="modal-close-button" class="modal-close-button">&times;</button>
+            </div>
+            <form id="enquiry-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" placeholder="Enter Your Mobile Number">
+                </div>
+                <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" id="pincode" placeholder="Enter Pincode">
+                </div>
+                <div class="form-group">
+                    <label for="inquiry-type">Inquiry Type</label>
+                    <select id="inquiry-type">
+                        <option value="">Select Inquiry Type</option>
+                        <option value="Product Inquiry">Product Inquiry</option>
+                        <option value="Service Inquiry">Service Inquiry</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                    </select>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="robot-checkbox">
+                    <label for="robot-checkbox">I'm not a robot</label>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <button type="submit" class="inquire-now-button">
+                    Inquire Now
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-footer-bg py-8">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex justify-around flex-wrap gap-8 mb-8">
+                <div class="footer-section">
+                    <h3>Brand</h3>
+                    <ul>
+                        <li><a href="./opulent.html">Opulent</a></li>
+                        <li><a href="./Aspire.html">Aspire</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Furniture Type</h3>
+                    <ul>
+                        <li><a href="./chair.html">Chair</a></li>
+                        <li><a href="./Study table.html">Study Table</a></li>
+                        <li><a href="./Sofa.html">Sofa</a></li>
+                        <li><a href="./bed.html">Bed</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links & More</h3>
+                    <ul>
+                        <li><a href="./about.html">About Us</a></li>
+                        <li><a href="./contact.html">Contact Us</a></li>
+                        <li><a href="./Sustainable.html">Sustainability</a></li>
+                        <li><a href="./Privacy Policy.html">Privacy Policy</a></li>
+                        <li><a href="./Disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="follow-us">
+                <h3>Follow us on</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="mt-6 text-sm">Copyright © 2025 GreenInfinity.com. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const navbarMenu = document.getElementById('navbar-menu');
+
+            const enquiryButton = document.getElementById('enquiry-button');
+            const enquiryModalOverlay = document.getElementById('inquiry-modal-overlay'); /* Corrected ID */
+            const modalCloseButton = document.getElementById('modal-close-button'); /* Corrected ID */
+            const enquiryForm = document.getElementById('inquiry-form'); /* Corrected ID */
+
+            // --- Mobile Menu Toggle Logic ---
+            if (menuButton) {
+                menuButton.addEventListener('click', () => {
+                    navbarMenu.classList.toggle('hidden');
+                    navbarMenu.classList.toggle('show');
+                });
+            }
+
+            // --- Modal/Form Logic ---
+            if (enquiryButton) {
+                enquiryButton.addEventListener('click', () => {
+                    enquiryModalOverlay.style.display = 'flex';
+                });
+            }
+
+            if (modalCloseButton) {
+                modalCloseButton.addEventListener('click', () => {
+                    enquiryModalOverlay.style.display = 'none';
+                });
+            }
+
+            window.addEventListener('click', (event) => {
+                if (event.target == enquiryModalOverlay) {
+                    enquiryModalOverlay.style.display = 'none';
+                }
+            });
+
+            if (enquiryForm) {
+                enquiryForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const name = document.getElementById('name').value;
+                    const mobile = document.getElementById('mobile').value;
+                    const pincode = document.getElementById('pincode').value;
+                    const inquiryType = document.getElementById('inquiry-type').value;
+                    const robotCheckbox = document.getElementById('robot-checkbox').checked;
+
+                    if (!robotCheckbox) {
+                        const messageBox = document.createElement('div');
+                        messageBox.style.cssText = `
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            background-color: #FFDDDD;
+                            color: var(--color-text-dark);
+                            padding: 20px;
+                            border-radius: 8px;
+                            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                            z-index: 1001;
+                            text-align: center;
+                            font-size: 1.1em;
+                        `;
+                        messageBox.textContent = "Please confirm you are not a robot.";
+                        document.body.appendChild(messageBox);
+                        setTimeout(() => {
+                            document.body.removeChild(messageBox);
+                        }, 3000);
+                        return;
+                    }
+
+                    const whatsappNumber = '919876543210'; // <--- REPLACE THIS WITH YOUR NUMBER (e.g., 919876543210)
+                    const whatsappMessage = `Hello GreenInfinity, I have an enquiry.\n\n` +
+                                            `Name: ${name}\n` +
+                                            `Mobile: ${mobile}\n` +
+                                            `Pincode: ${pincode}\n` +
+                                            `Inquiry Type: ${inquiryType}`;
+
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+                    window.open(whatsappUrl, '_blank');
+
+                    enquiryModalOverlay.style.display = 'none';
+                    enquiryForm.reset();
+
+                    const messageBox = document.createElement('div');
+                    messageBox.style.cssText = `
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: #4CAF50;
+                        color: white;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                        z-index: 1001;
+                        text-align: center;
+                        font-size: 1.1em;
+                    `;
+                    messageBox.textContent = 'Thank you for your enquiry! You will be redirected to WhatsApp to send your message.';
+                    document.body.appendChild(messageBox);
+
+                    setTimeout(() => {
+                        document.body.removeChild(messageBox);
+                    }, 3000);
+                });
+            }
+
+            // --- Discover Study Table Ideas - Show More/Less Logic ---
+            const studyTableCards = document.querySelectorAll('#study-table-grid .image-grid-card');
+            const showMoreButton = document.getElementById('show-more-study-tables');
+            const initialDisplayCount = 6; // Number of cards to show initially
+
+            function toggleStudyTableCards() {
+                let hiddenCount = 0;
+                studyTableCards.forEach((card, index) => {
+                    if (index >= initialDisplayCount) {
+                        if (card.classList.contains('hidden')) {
+                            hiddenCount++;
+                        }
+                    }
+                });
+
+                if (hiddenCount > 0) {
+                    // Show hidden cards
+                    studyTableCards.forEach((card, index) => {
+                        if (index >= initialDisplayCount) {
+                            card.classList.remove('hidden');
+                        }
+                    });
+                    showMoreButton.textContent = 'Show less';
+                } else {
+                    // Hide cards beyond initialDisplayCount
+                    studyTableCards.forEach((card, index) => {
+                        if (index >= initialDisplayCount) {
+                            card.classList.add('hidden');
+                        }
+                    });
+                    showMoreButton.textContent = 'Show more';
+                }
+            }
+
+            // Initially hide cards if there are more than initialDisplayCount
+            if (studyTableCards.length > initialDisplayCount) {
+                for (let i = initialDisplayCount; i < studyTableCards.length; i++) {
+                    studyTableCards[i].classList.add('hidden');
+                }
+                showMoreButton.style.display = 'block'; // Ensure button is visible
+            } else {
+                showMoreButton.style.display = 'none'; // Hide button if all cards are shown
+            }
+
+            if (showMoreButton) {
+                showMoreButton.addEventListener('click', toggleStudyTableCards);
+            }
+
+            
+
+            // --- Navigation for "Explore Greenply Products" and "Explore Other Furniture" sections ---
+            const clickableCards = document.querySelectorAll('.product-item, .image-grid-card');
+
+            clickableCards.forEach(item => {
+                item.addEventListener('click', () => {
+                    const navigateTo = item.getAttribute('data-navigate-to');
+                    if (navigateTo) {
+                        window.location.href = navigateTo;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
