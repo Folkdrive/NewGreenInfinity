@@ -3,919 +3,1035 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenInfinity - Innovative Wood Solutions</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>GreenInfinity - Your Partner in Premium Wood Solutions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Import Google Fonts - Inter */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        /* Custom Tailwind Configuration for Blue Shades and White */
+        :root {
+            --color-primary-blue: #1A73E8; /* Google Blue */
+            --color-accent-blue: #4285F4; /* Lighter Google Blue */
+            --color-dark-blue: #0F4C81; /* Darker Blue */
+            --color-light-gray: #F3F4F6; /* Gray-100 */
+            --color-white: #FFFFFF;
+            --color-red: #DC2626; /* Red for nav items and footer headings */
+            --color-black: #000000; /* Black for nav options */
+            --color-light-yellow: #FFFACD; /* Light Yellow for footer headings */
+            --color-text-dark: #333; /* Dark text for general content */
+            --color-custom-red: #DC2626; /* Specific red for form elements */
+            --color-custom-red-dark: #B91C1C; /* Darker red for form hover */
+            --color-green-600: #16A34A; /* Tailwind green-600 */
+            --color-green-700: #15803D; /* Tailwind green-700 */
+        }
 
-        /* Base styles */
+        .bg-primary-blue { background-color: var(--color-primary-blue); }
+        .text-primary-blue { color: var(--color-primary-blue); }
+        .hover\:bg-primary-blue:hover { background-color: var(--color-primary-blue); }
+
+        .bg-accent-blue { background-color: var(--color-accent-blue); }
+        .text-accent-blue { color: var(--color-accent-blue); }
+        .hover\:bg-accent-blue:hover { background-color: var(--color-accent-blue); }
+
+        .bg-dark-blue { background-color: var(--color-dark-blue); }
+        .text-dark-blue { color: var(--color-dark-blue); }
+
+        .bg-footer-bg { background-color: var(--color-dark-blue); } /* Using dark blue for footer */
+
+        .text-custom-red { color: var(--color-custom-red); }
+        .bg-custom-red { background-color: var(--color-custom-red); }
+        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
+        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
+
+        .bg-green-600 { background-color: var(--color-green-600); }
+        .hover\:bg-green-700:hover { background-color: var(--color-green-700); }
+        .text-green-600 { color: var(--color-green-600); }
+        .focus\:ring-green-500:focus { --tw-ring-color: #22C55E; } /* Tailwind green-500 */
+
+        /* General styles for Inter font */
         body {
             font-family: 'Inter', sans-serif;
-            color: #333;
-            padding-top: 64px; /* Add padding to body to prevent content from being hidden behind fixed navbar */
+            color: #333; /* Default text color */
         }
 
-        /* Custom color variables for consistency */
-        :root {
-            --red-theme: #e53e3e; /* Tailwind's red-600 */
-            --red-theme-hover: #c53030; /* Darker red for hover */
-        }
-
-        /* Tailwind-like utility classes for custom colors */
-        .bg-red-theme { background-color: var(--red-theme); }
-        .text-red-theme { color: var(--red-theme); }
-        .border-red-theme { border-color: var(--red-theme); }
-        .hover-red-theme:hover { background-color: var(--red-theme-hover); }
-
-        /* Footer link hover effect */
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Accordion styles */
-        .accordion-button {
-            cursor: pointer;
-            padding: 1rem;
-            width: 100%;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-            transition: background-color 0.3s ease; /* Smooth transition for background */
-        }
-        .accordion-button.active {
-            background-color: #f0fdf4; /* Light green background when active */
-            border-bottom: 1px solid #34d399; /* Green border when active */
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, border 0.3s ease-out;
-            padding: 0 1rem;
-            background-color: #f9f9f9;
-            border-left: 5px solid transparent; /* Default transparent border */
-            border-radius: 0 0 8px 8px; /* Rounded corners only at bottom */
-        }
-        .accordion-content.active {
-            padding: 1rem;
-            border-left-color: #34d399; /* Green border when active */
-        }
-        .rotate-icon {
-            transform: rotate(45deg); /* Rotates plus to an 'x' or minus-like symbol */
-            transition: transform 0.3s ease;
-        }
-
-        /* Custom styles for footer social icons */
-        .social-icon-circle {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent white for circles */
-            transition: background-color 0.3s ease;
-        }
-        .social-icon-circle:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Fixed navigation bar */
+        /* Fixed Navbar Styling */
         .fixed-navbar {
+            background-color: var(--color-white); /* White background */
+            color: #333; /* Default text color for logo area if needed */
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 20;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .fixed-navbar .nav-link {
-            color: #333;
-        }
-        .fixed-navbar .nav-link:hover {
-            color: var(--red-theme);
+            z-index: 1000;
+            border-bottom-left-radius: 1rem; /* Rounded bottom corners */
+            border-bottom-right-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
         }
 
-        /* Inquiry Modal styles */
-        .modal-overlay {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            justify-content: center;
+        .nav-item {
+            color: var(--color-black); /* Black text */
+            font-weight: 500;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Added transform for animation */
+            display: flex;
             align-items: center;
-        }
-        .inquiry-form-modal {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .modal-close-button {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .modal-close-button:hover,
-        .modal-close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+            gap: 0.5rem; /* Space between icon and text */
         }
 
-        /* Custom Message Box Styles */
-        .message-box-overlay {
-            display: none;
-            position: fixed;
-            z-index: 101; /* Higher than inquiry modal */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-        .message-box-content {
-            background-color: #fefefe;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            max-width: 400px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        .nav-item:hover {
+            color: var(--color-red); /* Red on hover */
+            transform: translateY(-2px); /* Subtle lift on hover */
         }
 
-        /* Hero Section Carousel Styles */
+        /* Hero Section with Image Carousel */
         .hero-section {
             position: relative;
             width: 100%;
-            height: 450px; /* Adjust height as needed */
+            height: 600px; /* Full height hero */
             overflow: hidden;
+            margin-top: 8rem; /* Space for fixed navbar */
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        .carousel-slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-        .carousel-slide.active {
-            opacity: 1;
-        }
-        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+        }
+
+        .carousel-slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
             display: flex;
             align-items: center;
-            padding-left: 5rem;
-            color: white;
-            font-size: 2.5rem;
-            font-weight: bold;
-            z-index: 1;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+            z-index: 10;
         }
+
+        .hero-overlay h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        @media (min-width: 768px) {
+            .hero-overlay h1 {
+                font-size: 5rem;
+            }
+        }
+
         .carousel-dots {
             position: absolute;
-            bottom: 20px;
+            bottom: 1.5rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 10px;
-            z-index: 2;
+            gap: 0.75rem;
+            z-index: 11;
         }
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
+
+        .dot {
+            width: 10px;
+            height: 10px;
             background-color: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .carousel-dot.active {
-            background-color: white;
+
+        .dot.active {
+            background-color: var(--color-white);
         }
 
-        /* Product Visualizer Styles */
-        .visualizer-container {
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .visualizer-header {
-            background-color: #f7fafc;
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .visualizer-main-content {
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .scene {
-            position: relative;
-            width: 100%;
-            height: 500px; /* Fixed height for the scene */
-            background-image: url('https://placehold.co/1200x500/A0AEC0/FFFFFF?text=Room+Scene+Placeholder'); /* Default room image */
-            background-size: cover;
-            background-position: center;
+        /* Floating Inquiry Button */
+        #open-inquiry-modal {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: var(--color-primary-blue);
+            color: var(--color-white);
+            border-radius: 9999px;
+            width: 3.5rem;
+            height: 3.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-        }
-        .product-panel {
-            position: absolute;
-            width: 465px; /* Example size for the movable panel */
-            height: 500px;
-            background-color: #ccc; /* Default panel color */
-            border: 2px solid #fff;
-            cursor: grab;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .toggle-picker-button {
-            position: absolute;
-            bottom: 1rem;
-            left: 1rem;
-            background-color: var(--red-theme);
-            color: white;
-            padding: 0.75rem 1.25rem;
-            border-radius: 9999px; /* Full rounded */
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            z-index: 10;
-        }
-        .toggle-picker-button:hover {
-            background-color: var(--red-theme-hover);
-            transform: translateY(-2px);
-        }
-        .color-picker-modal {
-            display: none; /* Hidden by default */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-            z-index: 20;
-            width: 90%;
-            max-width: 500px;
-        }
-        .color-picker-modal .close-button {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: none;
-            border: none;
             font-size: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             cursor: pointer;
-        }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-        .dropdown-select {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.375rem;
-            background-color: white;
-            appearance: none; /* Remove default arrow */
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            cursor: pointer;
-            font-size: 1rem;
-            color: #4a5568;
-        }
-        .dropdown-arrow {
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-            color: #a0aec0;
-        }
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-            gap: 0.75rem;
-            max-height: 200px; /* Limit height for scrollability */
-            overflow-y: auto;
-            padding-right: 0.5rem; /* Space for scrollbar */
-        }
-        .color-option {
-            width: 60px;
-            height: 60px;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .color-option:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-        }
-        .color-option.selected {
-            border-color: var(--red-theme);
-            box-shadow: 0 0 0 3px rgba(var(--red-theme), 0.5);
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            z-index: 999;
+            animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+            border: none; /* Remove default button border */
         }
 
-        /* Key Features Vertical Slider */
-        .key-features-image-slider {
+        #open-inquiry-modal:hover {
+            background-color: var(--color-accent-blue);
+            transform: scale(1.05);
+            animation: none;
+        }
+
+        /* Inquiry Form Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            opacity: 0; /* Initial state for fade-in */
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+        }
+
+        .inquiry-form-modal {
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 90%;
+            max-width: 500px;
             position: relative;
-            width: 400px; /* Fixed width for the image container */
-            height: 300px; /* Fixed height for the image container */
+            transform: translateY(20px); /* Initial state for slide-up */
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal-overlay.show .inquiry-form-modal {
+            transform: translateY(0);
+        }
+
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .modal-close-button:hover {
+            color: #666;
+        }
+
+        /* Custom Message Box */
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001; /* Higher z-index than inquiry modal */
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .message-box-overlay.show {
+            opacity: 1;
+        }
+
+        .message-box-content {
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            transform: translateY(20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        .message-box-overlay.show .message-box-content {
+            transform: translateY(0);
+        }
+
+        /* Our Collection Club Crests Section */
+        .sticky-tabs {
+            position: sticky;
+            top: 6rem; /* Adjust based on navbar height */
+            z-index: 20;
+            align-self: flex-start;
+        }
+
+        .sticky-tabs ul li a {
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .sticky-tabs ul li a.active-tab {
+            background-color: var(--color-custom-red);
+            color: var(--color-white);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .mini-carousel-container {
+            position: relative;
+            width: 100%;
+            height: 200px; /* Fixed height for mini carousels */
             overflow: hidden;
             border-radius: 0.5rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
         }
-        .key-features-image-slide {
-            position: absolute;
+
+        .mini-carousel-slide {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 1s ease-in-out;
         }
+
+        .mini-carousel-slide.active {
+            opacity: 1;
+        }
+
+        /* Key Features Section */
+        #key-features-list li {
+            position: relative;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        #key-features-list li:last-child {
+            border-bottom: none;
+        }
+
+        #key-features-list li.active {
+            color: var(--color-custom-red);
+            font-weight: 600;
+        }
+
+        #key-features-list li svg {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #key-features-list li.active svg {
+            opacity: 1;
+        }
+
+        .key-features-image-slider {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Adjust as needed */
+            height: 300px; /* Fixed height for the slider */
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .key-features-image-slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
         .key-features-image-slide.active {
             opacity: 1;
         }
+
         .key-features-nav-arrow {
             position: absolute;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             padding: 0.5rem;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-            z-index: 5;
+            z-index: 10;
+            color: var(--color-custom-red);
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
+
         .key-features-nav-arrow:hover {
-            background-color: rgba(255, 255, 255, 1);
+            background-color: var(--color-white);
+            transform: scale(1.1);
         }
+
         .key-features-nav-arrow.up {
             top: 1rem;
         }
+
         .key-features-nav-arrow.down {
             bottom: 1rem;
         }
-        #key-features-list li {
-            cursor: pointer;
-            padding: 0.75rem 1rem;
+
+        /* Product Visualizer Section */
+        .visualizer-container {
+            background-color: var(--color-white);
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .visualizer-header {
+            background-color: var(--color-light-gray);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .visualizer-main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem;
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Max width for the scene */
+            height: 450px; /* Fixed height for the scene */
+            background-image: url('https://clubcrests.greenply.com/wp-content/uploads/bedroom.jpg'); /* Default room image */
+            background-size: cover;
+            background-position: center;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-panel {
+            position: absolute;
+            width: 200px; /* Example size */
+            height: 300px; /* Example size */
+            background-color: #f0f0f0; /* Default panel color */
+            border: 2px solid #ccc;
+            cursor: grab;
             border-radius: 0.5rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .toggle-picker-button {
+            background-color: var(--color-custom-red);
+            color: var(--color-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center horizontally for mobile */
             gap: 0.5rem;
-            font-weight: 500;
-        }
-        #key-features-list li.active {
-            background-color: var(--red-theme);
-            color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-        }
-        #key-features-list li svg {
-            display: none; /* Hide checkmark by default */
-        }
-        #key-features-list li.active svg {
-            display: inline-block; /* Show checkmark when active */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
         }
 
-        /* Blog Carousel */
-        .blog-carousel-container {
-            display: flex;
-            overflow-x: hidden; /* Hide scrollbar for smooth auto-scroll */
-            scroll-behavior: smooth; /* Smooth scrolling for manual and auto */
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
-            gap: 1.5rem; /* Space between cards */
-            padding-bottom: 1rem; /* Space for scrollbar */
-        }
-        .blog-card {
-            flex: 0 0 auto; /* Prevent cards from shrinking */
-            width: 300px; /* Fixed width for each card */
-            scroll-snap-align: start; /* Snap to the start of each card */
-        }
-        .blog-card img {
-            height: 180px; /* Fixed height for blog images */
-            object-fit: cover;
+        .toggle-picker-button:hover {
+            background-color: var(--color-custom-red-dark);
+            transform: translateY(-2px);
         }
 
-        /* Responsive adjustments */
-        @media (min-width: 768px) {
-            #key-features-list li {
-                justify-content: flex-start; /* Align left for desktop */
-            }
-            .key-features-nav-arrow {
-                display: none; /* Hide arrows on desktop if using list clicks */
-            }
-        }
-
-        /* Explicit styles for the inquiry button to ensure it's always on top */
-        #open-inquiry-modal {
+        .color-picker-modal {
             position: fixed;
-            right: 1.5rem; /* Equivalent to Tailwind's right-6 (24px) */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--color-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            z-index: 1002; /* Higher than other modals */
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .color-picker-modal.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .color-picker-modal .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .color-picker-modal .close-button:hover {
+            color: #666;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .dropdown-select {
+            width: 100%;
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            border: 1px solid #ccc;
+            border-radius: 0.5rem;
+            background-color: var(--color-white);
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .dropdown-arrow {
+            position: absolute;
+            right: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 99999 !important; /* Extremely high z-index to ensure it's always on top */
-            background-color: #e53e3e; /* Tailwind's red-600 */
-            color: white;
-            padding: 1rem; /* Equivalent to p-4 */
-            border-radius: 9999px; /* Full rounded */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            pointer-events: none;
+            color: #666;
         }
-        #open-inquiry-modal:hover {
-            background-color: #c53030; /* Darker red for hover */
-            transform: translateY(-2px) translateY(-50%); /* Apply hover transform while maintaining vertical center */
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            max-height: 300px; /* Limit height for scrollability */
+            overflow-y: auto;
+            padding-right: 0.5rem; /* Space for scrollbar */
         }
-        #open-inquiry-modal:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5); /* Focus ring */
+
+        .color-option {
+            width: 80px;
+            height: 80px;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease, transform 0.1s ease;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-option.selected {
+            border-color: var(--color-custom-red);
+            transform: scale(1.05);
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: var(--color-dark-blue); /* Dark blue footer */
+            color: var(--color-white);
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--color-light-yellow); /* Light Yellow headers in footer */
+        }
+
+        .footer-section ul li a {
+            color: var(--color-white); /* White text */
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            display: flex; /* Added flex for icon alignment */
+            align-items: center; /* Align icon and text vertically */
+            gap: 0.5rem; /* Space between icon and text */
+            padding: 0.25rem 0;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--color-white); /* White on hover for contrast */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Subtle glow on hover */
+        }
+
+        .follow-us h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--color-light-yellow); /* Light Yellow header */
+            text-align: center; /* Centered for mobile */
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center; /* Centered on all screens */
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--color-white);
+            font-size: 1.5rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .social-icons a:hover {
+            color: var(--color-accent-blue); /* Lighter blue on hover */
+        }
+
+        .footer-section {
+            text-align: center; /* Default for mobile */
+        }
+
+        @media (min-width: 768px) {
+            .footer-section {
+                text-align: left; /* Left align for larger screens */
+            }
+            .follow-us h3 {
+                text-align: center; /* Keep centered for consistency with icons below */
+            }
+            .social-icons {
+                justify-content: center; /* Keep centered for consistency with image */
+            }
+        }
+
+        .text-red-theme {
+            color: var(--color-custom-red);
+        }
+        .bg-red-600 {
+            background-color: var(--color-custom-red);
+        }
+        .hover\:bg-red-700:hover {
+            background-color: var(--color-custom-red-dark);
+        }
+        .text-red-600 {
+            color: var(--color-custom-red);
+        }
+        .focus\:ring-red-500:focus {
+            --tw-ring-color: var(--color-custom-red);
         }
     </style>
 </head>
-<body class="bg-white text-gray-800">
-
-    <!-- Header Section -->
-    <header class="bg-white shadow-md py-2 px-3 md:px-12 flex flex-col md:flex-row items-center justify-between sticky top-0 z-50 rounded-b-lg">
-        <div style="height:100px; width: 150px;  display: flex;justify-content: center; align-items: center;">
-            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" style="opacity: 2.5;">
+<body class="bg-white">
+    <!-- Fixed Navbar -->
+    <nav class="fixed-navbar py-4 px-6 flex justify-between items-center">
+        <div class="h-20 w-auto flex justify-center items-center">
+            <!-- Logo Image -->
+            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" class="h-full w-auto object-contain rounded-lg shadow-md">
         </div>
-        <!-- Updated Navigation Structure: Single row -->
-        <nav id="navbar-menu" class="hidden md:flex flex-row md:items-center md:space-x-4 w-full md:w-auto">
-             <a href="./index.html" class="text-gray-700 hover:text-red-600 font-medium transition duration-300 ease-in-out py-1 nav-item">Consumer</a>
-            <a href="./about.html" class="text-gray-600 hover:text-red-600 font-medium  transition duration-300 ease-in-out py-1 nav-item">About Us</a>
-            <a href="./Inspiration.html" class="text-gray-700 hover:text-red-600 font-medium transition duration-300 ease-in-out py-1 nav-item">Inspiration</a>
-            <a href="./products.html" class="text-gray-700 hover:text-red-600 font-medium transition duration-300 ease-in-out py-1 nav-item">Products</a>
-        </nav>
-    </header>
-
-    <!-- Hero Section with Image Carousel -->
-    <section class="hero-section">
-        <div class="carousel-container">
-            <!-- Carousel Slides - Replace with actual images -->
-            <img src="https://clubcrests.greenply.com/wp-content/uploads/banner1.jpg" class="carousel-slide active" alt="Hero Image 1">
-            <img src="https://clubcrests.greenply.com/wp-content/uploads/banner2.jpg" class="carousel-slide" alt="Hero Image 2">
-            <img src="https://clubcrests.greenply.com/wp-content/uploads/banner3.jpg" class="carousel-slide" alt="Hero Image 3">
+        <div class="hidden md:flex space-x-8 pr-10">
+            <a href="./index.html" class="nav-item py-1"><i class="fas fa-home"></i> Consumer</a>
+            <a href="./about.html" class="nav-item py-1"><i class="fas fa-info-circle"></i> About Us</a>
+            <a href="./Inspiration.html" class="nav-item py-1"><i class="fas fa-lightbulb"></i> Inspiration</a>
+            <a href="./products.html" class="nav-item py-1"><i class="fas fa-box"></i> Products</a>
         </div>
-        <div class="hero-overlay">
-            <h1 class="text-5xl font-bold mb-2">Your Partner in Premium Wood Solutions</h1>
-        </div>
-        <div class="carousel-dots"></div> <!-- Dots will be dynamically added by JS -->
-    </section>
+    </nav>
 
-    <!-- Floating Inquiry Button (Right-middle) -->
-    <button id="open-inquiry-modal">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
-        <span class="sr-only">Open Inquiry Form</span>
-    </button>
+    <main>
+        <!-- Hero Section with Image Carousel -->
+        <section class="hero-section">
+            <div class="carousel-container">
+                <!-- Carousel Slides - Replace with actual images -->
+                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner1.jpg" class="carousel-slide active" alt="Hero Image 1">
+                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner2.jpg" class="carousel-slide" alt="Hero Image 2">
+                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner3.jpg" class="carousel-slide" alt="Hero Image 3">
+            </div>
+            <div class="hero-overlay">
+                <h1 class="text-5xl font-bold mb-2">Your Partner in Premium Wood Solutions</h1>
+            </div>
+            <div class="carousel-dots"></div> <!-- Dots will be dynamically added by JS -->
+        </section>
 
-    <!-- Inquiry Form Modal -->
-    <div id="inquiry-modal-overlay" class="modal-overlay">
-        <div class="inquiry-form-modal">
-            <button class="modal-close-button" id="close-inquiry-modal">&times;</button>
-            <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Inquire Now</h3>
-            <form class="flex flex-wrap gap-4">
-                <input type="text" id="inquiry-name" placeholder="Enter Your Name" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
-                <input type="text" id="inquiry-mobile" placeholder="Enter Your Mobile Number" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
-                <!-- Added Pincode input field -->
-                <input type="text" id="inquiry-pincode" placeholder="Enter Pincode" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
-                <select id="inquiry-type" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
-                    <option value="">Select Inquiry Type</option>
-                    <option value="product">Product Inquiry</option>
-                    <option value="support">Support</option>
-                    <option value="other">Other</option>
-                </select>
-                <!-- Added "I'm not a robot" checkbox and Privacy Policy link -->
-                <div class="w-full flex items-center gap-2 mt-2">
-                    <input type="checkbox" id="robot-check" class="rounded border-gray-300 text-red-600 shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
-                    <label for="robot-check" class="text-sm text-gray-700">I'm not a robot</label>
-                    <a href="#" class="text-sm text-red-600 hover:underline ml-4">Privacy Policy</a>
-                </div>
-                <button type="button" id="submit-inquiry-button" class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">Inquire Now</button>
-            </form>
-        </div>
-    </div>
+        <!-- Floating Inquiry Button (Right-middle) -->
+        <button id="open-inquiry-modal">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>
+            <span class="sr-only">Open Inquiry Form</span>
+        </button>
 
-    <!-- Custom Message Box -->
-    <div id="message-box-overlay" class="message-box-overlay">
-        <div class="message-box-content">
-            <p id="message-box-text" class="text-lg font-semibold text-gray-800 mb-4"></p>
-            <button id="message-box-close" class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out">OK</button>
-        </div>
-    </div>
-
-
-    <!-- Introduction Section -->
-    <section class="py-16 px-6 md:px-12 bg-gray-100">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
-           <div class="md:w-auto flex justify-center mb-8 md:mb-0">
-            <!--
-              - The width and height are now 300px.
-              - The 'object-contain' class ensures the entire image is visible without being cropped.
-            -->
-            <img src="./Cub Crests Logo-01.png" height="300px" width="300px" 
-                 alt="Club Crests Logo/Image"
-                 class="rounded-xl shadow-lg w-[300px] h-[300px] object-contain"
-                 onerror="this.onerror=null;this.src='https://placehold.co/300x300/e2e8f0/4a5568?text=Image+Not+Found';">
-        </div>
-            <div class="md:w-2/3 text-center md:text-left">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">INTRODUCTION</h2>
-                <p class="text-gray-600 leading-relaxed mb-4">
-                    THE LATEST INNOVATION FROM GREENINFINITY INDUSTRIES LIMITED, HERALDS A NEW ERA IN DECORATIVE SURFACES, EMBODYING BOTH INNOVATION AND EXCELLENCE. FROM GREENINFINITY, A LEADER IN THE WOOD PANEL INDUSTRY WITH A DISTINGUISHED HISTORY OF DELIVERING TOP-TIER PRODUCTS THAT EXCEED CUSTOMER EXPECTATIONS, CLUB CRESTS IS HERE TO REDEFINE THE DECORATIVE SURFACES LANDSCAPE.
-                </p>
-                <p class="text-gray-600 leading-relaxed">
-                    Club Crests is uber-premium collection caters to visionary designers seeking materials that embody distinctiveness and technical excellence. With a focus on creating exquisite finishes and intricate detailing, these laminates are inspired by unconventional, niche designs and materials. Experience the unparalleled quality of the Club Crests Collection, a testament to the inspiring heights of craftsmanship and innovation.
-                </p>
-                <a href="#" class="mt-6 inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md">VIEW ALL &rarr;</a>
+        <!-- Inquiry Form Modal -->
+        <div id="inquiry-modal-overlay" class="modal-overlay">
+            <div class="inquiry-form-modal">
+                <button class="modal-close-button" id="close-inquiry-modal">&times;</button>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4 text-center">Inquire Now</h3>
+                <form class="flex flex-wrap gap-4">
+                    <input type="text" id="inquiry-name" placeholder="Enter Your Name" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
+                    <input type="tel" id="inquiry-mobile" placeholder="Enter Your Mobile Number" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
+                    <!-- Added Pincode input field -->
+                    <input type="text" id="inquiry-pincode" placeholder="Enter Pincode" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
+                    <select id="inquiry-type" class="flex-1 p-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent transition duration-200 ease-in-out shadow-sm">
+                        <option value="">Select Inquiry Type</option>
+                        <option value="product">Product Inquiry</option>
+                        <option value="support">Support</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <!-- Added "I'm not a robot" checkbox and Privacy Policy link -->
+                    <div class="w-full flex items-center gap-2 mt-2">
+                        <input type="checkbox" id="robot-check" class="rounded border-gray-300 text-red-600 shadow-sm focus:border-red-500 focus:ring focus:ring-red-500 focus:ring-opacity-50">
+                        <label for="robot-check" class="text-sm text-gray-700">I'm not a robot</label>
+                        <a href="./Privacy Policy.html" class="text-sm text-red-600 hover:underline ml-4">Privacy Policy</a>
+                    </div>
+                    <button type="button" id="submit-inquiry-button" class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-lg transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">Inquire Now</button>
+                </form>
             </div>
         </div>
-    </section>
 
-    <!-- Our Collection Club Crests Section -->
-    <section class="py-16 px-6 md:px-12 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">OUR COLLECTION CLUB CRESTS</h2>
-                <a href="#" class="text-red-600 hover:underline flex items-center font-semibold">
-                    VIEW ALL
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
-                </a>
+        <!-- Custom Message Box -->
+        <div id="message-box-overlay" class="message-box-overlay">
+            <div class="message-box-content">
+                <p id="message-box-text" class="text-lg font-semibold text-gray-800 mb-4"></p>
+                <button id="message-box-close" class="bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out">OK</button>
             </div>
+        </div>
 
-            <div class="flex flex-col md:flex-row gap-8 mb-12">
-                <!-- Tabs (Buttons) - now sticky -->
-                <div class="md:w-1/4 sticky top-20 z-20 self-start"> <!-- Added sticky, top-20, z-20, and self-start -->
-                    <ul class="space-y-4">
-                        <li><a href="#" id="opulent-tab" class="block p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 ease-in-out font-medium shadow-md cursor-pointer">OPULENT</a></li>
-                        <li><a href="#" id="aspire-tab" class="block p-3 rounded-lg text-gray-700 hover:bg-gray-200 transition duration-300 ease-in-out font-medium cursor-pointer">ASPIRE</a></li>
-                    </ul>
+
+        <!-- Introduction Section -->
+        <section class="py-16 px-6 md:px-12 bg-gray-100">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-auto flex justify-center mb-8 md:mb-0">
+                    <img src="./Cub Crests Logo-01.png" height="300px" width="300px"
+                         alt="Club Crests Logo/Image"
+                         class="rounded-xl shadow-lg w-[300px] h-[300px] object-contain"
+                         onerror="this.onerror=null;this.src='https://placehold.co/300x300/e2e8f0/4a5568?text=Image+Not+Found';">
                 </div>
-                <!-- Content Area - scrolls with the main page -->
-                <div class="md:w-3/4 bg-gray-100 p-6 rounded-xl shadow-lg relative">
-                    <div id="opulent-content">
-                        <h3 class="text-2xl text-gray-900 mb-4">THE ULTIMATE EXPRESSION OF ULTRA-LUXURIOUS DECORATIVE SURFACES. DISCOVER RICH TEXTURES AND DESIGNS THAT REDEFINE SOPHISTICATION AND ELEGANCE.</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            Opulent offers a diverse collection of meticulously crafted surfaces, each a masterpiece of artistry designed to bring grandeur and refinement to any space. Whether you're aiming for a bold statement or a subtle, elegant ambiance, Opulent transforms ordinary interiors into extraordinary works of art. Experience the unparalleled blend of beauty, craftsmanship, and timeless elegance that only Opulent can provide, and elevate your interior design to new heights of refinement and style.
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                            <!-- Opulent Polymer 1 with mini-carousel -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <div class="mini-carousel-container" id="opulent-p1-carousel">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/4.png" class="mini-carousel-slide active" alt="Opulent Polymer 1 Image 1">
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">INTRODUCTION</h2>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        THE LATEST INNOVATION FROM GREENINFINITY INDUSTRIES LIMITED, HERALDS A NEW ERA IN DECORATIVE SURFACES, EMBODYING BOTH INNOVATION AND EXCELLENCE. FROM GREENINFINITY, A LEADER IN THE WOOD PANEL INDUSTRY WITH A DISTINGUISHED HISTORY OF DELIVERING TOP-TIER PRODUCTS THAT EXCEED CUSTOMER EXPECTATIONS, CLUB CRESTS IS HERE TO REDEFINE THE DECORATIVE SURFACES LANDSCAPE.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Club Crests is uber-premium collection caters to visionary designers seeking materials that embody distinctiveness and technical excellence. With a focus on creating exquisite finishes and intricate detailing, these laminates are inspired by unconventional, niche designs and materials. Experience the unparalleled quality of the Club Crests Collection, a testament to the inspiring heights of craftsmanship and innovation.
+                    </p>
+                    <a href="#" class="mt-6 inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md">VIEW ALL &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Collection Club Crests Section -->
+        <section class="py-16 px-6 md:px-12 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">OUR COLLECTION CLUB CRESTS</h2>
+                    <a href="#" class="text-red-600 hover:underline flex items-center font-semibold">
+                        VIEW ALL
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
+                    </a>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 mb-12">
+                    <!-- Tabs (Buttons) - now sticky -->
+                    <div class="md:w-1/4 sticky-tabs">
+                        <ul class="space-y-4">
+                            <li><a href="#" id="opulent-tab" class="block p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 ease-in-out font-medium shadow-md cursor-pointer active-tab">OPULENT</a></li>
+                            <li><a href="#" id="aspire-tab" class="block p-3 rounded-lg text-gray-700 hover:bg-gray-200 transition duration-300 ease-in-out font-medium cursor-pointer">ASPIRE</a></li>
+                        </ul>
+                    </div>
+                    <!-- Content Area - scrolls with the main page -->
+                    <div class="md:w-3/4 bg-gray-100 p-6 rounded-xl shadow-lg relative">
+                        <div id="opulent-content">
+                            <h3 class="text-2xl text-gray-900 mb-4">THE ULTIMATE EXPRESSION OF ULTRA-LUXURIOUS DECORATIVE SURFACES. DISCOVER RICH TEXTURES AND DESIGNS THAT REDEFINE SOPHISTICATION AND ELEGANCE.</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Opulent offers a diverse collection of meticulously crafted surfaces, each a masterpiece of artistry designed to bring grandeur and refinement to any space. Whether you're aiming for a bold statement or a subtle, elegant ambiance, Opulent transforms ordinary interiors into extraordinary works of art. Experience the unparalleled blend of beauty, craftsmanship, and timeless elegance that only Opulent can provide, and elevate your interior design to new heights of refinement and style.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                <!-- Opulent Polymer 1 with mini-carousel -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <div class="mini-carousel-container" id="opulent-p1-carousel">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/4.png" class="mini-carousel-slide active" alt="Opulent Polymer 1 Image 1">
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 1 (10)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 1 (10)</h4>
-                                <p class="text-gray-600 text-sm mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
-                            </div>
-                            <!-- Opulent Polymer 2 -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <img src="https://clubcrests.greenply.com/wp-content/uploads/3.png" alt="Opulent Polymer 2 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 2 (15)</h4>
-                                <p class="text-gray-600 text-sm mb-3">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
-                            </div>
-                            <!-- Opulent Polymer 3 -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <img src="https://clubcrests.greenply.com/wp-content/uploads/1.png" alt="Opulent Polymer 3 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 3 (8)</h4>
-                                <p class="text-gray-600 text-sm mb-3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
-                            </div>
-                            <!-- Opulent Polymer 4 -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <img src="https://clubcrests.greenply.com/wp-content/uploads/2.png" alt="Opulent Polymer 4 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 4 (12)</h4>
-                                <p class="text-gray-600 text-sm mb-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
-                            </div>
-                            <!-- Wellness Card -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <img src="https://clubcrests.greenply.com/wp-content/uploads/Wellness.jpg" alt="Wellness Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Wellness (15)</h4>
-                                <p class="text-gray-600 text-sm mb-3">Transform your interiors with our 1.5mm acrylic laminates, blending vibrant hues with effortless elegance. Enjoy captivating spaces that remain impressive and easy to maintain.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                <!-- Opulent Polymer 2 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/3.png" alt="Opulent Polymer 2 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 2 (15)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                </div>
+                                <!-- Opulent Polymer 3 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/1.png" alt="Opulent Polymer 3 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 3 (8)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                </div>
+                                <!-- Opulent Polymer 4 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/2.png" alt="Opulent Polymer 4 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 4 (12)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                </div>
+                                <!-- Wellness Card -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/Wellness.jpg" alt="Wellness Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Wellness (15)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Transform your interiors with our 1.5mm acrylic laminates, blending vibrant hues with effortless elegance. Enjoy captivating spaces that remain impressive and easy to maintain.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="aspire-content" class="hidden">
-                        <h3 class="text-2xl text-gray-900 mb-4">THESE PREMIUM PANELS OFFER A HARMONIOUS FUSION OF UNMATCHED QUALITY AND REFINED STYLE, ENSURING YOUR INTERIORS EXUDE A CHARISMATIC AURA OF DISTINCTION. EACH PANEL IS CRAFTED WITH METICULOUS ATTENTION TO DETAIL, EMBODYING THE ESSENCE OF ELEGANCE AND SOPHISTICATION THAT TRANSFORMS ANY SPACE INTO A SHOWCASE OF OPULENCE.</h3>
-                        <p class="text-gray-600 leading-relaxed mb-6">
-                            Discover Aspire and let your spaces reflect the pinnacle of luxury. With its innovative design and superior materials, Aspire is more than just a panel; it’s a statement of exquisite taste and high-end living. Elevate your environment to new heights of grandeur and embrace the art of living well with Aspire by Club Crests.
-                        </p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                            <!-- Aspire Polymer 1 with mini-carousel -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <div class="mini-carousel-container" id="aspire-p1-carousel">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/CANE-STITCH-Polymer-1.jpg" class="mini-carousel-slide active" alt="Aspire Polymer 1 Image 1">
+                        <div id="aspire-content" class="hidden">
+                            <h3 class="text-2xl text-gray-900 mb-4">THESE PREMIUM PANELS OFFER A HARMONIOUS FUSION OF UNMATCHED QUALITY AND REFINED STYLE, ENSURING YOUR INTERIORS EXUDE A CHARISMATIC AURA OF DISTINCTION. EACH PANEL IS CRAFTED WITH METICULOUS ATTENTION TO DETAIL, EMBODYING THE ESSENCE OF ELEGANCE AND SOPHISTICATION THAT TRANSFORMS ANY SPACE INTO A SHOWCASE OF OPULENCE.</h3>
+                            <p class="text-gray-600 leading-relaxed mb-6">
+                                Discover Aspire and let your spaces reflect the pinnacle of luxury. With its innovative design and superior materials, Aspire is more than just a panel; it’s a statement of exquisite taste and high-end living. Elevate your environment to new heights of grandeur and embrace the art of living well with Aspire by Club Crests.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                <!-- Aspire Polymer 1 with mini-carousel -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <div class="mini-carousel-container" id="aspire-p1-carousel">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/CANE-STITCH-Polymer-1.jpg" class="mini-carousel-slide active" alt="Aspire Polymer 1 Image 1">
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 1 (23)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 1 (23)</h4>
-                                <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
-                            </div>
-                            <!-- Polymer 2 -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <img src="https://clubcrests.greenply.com/wp-content/uploads/MOSAIC-Polymer-3.jpg" alt="Polymer 2 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 2 (6)</h4>
-                                <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
-                            </div>
-                            <!-- Polymer 3 -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <img src="https://clubcrests.greenply.com/wp-content/uploads/POLE-STAR-Polymer-2.jpg" alt="Polymer 3 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 3 (20)</h4>
-                                <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
-                            </div>
-                            <!-- Polymer 4 -->
-                            <div class="bg-white p-4 rounded-lg shadow-sm">
-                                <img src="https://clubcrests.greenply.com/wp-content/uploads/RIPPLE-Polymer-4.jpg" alt="Polymer 4 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 4 (2)</h4>
-                                <p class="text-gray-600 text-sm mb-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                <!-- Polymer 2 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/MOSAIC-Polymer-3.jpg" alt="Polymer 2 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 2 (6)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                </div>
+                                <!-- Polymer 3 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/POLE-STAR-Polymer-2.jpg" alt="Polymer 3 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 3 (20)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                </div>
+                                <!-- Polymer 4 -->
+                                <div class="bg-white p-4 rounded-lg shadow-sm">
+                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/RIPPLE-Polymer-4.jpg" alt="Polymer 4 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 4 (2)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Key Features Section - Enhanced with Vertical Slider -->
-    <section class="py-16 px-6 md:px-12 bg-gray-100">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">KEY FEATURES</h2>
-            <div class="flex flex-col lg:flex-row items-center gap-12">
-                <div class="lg:w-1/2 text-center lg:text-left order-1"> <!-- Feature list on the left -->
-                    <ul class="space-y-4 text-gray-700 text-lg" id="key-features-list">
-                        <li class="flex items-center justify-center lg:justify-start active" data-feature-target="anti-finger">
-                            Anti-Finger Impression
-                            <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        </li>
-                        <li class="flex items-center justify-center lg:justify-start" data-feature-target="feather-touch">
-                            Feather Touch
-                            <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        </li>
-                        <li class="flex items-center justify-center lg:justify-start" data-feature-target="water-resistant">
-                            Water Resistant
-                            <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        </li>
-                        <li class="flex items-center justify-center lg:justify-start" data-feature-target="easy-clean">
-                            Easy To Clean
-                            <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        </li>
-                        <li class="flex items-center justify-center lg:justify-start" data-feature-target="long-durability">
-                            Long Durability
-                            <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        </li>
-                    </ul>
-                </div>
-                <div class="lg:w-1/2 flex justify-center order-2 relative"> <!-- Image slider on the right -->
-                    <div class="key-features-image-slider">
-                        <!-- Images for vertical slider -->
-                        <img src="https://clubcrests.greenply.com/wp-content/uploads/anki-finger-impression.jpg" class="key-features-image-slide active" data-feature="anti-finger" alt="Anti-Finger Impression">
-                        <img src="https://img.freepik.com/free-photo/isolated-feather-studio_23-2151436548.jpg?semt=ais_hybrid&w=740" class="key-features-image-slide" data-feature="feather-touch" alt="Feather Touch">
-                        <img src="https://clubcrests.greenply.com/wp-content/uploads/water-resistant.jpg" class="key-features-image-slide" data-feature="water-resistant" alt="Water Resistant">
-                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQXtfKQSjJU5tZsIPor_AimLcH121urFnceUk1g5CBLcVirCK1r" class="key-features-image-slide" data-feature="easy-clean" alt="Easy To Clean">
-                        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS8yckxIgs8cmoy2CRvGjPSnIP66ceQbSCnfrpclGH6DXk-I2-P" class="key-features-image-slide" data-feature="long-durability" alt="Long Durability">
+        <!-- Key Features Section - Enhanced with Vertical Slider -->
+        <section class="py-16 px-6 md:px-12 bg-gray-100">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">KEY FEATURES</h2>
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 text-center lg:text-left order-1"> <!-- Feature list on the left -->
+                        <ul class="space-y-4 text-gray-700 text-lg" id="key-features-list">
+                            <li class="flex items-center justify-center lg:justify-start active" data-feature-target="anti-finger">
+                                Anti-Finger Impression
+                                <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </li>
+                            <li class="flex items-center justify-center lg:justify-start" data-feature-target="feather-touch">
+                                Feather Touch
+                                <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </li>
+                            <li class="flex items-center justify-center lg:justify-start" data-feature-target="water-resistant">
+                                Water Resistant
+                                <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </li>
+                            <li class="flex items-center justify-center lg:justify-start" data-feature-target="easy-clean">
+                                Easy To Clean
+                                <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </li>
+                            <li class="flex items-center justify-center lg:justify-start" data-feature-target="long-durability">
+                                Long Durability
+                                <svg class="w-6 h-6 text-red-600 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- Navigation arrows for vertical slider -->
-                    <div id="key-features-up" class="key-features-nav-arrow up top-2 left-1/2 transform -translate-x-1/2">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-                    </div>
-                    <div id="key-features-down" class="key-features-nav-arrow down bottom-2 left-1/2 transform -translate-x-1/2">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    <div class="lg:w-1/2 flex justify-center order-2 relative"> <!-- Image slider on the right -->
+                        <div class="key-features-image-slider">
+                            <!-- Images for vertical slider -->
+                            <img src="https://clubcrests.greenply.com/wp-content/uploads/anki-finger-impression.jpg" class="key-features-image-slide active" data-feature="anti-finger" alt="Anti-Finger Impression">
+                            <img src="https://img.freepik.com/free-photo/isolated-feather-studio_23-2151436548.jpg?semt=ais_hybrid&w=740" class="key-features-image-slide" data-feature="feather-touch" alt="Feather Touch">
+                            <img src="https://clubcrests.greenply.com/wp-content/uploads/water-resistant.jpg" class="key-features-image-slide" data-feature="water-resistant" alt="Water Resistant">
+                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQXtfKQSjJU5tZsIPor_AimLcH121urFnceUk1g5CBLcVirCK1r" class="key-features-image-slide" data-feature="easy-clean" alt="Easy To Clean">
+                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS8yckxIgs8cmoy2CRvGjPSnIP66ceQbSCnfrpclGH6DXk-I2-P" class="key-features-image-slide" data-feature="long-durability" alt="Long Durability">
+                        </div>
+                        <!-- Navigation arrows for vertical slider -->
+                        <div id="key-features-up" class="key-features-nav-arrow up top-2 left-1/2 transform -translate-x-1/2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                        </div>
+                        <div id="key-features-down" class="key-features-nav-arrow down bottom-2 left-1/2 transform -translate-x-1/2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Product Visualizer Section -->
-    <section class="py-16 px-6 md:px-12 bg-gray-200">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">PRODUCT VISUALIZER</h2>
-            <div class="visualizer-container">
-                <div class="visualizer-header">
-                    <div class="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-red-500">
-                            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12 1.5a8.25 8.25 0 1 0 0 16.5 8.25 8.25 0 0 0 0-16.5ZM12 7.5a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V8.25A.75.75 0 0 1 12 7.5ZM12 15a.75.75 0 0 0-.75.75v.008a.75.75 0 0 0 1.5 0v-.008A.75.75 0 0 0 12 15Z" clip-rule="evenodd" />
-                        </svg>
-                        <span class="text-lg font-semibold text-gray-800">PRODUCT VISUALIZER</span>
-                    </div>
-                    <div class="flex gap-4 items-center">
-                        <!-- Room type select dropdown is removed -->
-                    </div>
-                </div>
-
-                <div class="visualizer-main-content">
-                    <div id="scene" class="scene">
-                        <!-- Only one product panel div is needed now -->
-                        <div id="productPanel" class="product-panel" style="left: 25%; top: 50%;"></div>
-
-                        <button id="togglePickerButton" class="toggle-picker-button">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.979-1.077 2.427 0l.717 1.725 1.453.377a1.5 1.5 0 0 1 1.023 1.023l.377 1.453 1.725.717c1.077.448 1.077 1.979 0 2.427l-1.725.717-.377 1.453a1.5 1.5 0 0 1-1.023 1.023l-1.453.377-.717 1.725c-.448 1.077-1.979 1.077-2.427 0l-.717-1.725-1.453-.377a1.5 1.5 0 0 1-1.023-1.023l-.377-1.453-1.725-.717c-1.077-.448-1.077-1.979 0-2.427l1.725-.717.377-1.453a1.5 1.5 0 0 1 1.023-1.023l1.453-.377.717-1.725ZM15.375 16.05a2.25 2.25 0 0 1-3 3m3-3h.008v.008H15.375ZM12 12.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+        <!-- Product Visualizer Section -->
+        <section class="py-16 px-6 md:px-12 bg-gray-200">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">PRODUCT VISUALIZER</h2>
+                <div class="visualizer-container">
+                    <div class="visualizer-header">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-red-500">
+                                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-10S17.385 2.25 12 2.25ZM12 1.5a8.25 8.25 0 1 0 0 16.5 8.25 8.25 0 0 0 0-16.5ZM12 7.5a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V8.25A.75.75 0 0 1 12 7.5ZM12 15a.75.75 0 0 0-.75.75v.008a.75.75 0 0 0 1.5 0v-.008A.75.75 0 0 0 12 15Z" clip-rule="evenodd" />
                             </svg>
-                            Choose Your Panel
-                        </button>
+                            <span class="text-lg font-semibold text-gray-800">PRODUCT VISUALIZER</span>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <!-- Room type select dropdown is removed -->
+                        </div>
                     </div>
 
-                    <div id="colorPickerModal" class="color-picker-modal">
-                        <button class="close-button" id="closeModalButton">&times;</button>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Choose Your Panel</h3>
+                    <div class="visualizer-main-content">
+                        <div id="scene" class="scene">
+                            <!-- Only one product panel div is needed now -->
+                            <div id="productPanel" class="product-panel" style="left: 25%; top: 50%;"></div>
 
-                        <div class="flex gap-4 mb-4">
-                            <div class="dropdown flex-1">
-                                <select id="panelTypeSelect" class="dropdown-select">
-                                    <option value="opulent">Opulent</option>
-                                    <option value="modern">Modern</option>
-                                    <option value="classic">Classic</option>
-                                </select>
-                                <span class="dropdown-arrow">&#9662;</span>
-                            </div>
-                            <div class="dropdown flex-1">
-                                <select id="panelStyleSelect" class="dropdown-select">
-                                    <option value="pastels">Pastels</option>
-                                    <option value="neutrals">Neutrals</option>
-                                    <option value="vibrant">Vibrant</option>
-                                </select>
-                                <span class="dropdown-arrow">&#9662;</span>
-                            </div>
+                            <button id="togglePickerButton" class="toggle-picker-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                    <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.979-1.077 2.427 0l.717 1.725 1.453.377a1.5 1.5 0 0 1 1.023 1.023l.377 1.453 1.725.717c1.077.448 1.077 1.979 0 2.427l-1.725.717-.377 1.453a1.5 1.5 0 0 1-1.023 1.023l-1.453.377-.717 1.725c-.448 1.077-1.979 1.077-2.427 0l-.717-1.725-1.453-.377a1.5 1.5 0 0 1-1.023-1.023l-.377-1.453-1.725-.717c-1.077-.448-1.077-1.979 0-2.427l1.725-.717.377-1.453a1.5 1.5 0 0 1 1.023-1.023l1.453-.377.717-1.725ZM15.375 16.05a2.25 2.25 0 0 1-3 3m3-3h.008v.008H15.375ZM12 12.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+                                </svg>
+                                Choose Your Panel
+                            </button>
                         </div>
 
-                        <div id="colorGrid" class="color-grid">
-                            <!-- Color options will be dynamically loaded here -->
+                        <div id="colorPickerModal" class="color-picker-modal">
+                            <button class="close-button" id="closeModalButton">&times;</button>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Choose Your Panel</h3>
+
+                            <div class="flex gap-4 mb-4">
+                                <div class="dropdown flex-1">
+                                    <select id="panelTypeSelect" class="dropdown-select">
+                                        <option value="opulent">Opulent</option>
+                                        <option value="modern">Modern</option>
+                                        <option value="classic">Classic</option>
+                                    </select>
+                                    <span class="dropdown-arrow">&#9662;</span>
+                                </div>
+                                <div class="dropdown flex-1">
+                                    <select id="panelStyleSelect" class="dropdown-select">
+                                        <option value="pastels">Pastels</option>
+                                        <option value="neutrals">Neutrals</option>
+                                        <option value="vibrant">Vibrant</option>
+                                    </select>
+                                    <span class="dropdown-arrow">&#9662;</span>
+                                </div>
+                            </div>
+
+                            <div id="colorGrid" class="color-grid">
+                                <!-- Color options will be dynamically loaded here -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-
-
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 text-white py-12 relative">
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-5 gap-8">
-            <div>
-                <h3 class="text-xl font-semibold mb-4 text-red-theme">Products</h3>
-                <ul class="space-y-2">
-                    <li><a href="./products.html" class="footer-link">Categories</a></li>
-                    <li><a href="./Greenply Plywood.html" class="footer-link">Plywood & Blockboard</a></li>
-                    <li><a href="./doors.html" class="footer-link">Doors</a></li>
-                    <li><a href="./Veneer.html" class="footer-link">Veneers</a></li>
-                    <li><a href="./MDF and Board.html" class="footer-link">MDF</a></li>
-                    <li><a href="./Speciality Plywood.html" class="footer-link">Speciality Plywood</a></li>
-                    <li><a href="./pvc.html" class="footer-link">PVC</a></li>
-                </ul>
+        <!-- Footer Section -->
+        <footer class="bg-footer-bg py-8">
+            <div class="container mx-auto px-6 py-8">
+                <div class="flex justify-around flex-wrap gap-8 mb-8">
+                    <div class="footer-section">
+                        <h3>Brand</h3>
+                        <ul>
+                            <li><a href="./opulent.html"><i class="fas fa-gem"></i> Opulent</a></li>
+                            <li><a href="./Aspire.html"><i class="fas fa-star"></i> Aspire</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Furniture Type</h3>
+                        <ul>
+                            <li><a href="./chair.html"><i class="fas fa-chair"></i> Chair</a></li>
+                            <li><a href="./Study table.html"><i class="fas fa-book-open"></i> Study Table</a></li>
+                            <li><a href="./Sofa.html"><i class="fas fa-couch"></i> Sofa</a></li>
+                            <li><a href="./bed.html"><i class="fas fa-bed"></i> Bed</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links & More</h3>
+                        <ul>
+                            <li><a href="./about.html"><i class="fas fa-users"></i> About Us</a></li>
+                            <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                            <li><a href="./Sustainable.html"><i class="fas fa-leaf"></i> Sustainability</a></li>
+                            <li><a href="./Privacy Policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                            <li><a href="./Disclaimer.html"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="follow-us">
+                    <h3>Follow us on</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <p class="mt-6 text-sm">Copyright © 2025 GreenInfinity.com. All Rights Reserved.</p>
+                </div>
             </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-4 text-red-theme">Speciality Feature</h3>
-                <ul class="space-y-2">
-                    <li><a href="./waterproof.html" class="footer-link">Water Proof</a></li>
-                    <li><a href="./Fire Retardant .html" class="footer-link">Fire Retardant</a></li>
-                    <li><a href="./zero-emission.html" class="footer-link">Zero Emission</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-4 text-red-theme">Brands</h3>
-                <ul class="space-y-2">
-                    <li><a href="./products.html" class="footer-link">GreenInfinity</a></li>
-                    <li><a href="./Ecotec.html" class="footer-link">Ecotec</a></li>
-                    <li><a href="./optim-g.html" class="footer-link">Optima G</a></li>
-                    <li><a href="./Greenply WPC PVC uPVC.html" class="footer-link">GreenInfinity Ndure</a></li>
-                    <li><a href="./woodcreest.html" class="footer-link">Wood Crrest</a></li>
-                    <li><a href="./greeninfinity-mdf.html" class="footer-link">GreenInfinity MDF</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-4 text-red-theme">Furniture Type</h3>
-                <ul class="space-y-2">
-                    <li><a href="./chair.html" class="footer-link">Chair</a></li>
-                    <li><a href="#" class="footer-link">Study Table</a></li>
-                    <li><a href="./Sofa.html" class="footer-link">Sofa</a></li>
-                    <li><a href="./bedroom.html" class="footer-link">Bed</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-4 text-red-theme">Quick Links & More</h3>
-                <ul class="space-y-2">
-                    <li><a href="./about.html" class="footer-link">About Us</a></li>
-                    <li><a href="./contact.html" class="footer-link">Contact Us</a></li>
-                    <li><a href="./investers.html" class="footer-link">Investors</a></li>
-                    <li><a href="./Sustainable.html" class="footer-link">Sustainability</a></li>
-                    <li><a href="./blog.html" class="footer-link">Blogs</a></li>
-                    <li><a href="#" class="footer-link">FAQ</a></li>
-                    <li><a href="./Privacy Policy.html" class="footer-link">Privacy Policy</a></li>
-                    <li><a href="./Disclaimer.html" class="footer-link">Disclaimer</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="container mx-auto px-6 mt-12 border-t border-gray-700 pt-8 flex flex-col items-center">
-            <p class="text-lg font-semibold mb-4">Follow us on</p>
-            <div class="flex space-x-4 text-2xl mb-8">
-                <a href="https://www.facebook.com/GreenplyPlywood/" class="social-icon-footer"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://twitter.com/greenplyplywood" class="social-icon-footer"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com/greenplyplywood/" class="social-icon-footer"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com/channel/UCl3ckO1adsIiPFHsb8Uizvg" class="social-icon-footer"><i class="fab fa-youtube"></i></a>
-            </div>
-            <p class="text-center text-sm text-gray-400">Copyright © 2025 GreenInfinity.com. All Rights Reserved.</p>
-        </div>
-    </footer>
+        </footer>
+    </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Mobile menu toggle
-            const menuButton = document.getElementById('menu-button');
-            const navbarMenu = document.getElementById('navbar-menu');
-
-            if (menuButton && navbarMenu) {
-                menuButton.addEventListener('click', () => {
-                    navbarMenu.classList.toggle('hidden');
-                    navbarMenu.classList.toggle('flex-col');
-                    navbarMenu.classList.toggle('space-y-4');
-                    navbarMenu.classList.toggle('p-4');
-                    navbarMenu.classList.toggle('bg-white');
-                    navbarMenu.classList.toggle('w-full');
-                    navbarMenu.classList.toggle('items-center');
-                    navbarMenu.classList.toggle('md:flex-row'); /* Ensure it reverts to row on desktop */
-                });
-            }
-
-            // Hero Section Carousel Logic
+            // --- Hero Carousel Logic ---
             const slides = document.querySelectorAll('.carousel-slide');
             const dotsContainer = document.querySelector('.carousel-dots');
             let currentSlide = 0;
-            let slideInterval;
-
-            // Create dots dynamically
-            slides.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('carousel-dot');
-                if (index === 0) dot.classList.add('active');
-                dot.addEventListener('click', () => {
-                    clearInterval(slideInterval);
-                    showSlide(index);
-                    startSlideShow();
-                });
-                dotsContainer.appendChild(dot);
-            });
-            const dots = document.querySelectorAll('.carousel-dot');
 
             function showSlide(index) {
                 slides.forEach((slide, i) => {
                     slide.classList.remove('active');
-                    dots[i].classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
                 });
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-                currentSlide = index;
+                updateDots(index);
             }
 
             function nextSlide() {
@@ -923,496 +1039,408 @@
                 showSlide(currentSlide);
             }
 
-            function startSlideShow() {
-                slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-            }
-
-            startSlideShow(); // Start the carousel on load
-
-            // Our Collection Club Crests Section - Tab Logic (Opulent/Aspire)
-            const opulentTab = document.getElementById('opulent-tab');
-            const aspireTab = document.getElementById('aspire-tab');
-            const opulentContent = document.getElementById('opulent-content');
-            const aspireContent = document.getElementById('aspire-content');
-
-            function activateTab(tabToActivate, contentToShow) {
-                // Deactivate all tabs and hide all content
-                opulentTab.classList.remove('bg-red-600', 'text-white');
-                opulentTab.classList.add('text-gray-700', 'hover:bg-gray-200');
-                aspireTab.classList.remove('bg-red-600', 'text-white');
-                aspireTab.classList.add('text-gray-700', 'hover:bg-gray-200');
-
-                opulentContent.classList.add('hidden');
-                aspireContent.classList.add('hidden');
-
-                // Activate the selected tab and show its content
-                tabToActivate.classList.add('bg-red-600', 'text-white');
-                tabToActivate.classList.remove('text-gray-700', 'hover:bg-gray-200');
-                contentToShow.classList.remove('hidden');
-            }
-
-            opulentTab.addEventListener('click', (e) => {
-                e.preventDefault();
-                activateTab(opulentTab, opulentContent);
-            });
-
-            aspireTab.addEventListener('click', (e) => {
-                e.preventDefault();
-                activateTab(aspireTab, aspireContent);
-            });
-
-            // Initialize with Opulent tab active
-            activateTab(opulentTab, opulentContent);
-
-            // Mini-carousel for Opulent Polymer 1 and Aspire Polymer 1
-            function initMiniCarousel(carouselId) {
-                const miniSlides = document.querySelectorAll(`#${carouselId} .mini-carousel-slide`);
-                let currentMiniSlide = 0;
-
-                if (miniSlides.length > 0) {
-                    function showMiniSlide(index) {
-                        miniSlides.forEach((slide, i) => {
-                            slide.classList.remove('active');
-                        });
-                        miniSlides[index].classList.add('active');
-                        currentMiniSlide = index;
-                    }
-
-                    function nextMiniSlide() {
-                        currentMiniSlide = (currentMiniSlide + 1) % miniSlides.length;
-                        showMiniSlide(currentMiniSlide);
-                    }
-
-                    setInterval(nextMiniSlide, 3000); // Change mini-slide every 3 seconds
-                    showMiniSlide(0); // Show first slide on load
-                }
-            }
-
-            initMiniCarousel('opulent-p1-carousel');
-            initMiniCarousel('aspire-p1-carousel');
-
-
-            // Key Features Section - Vertical Slider Logic
-            const featureListItems = document.querySelectorAll('#key-features-list li');
-            const featureImageSlides = document.querySelectorAll('.key-features-image-slide');
-            const featureUpArrow = document.getElementById('key-features-up');
-            const featureDownArrow = document.getElementById('key-features-down');
-            let currentFeatureIndex = 0;
-            let featureInterval;
-
-            function showFeature(index) {
-                featureListItems.forEach((item, i) => {
-                    item.classList.remove('active');
-                });
-                featureImageSlides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                });
-
-                featureListItems[index].classList.add('active');
-                featureImageSlides[index].classList.add('active');
-                currentFeatureIndex = index;
-            }
-
-            function nextFeature() {
-                currentFeatureIndex = (currentFeatureIndex + 1) % featureListItems.length;
-                showFeature(currentFeatureIndex);
-            }
-
-            function startFeatureShow() {
-                featureInterval = setInterval(nextFeature, 4000); // Change feature every 4 seconds
-            }
-
-            featureListItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    clearInterval(featureInterval); // Stop auto-slide on manual click
-                    showFeature(index);
-                    startFeatureShow(); // Restart auto-slide after manual click
-                });
-            });
-
-            if (featureUpArrow) {
-                featureUpArrow.addEventListener('click', () => {
-                    clearInterval(featureInterval); // Stop auto-slide on manual click
-                    currentFeatureIndex = (currentFeatureIndex - 1 + featureListItems.length) % featureListItems.length;
-                    showFeature(currentFeatureIndex);
-                    startFeatureShow(); // Restart auto-slide after manual click
-                });
-            }
-
-            if (featureDownArrow) {
-                featureDownArrow.addEventListener('click', () => {
-                    clearInterval(featureInterval); // Stop auto-slide on manual click
-                    currentFeatureIndex = (currentFeatureIndex + 1) % featureListItems.length;
-                    showFeature(currentFeatureIndex);
-                    startFeatureShow(); // Restart auto-slide after manual click
-                });
-            }
-
-            startFeatureShow(); // Initialize auto-slide for features
-            showFeature(0); // Initialize first feature as active
-
-            // Product Visualizer Logic
-            const scene = document.getElementById('scene');
-            const productPanel = document.getElementById('productPanel'); // Reference to the single product panel
-
-            const sceneConfiguration = {
-                backgroundImage: 'https://clubcrests.greenply.com/wp-content/uploads/office-image-left.png', // Fixed background image
-                productPanelPosition: { left: '47%', top: '0%' } // Fixed panel position
-            };
-
-            function updateVisualizerScene() {
-                scene.style.backgroundImage = `url('${sceneConfiguration.backgroundImage}')`;
-                productPanel.style.left = sceneConfiguration.productPanelPosition.left;
-                productPanel.style.top = sceneConfiguration.productPanelPosition.top;
-                productPanel.style.display = 'block'; // Ensure the panel is visible
-            }
-
-            const colorData = {
-                opulent: {
-                    pastels: [
-                        { name: "Moonstone 166", hex: "#A0AEC0" },
-                        { name: "Gothic Grey 118", hex: "#718096" },
-                        { name: "Pluto 119", hex: "#4A5568" },
-                        { name: "Leaf Green 174", hex: "#2F855A" },
-                        { name: "Summer Song 170", hex: "#38A169" },
-                        { name: "Prairie Blue 164", hex: "#3182CE" }
-                    ],
-                    neutrals: [
-                        { name: "Creamy White", hex: "#F7FAFC" },
-                        { name: "Light Beige", hex: "#EDF2F7" },
-                        { name: "Stone Grey", hex: "#CBD5E0" },
-                        { name: "Dark Taupe", hex: "#A0AEC0" },
-                        { name: "Charcoal", hex: "#4A5568" },
-                        { name: "Black", hex: "#1A202C" }
-                    ]
-                },
-                modern: {
-                    pastels: [
-                        { name: "Sky Blue", hex: "#90CDF4" },
-                        { name: "Mint Green", hex: "#68D391" },
-                        { name: "Lavender", hex: "#B794F4" },
-                        { name: "Coral Pink", hex: "#FBB6CE" },
-                        { name: "Soft Yellow", hex: "#F6E05E" },
-                        { name: "Peach", hex: "#FBD38D" }
-                    ],
-                    vibrant: [
-                        { name: "Electric Blue", hex: "#00BFFF" },
-                        { name: "Lime Green", hex: "#32CD32" },
-                        { name: "Deep Purple", hex: "#8A2BE2" },
-                        { name: "Hot Pink", hex: "#FF69B4" },
-                        { name: "Sunny Orange", hex: "#FFA500" },
-                        { name: "Crimson Red", hex: "#DC143C" }
-                    ]
-                }
-            };
-
-            const colorPickerModal = document.getElementById('colorPickerModal');
-            const togglePickerButton = document.getElementById('togglePickerButton');
-            const closeModalButton = document.getElementById('closeModalButton');
-            const panelTypeSelect = document.getElementById('panelTypeSelect');
-            const panelStyleSelect = document.getElementById('panelStyleSelect');
-            const colorGrid = document.getElementById('colorGrid');
-
-            let currentPanelType = panelTypeSelect.value;
-            let currentPanelStyle = panelStyleSelect.value;
-
-            function loadColors() {
-                const selectedType = panelTypeSelect.value;
-                const selectedStyle = panelStyleSelect.value;
-                const colors = colorData[selectedType]?.[selectedStyle] || []; // Use optional chaining for safety
-
-                colorGrid.innerHTML = ''; // Clear previous colors
-                colors.forEach(product => {
-                    const colorOption = document.createElement('div');
-                    colorOption.classList.add('color-option');
-                    colorOption.style.backgroundColor = product.hex; // Use hex from new data
-                    colorOption.title = product.name;
-                    colorOption.dataset.color = product.hex; // Store color for applying
-
-                    colorOption.addEventListener('click', () => {
-                        // Remove 'selected' class from all other options
-                        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
-                        // Add 'selected' class to the clicked option
-                        colorOption.classList.add('selected');
-                        productPanel.style.backgroundColor = product.hex;
+            function createDots() {
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    dot.addEventListener('click', () => {
+                        currentSlide = i;
+                        showSlide(currentSlide);
                     });
-                    colorGrid.appendChild(colorOption);
+                    dotsContainer.appendChild(dot);
                 });
-
-                // Automatically select the first color if available
-                if (colors.length > 0) {
-                    colorGrid.querySelector('.color-option').click();
-                }
             }
 
-            // Event listeners for dropdowns
-            panelTypeSelect.addEventListener('change', () => {
-                currentPanelType = panelTypeSelect.value;
-                // Update panelStyleSelect options based on selected panelType
-                updatePanelStyleOptions();
-                loadColors();
-            });
-
-            panelStyleSelect.addEventListener('change', () => {
-                currentPanelStyle = panelStyleSelect.value;
-                loadColors();
-            });
-
-            function updatePanelStyleOptions() {
-                panelStyleSelect.innerHTML = ''; // Clear existing options
-                const styles = Object.keys(colorData[currentPanelType]);
-                styles.forEach(style => {
-                    const option = document.createElement('option');
-                    option.value = style;
-                    option.textContent = style.charAt(0).toUpperCase() + style.slice(1); // Capitalize first letter
-                    panelStyleSelect.appendChild(option);
+            function updateDots(index) {
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.remove('active');
+                    if (i === index) {
+                        dot.classList.add('active');
+                    }
                 });
-                // Set the default selected style to the first available or 'pastels' if exists
-                panelStyleSelect.value = styles.includes('pastels') ? 'pastels' : styles[0];
-                currentPanelStyle = panelStyleSelect.value; // Update current style after setting
             }
 
-            // Initial setup for visualizer
-            updateVisualizerScene();
-            updatePanelStyleOptions(); // Populate style options initially
-            loadColors(); // Load colors based on initial selections
+            createDots();
+            showSlide(currentSlide);
+            setInterval(nextSlide, 5000); // Change slide every 5 seconds
 
-            // Make the product panel draggable
-            let isDragging = false;
-            let offsetX, offsetY;
-
-            productPanel.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                offsetX = e.clientX - productPanel.getBoundingClientRect().left;
-                offsetY = e.clientY - productPanel.getBoundingClientRect().top;
-                productPanel.style.cursor = 'grabbing';
-            });
-
-            scene.addEventListener('mousemove', (e) => {
-                if (!isDragging) return;
-
-                let newX = e.clientX - scene.getBoundingClientRect().left - offsetX;
-                let newY = e.clientY - scene.getBoundingClientRect().top - offsetY;
-
-                // Boundary checks
-                const sceneRect = scene.getBoundingClientRect();
-                const panelRect = productPanel.getBoundingClientRect();
-
-                if (newX < 0) newX = 0;
-                if (newY < 0) newY = 0;
-                if (newX + panelRect.width > sceneRect.width) newX = sceneRect.width - panelRect.width;
-                if (newY + panelRect.height > sceneRect.height) newY = sceneRect.height - panelRect.height;
-
-                productPanel.style.left = `${newX}px`;
-                productPanel.style.top = `${newY}px`;
-            });
-
-            scene.addEventListener('mouseup', () => {
-                isDragging = false;
-                productPanel.style.cursor = 'grab';
-            });
-
-            // Toggle color picker modal
-            togglePickerButton.addEventListener('click', () => {
-                colorPickerModal.style.display = 'block';
-            });
-
-            closeModalButton.addEventListener('click', () => {
-                colorPickerModal.style.display = 'none';
-            });
-
-            // Close modal if clicked outside
-            window.addEventListener('click', (event) => {
-                if (event.target === colorPickerModal) {
-                    colorPickerModal.style.display = 'none';
-                }
-            });
-
-            // Inquiry Form (Modal) Logic
+            // --- Inquiry Modal Logic ---
+            const openInquiryModalButton = document.getElementById('open-inquiry-modal');
             const inquiryModalOverlay = document.getElementById('inquiry-modal-overlay');
-            const openInquiryModalButton = document.getElementById('open-inquiry-modal'); // The button to keep
             const closeInquiryModalButton = document.getElementById('close-inquiry-modal');
             const submitInquiryButton = document.getElementById('submit-inquiry-button');
+            const inquiryForm = inquiryModalOverlay.querySelector('form');
+
             const messageBoxOverlay = document.getElementById('message-box-overlay');
             const messageBoxText = document.getElementById('message-box-text');
             const messageBoxCloseButton = document.getElementById('message-box-close');
 
             if (openInquiryModalButton) {
                 openInquiryModalButton.addEventListener('click', () => {
-                    inquiryModalOverlay.style.display = 'flex'; // Use flex to center content
+                    inquiryModalOverlay.style.display = 'flex';
+                    setTimeout(() => inquiryModalOverlay.classList.add('show'), 10);
                 });
             }
 
             if (closeInquiryModalButton) {
                 closeInquiryModalButton.addEventListener('click', () => {
-                    inquiryModalOverlay.style.display = 'none';
+                    inquiryModalOverlay.classList.remove('show');
+                    setTimeout(() => inquiryModalOverlay.style.display = 'none', 300);
                 });
             }
+
+            window.addEventListener('click', (event) => {
+                if (event.target === inquiryModalOverlay) {
+                    inquiryModalOverlay.classList.remove('show');
+                    setTimeout(() => inquiryModalOverlay.style.display = 'none', 300);
+                }
+                if (event.target === messageBoxOverlay) {
+                    messageBoxOverlay.classList.remove('show');
+                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300);
+                }
+            });
 
             if (submitInquiryButton) {
-                submitInquiryButton.addEventListener('click', () => {
+                submitInquiryButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default form submission
+
                     const name = document.getElementById('inquiry-name').value;
                     const mobile = document.getElementById('inquiry-mobile').value;
-                    const pincode = document.getElementById('inquiry-pincode').value; // Get pincode
+                    const pincode = document.getElementById('inquiry-pincode').value;
                     const inquiryType = document.getElementById('inquiry-type').value;
-                    const robotCheck = document.getElementById('robot-check').checked; // Get checkbox state
+                    const robotCheck = document.getElementById('robot-check').checked;
 
-                    if (!name || !mobile || !pincode || !inquiryType) { // Added pincode to validation
-                        showMessageBox('Please fill in all required fields.');
+                    if (!robotCheck) {
+                        messageBoxText.textContent = "Please confirm you are not a robot.";
+                        messageBoxOverlay.style.display = 'flex';
+                        setTimeout(() => messageBoxOverlay.classList.add('show'), 10);
                         return;
                     }
-                    if (!robotCheck) { // Check if "I'm not a robot" is checked
-                        showMessageBox('Please confirm you are not a robot.');
-                        return;
-                    }
 
-                    const message = `Hello GreenInfinity, I would like to inquire about your products.
-Name: ${name}
-Contact No.: ${mobile}
-Pincode: ${pincode}
-Inquiry Type: ${inquiryType}`;
+                    const whatsappNumber = '919945015544'; // Replace with your WhatsApp number
+                    const whatsappMessage = `Hello GreenInfinity, I have an enquiry.\n\n` +
+                                            `Name: ${name}\n` +
+                                            `Mobile: ${mobile}\n` +
+                                            `Pincode: ${pincode}\n` +
+                                            `Inquiry Type: ${inquiryType}`;
 
-                    // Replace '91XXXXXXXXXX' with the actual WhatsApp number for inquiries
-                    const whatsappUrl = `https://wa.me/+91XXXXXXXXXX?text=${encodeURIComponent(message)}`;
+                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
                     window.open(whatsappUrl, '_blank');
-                    inquiryModalOverlay.style.display = 'none'; // Close modal after submission
-                    showMessageBox('Your inquiry has been sent!');
-                });
-            }
 
-            function showMessageBox(message) {
-                messageBoxText.textContent = message;
-                messageBoxOverlay.style.display = 'flex';
+                    inquiryModalOverlay.classList.remove('show');
+                    setTimeout(() => inquiryModalOverlay.style.display = 'none', 300);
+                    inquiryForm.reset(); // Reset the form fields
+
+                    messageBoxText.textContent = 'Thank you for your enquiry! You will be redirected to WhatsApp to send your message.';
+                    messageBoxOverlay.style.display = 'flex';
+                    setTimeout(() => messageBoxOverlay.classList.add('show'), 10);
+                });
             }
 
             if (messageBoxCloseButton) {
                 messageBoxCloseButton.addEventListener('click', () => {
-                    messageBoxOverlay.style.display = 'none';
+                    messageBoxOverlay.classList.remove('show');
+                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300);
                 });
             }
 
-            // Close inquiry modal if user clicks outside of it
-            window.addEventListener('click', (event) => {
-                if (event.target == inquiryModalOverlay) {
-                    inquiryModalOverlay.style.display = 'none';
+            // --- Our Collection Tabs Logic ---
+            const opulentTab = document.getElementById('opulent-tab');
+            const aspireTab = document.getElementById('aspire-tab');
+            const opulentContent = document.getElementById('opulent-content');
+            const aspireContent = document.getElementById('aspire-content');
+
+            function showTabContent(tabId) {
+                opulentTab.classList.remove('active-tab');
+                aspireTab.classList.remove('active-tab');
+                opulentContent.classList.add('hidden');
+                aspireContent.classList.add('hidden');
+
+                if (tabId === 'opulent') {
+                    opulentTab.classList.add('active-tab');
+                    opulentContent.classList.remove('hidden');
+                } else if (tabId === 'aspire') {
+                    aspireTab.classList.add('active-tab');
+                    aspireContent.classList.remove('hidden');
                 }
-                if (event.target == messageBoxOverlay) {
-                    messageBoxOverlay.style.display = 'none';
-                }
+            }
+
+            opulentTab.addEventListener('click', (e) => {
+                e.preventDefault();
+                showTabContent('opulent');
             });
 
-            // FAQ Accordion Logic
-            const accordionButtons = document.querySelectorAll('.accordion-button');
+            aspireTab.addEventListener('click', (e) => {
+                e.preventDefault();
+                showTabContent('aspire');
+            });
 
-            accordionButtons.forEach((button, index) => {
-                const accordionContent = button.nextElementSibling;
-                const icon = button.querySelector('i');
+            // --- Mini-Carousel Logic (for Opulent Polymer 1 and Aspire Polymer 1) ---
+            function setupMiniCarousel(carouselId) {
+                const miniCarouselContainer = document.getElementById(carouselId);
+                const slides = miniCarouselContainer.querySelectorAll('.mini-carousel-slide');
+                let currentMiniSlide = 0;
 
-                // Initialize the first accordion item to be open
-                if (index === 0) {
-                    button.classList.add('active');
-                    icon.classList.add('rotate-icon');
-                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-                    accordionContent.classList.add('active');
-                }
-
-                button.addEventListener('click', () => {
-                    // Close all other open accordions
-                    accordionButtons.forEach((otherButton) => {
-                        if (otherButton !== button && otherButton.classList.contains('active')) {
-                            otherButton.classList.remove('active');
-                            otherButton.nextElementSibling.style.maxHeight = 0;
-                            otherButton.nextElementSibling.classList.remove('active');
-                            otherButton.querySelector('i').classList.remove('rotate-icon'); // Reset icon
+                function showMiniSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.remove('active');
+                        if (i === index) {
+                            slide.classList.add('active');
                         }
                     });
+                }
 
-                    // Toggle the clicked accordion
-                    button.classList.toggle('active');
-                    icon.classList.toggle('rotate-icon');
+                function nextMiniSlide() {
+                    currentMiniSlide = (currentMiniSlide + 1) % slides.length;
+                    showMiniSlide(currentMiniSlide);
+                }
 
-                    if (button.classList.contains('active')) {
-                        accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-                        accordionContent.classList.add('active');
-                    } else {
-                        accordionContent.style.maxHeight = 0;
-                        accordionContent.classList.remove('active');
-                    }
-                });
-            });
-
-            // Our Blogs Carousel Logic
-            const blogCarouselContainer = document.getElementById('blog-carousel');
-            const blogCarouselItems = document.querySelectorAll('#blog-carousel .blog-card');
-            const blogCarouselPrevButton = document.getElementById('blog-carousel-prev');
-            const blogCarouselNextButton = document.getElementById('blog-carousel-next');
-            let blogAutoScrollInterval;
-
-            function scrollBlogCarousel(direction) {
-                if (blogCarouselItems.length === 0 || !blogCarouselContainer) return;
-
-                const itemWidth = blogCarouselItems[0].offsetWidth;
-                const itemStyle = getComputedStyle(blogCarouselItems[0]);
-                const gap = parseFloat(itemStyle.marginRight) || parseFloat(getComputedStyle(blogCarouselItems[1] || blogCarouselItems[0]).marginLeft) || 0;
-                const scrollAmount = itemWidth + gap;
-
-                let currentScrollLeft = blogCarouselContainer.scrollLeft;
-                let maxScrollLeft = blogCarouselContainer.scrollWidth - blogCarouselContainer.clientWidth;
-
-                if (direction === 'next') {
-                    let targetScrollLeft = currentScrollLeft + scrollAmount;
-                    if (targetScrollLeft >= maxScrollLeft) {
-                        // If the next scroll would go past the end, jump to the beginning instantly
-                        blogCarouselContainer.scrollTo({
-                            left: 0,
-                            behavior: 'auto'
-                        });
-                    } else {
-                        // Otherwise, scroll smoothly to the next position
-                        blogCarouselContainer.scrollBy({
-                            left: scrollAmount,
-                            behavior: 'smooth'
-                        });
-                    }
-                } else if (direction === 'prev') {
-                    let targetScrollLeft = currentScrollLeft - scrollAmount;
-                    if (targetScrollLeft <= 0) {
-                        // If the next scroll would go past the beginning, jump to the end instantly
-                        blogCarouselContainer.scrollTo({
-                            left: maxScrollLeft,
-                            behavior: 'auto'
-                        });
-                    } else {
-                        // Otherwise, scroll smoothly to the previous position
-                        blogCarouselContainer.scrollBy({
-                            left: -scrollAmount,
-                            behavior: 'smooth'
-                        });
-                    }
+                if (slides.length > 1) {
+                    setInterval(nextMiniSlide, 3000); // Change slide every 3 seconds
                 }
             }
 
-            function startBlogAutoScroll() {
-                blogAutoScrollInterval = setInterval(() => {
-                    scrollBlogCarousel('next');
-                }, 5000); // Auto-scroll every 5 seconds
+            setupMiniCarousel('opulent-p1-carousel');
+            setupMiniCarousel('aspire-p1-carousel');
+
+            // --- Key Features Vertical Slider Logic ---
+            const featureListItems = document.querySelectorAll('#key-features-list li');
+            const featureImageSlides = document.querySelectorAll('.key-features-image-slide');
+            const keyFeaturesUpArrow = document.getElementById('key-features-up');
+            const keyFeaturesDownArrow = document.getElementById('key-features-down');
+            let currentFeatureIndex = 0;
+
+            function showFeature(index) {
+                featureListItems.forEach((item, i) => {
+                    item.classList.remove('active');
+                    if (i === index) {
+                        item.classList.add('active');
+                    }
+                });
+
+                featureImageSlides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
             }
 
-            // Stop auto-scroll on manual interaction and restart after a delay
-            blogCarouselPrevButton.addEventListener('click', () => {
-                clearInterval(blogAutoScrollInterval);
-                scrollBlogCarousel('prev');
-                startBlogAutoScroll();
+            featureListItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
+                    currentFeatureIndex = index;
+                    showFeature(currentFeatureIndex);
+                });
             });
 
-            blogCarouselNextButton.addEventListener('click', () => {
-                clearInterval(blogAutoScrollInterval);
-                scrollBlogCarousel('next');
-                startBlogAutoScroll();
-            });
+            if (keyFeaturesUpArrow) {
+                keyFeaturesUpArrow.addEventListener('click', () => {
+                    currentFeatureIndex = (currentFeatureIndex - 1 + featureListItems.length) % featureListItems.length;
+                    showFeature(currentFeatureIndex);
+                });
+            }
 
-            startBlogAutoScroll(); // Start auto-scrolling blogs on load
+            if (keyFeaturesDownArrow) {
+                keyFeaturesDownArrow.addEventListener('click', () => {
+                    currentFeatureIndex = (currentFeatureIndex + 1) % featureListItems.length;
+                    showFeature(currentFeatureIndex);
+                });
+            }
+
+            showFeature(currentFeatureIndex); // Initialize first feature as active
+
+            // --- Product Visualizer Logic ---
+            const productPanel = document.getElementById('productPanel');
+            const togglePickerButton = document.getElementById('togglePickerButton');
+            const colorPickerModal = document.getElementById('colorPickerModal');
+            const closeModalButton = document.getElementById('closeModalButton');
+            const panelTypeSelect = document.getElementById('panelTypeSelect');
+            const panelStyleSelect = document.getElementById('panelStyleSelect');
+            const colorGrid = document.getElementById('colorGrid');
+            const scene = document.getElementById('scene');
+
+            // Sample data for panels (replace with actual image URLs as needed)
+            const panelData = {
+                opulent: {
+                    pastels: [
+                        { name: "Opulent Pastel 1", img: "https://placehold.co/80x80/FFD1DC/333?text=OpulentP1" },
+                        { name: "Opulent Pastel 2", img: "https://placehold.co/80x80/B0E0E6/333?text=OpulentP2" },
+                        { name: "Opulent Pastel 3", img: "https://placehold.co/80x80/D8BFD8/333?text=OpulentP3" },
+                        { name: "Opulent Pastel 4", img: "https://placehold.co/80x80/FFEFD5/333?text=OpulentP4" },
+                    ],
+                    neutrals: [
+                        { name: "Opulent Neutral 1", img: "https://placehold.co/80x80/F5F5DC/333?text=OpulentN1" },
+                        { name: "Opulent Neutral 2", img: "https://placehold.co/80x80/D3D3D3/333?text=OpulentN2" },
+                        { name: "Opulent Neutral 3", img: "https://placehold.co/80x80/A9A9A9/333?text=OpulentN3" },
+                    ],
+                    vibrant: [
+                        { name: "Opulent Vibrant 1", img: "https://placehold.co/80x80/FF4500/FFF?text=OpulentV1" },
+                        { name: "Opulent Vibrant 2", img: "https://placehold.co/80x80/8A2BE2/FFF?text=OpulentV2" },
+                        { name: "Opulent Vibrant 3", img: "https://placehold.co/80x80/008000/FFF?text=OpulentV3" },
+                    ]
+                },
+                modern: {
+                    pastels: [
+                        { name: "Modern Pastel 1", img: "https://placehold.co/80x80/ADD8E6/333?text=ModernP1" },
+                        { name: "Modern Pastel 2", img: "https://placehold.co/80x80/90EE90/333?text=ModernP2" },
+                    ],
+                    neutrals: [
+                        { name: "Modern Neutral 1", img: "https://placehold.co/80x80/F0F8FF/333?text=ModernN1" },
+                        { name: "Modern Neutral 2", img: "https://placehold.co/80x80/DCDCDC/333?text=ModernN2" },
+                    ],
+                    vibrant: [
+                        { name: "Modern Vibrant 1", img: "https://placehold.co/80x80/FF6347/FFF?text=ModernV1" },
+                        { name: "Modern Vibrant 2", img: "https://placehold.co/80x80/4682B4/FFF?text=ModernV2" },
+                    ]
+                },
+                classic: {
+                    pastels: [
+                        { name: "Classic Pastel 1", img: "https://placehold.co/80x80/F5DEB3/333?text=ClassicP1" },
+                    ],
+                    neutrals: [
+                        { name: "Classic Neutral 1", img: "https://placehold.co/80x80/A0522D/FFF?text=ClassicN1" },
+                        { name: "Classic Neutral 2", img: "https://placehold.co/80x80/8B4513/FFF?text=ClassicN2" },
+                    ],
+                    vibrant: [
+                        { name: "Classic Vibrant 1", img: "https://placehold.co/80x80/800000/FFF?text=ClassicV1" },
+                    ]
+                }
+            };
+
+            function loadColors() {
+                const selectedType = panelTypeSelect.value;
+                const selectedStyle = panelStyleSelect.value;
+                const colors = panelData[selectedType]?.[selectedStyle] || [];
+
+                colorGrid.innerHTML = ''; // Clear previous colors
+                colors.forEach(color => {
+                    const colorOption = document.createElement('div');
+                    colorOption.classList.add('color-option');
+                    colorOption.style.backgroundImage = `url('${color.img}')`;
+                    colorOption.title = color.name;
+                    colorOption.dataset.img = color.img;
+                    colorOption.addEventListener('click', () => {
+                        // Remove 'selected' from all options
+                        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                        // Add 'selected' to the clicked option
+                        colorOption.classList.add('selected');
+                        // Apply the selected image to the product panel
+                        productPanel.style.backgroundImage = `url('${color.img}')`;
+                    });
+                    colorGrid.appendChild(colorOption);
+                });
+
+                // Select the first color by default if available
+                if (colors.length > 0) {
+                    colorGrid.querySelector('.color-option').click();
+                }
+            }
+
+            // Event listeners for dropdowns
+            panelTypeSelect.addEventListener('change', loadColors);
+            panelStyleSelect.addEventListener('change', loadColors);
+
+            // Toggle color picker modal
+            if (togglePickerButton) {
+                togglePickerButton.addEventListener('click', () => {
+                    colorPickerModal.style.display = 'block';
+                    setTimeout(() => colorPickerModal.classList.add('show'), 10);
+                });
+            }
+
+            if (closeModalButton) {
+                closeModalButton.addEventListener('click', () => {
+                    colorPickerModal.classList.remove('show');
+                    setTimeout(() => colorPickerModal.style.display = 'none', 300);
+                });
+            }
+
+            // Make the product panel draggable
+            let isDragging = false;
+            let offsetX, offsetY;
+
+            if (productPanel) {
+                productPanel.addEventListener('mousedown', (e) => {
+                    isDragging = true;
+                    offsetX = e.clientX - productPanel.getBoundingClientRect().left;
+                    offsetY = e.clientY - productPanel.getBoundingClientRect().top;
+                    productPanel.style.cursor = 'grabbing';
+                });
+
+                scene.addEventListener('mousemove', (e) => {
+                    if (!isDragging) return;
+
+                    const sceneRect = scene.getBoundingClientRect();
+                    let newX = e.clientX - sceneRect.left - offsetX;
+                    let newY = e.clientY - sceneRect.top - offsetY;
+
+                    // Boundary checks
+                    newX = Math.max(0, Math.min(newX, sceneRect.width - productPanel.offsetWidth));
+                    newY = Math.max(0, Math.min(newY, sceneRect.height - productPanel.offsetHeight));
+
+                    productPanel.style.left = `${newX}px`;
+                    productPanel.style.top = `${newY}px`;
+                });
+
+                scene.addEventListener('mouseup', () => {
+                    isDragging = false;
+                    productPanel.style.cursor = 'grab';
+                });
+
+                // Touch events for dragging
+                productPanel.addEventListener('touchstart', (e) => {
+                    isDragging = true;
+                    const touch = e.touches[0];
+                    offsetX = touch.clientX - productPanel.getBoundingClientRect().left;
+                    offsetY = touch.clientY - productPanel.getBoundingClientRect().top;
+                    productPanel.style.cursor = 'grabbing';
+                    e.preventDefault(); // Prevent scrolling while dragging
+                });
+
+                scene.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    const touch = e.touches[0];
+
+                    const sceneRect = scene.getBoundingClientRect();
+                    let newX = touch.clientX - sceneRect.left - offsetX;
+                    let newY = touch.clientY - sceneRect.top - offsetY;
+
+                    // Boundary checks
+                    newX = Math.max(0, Math.min(newX, sceneRect.width - productPanel.offsetWidth));
+                    newY = Math.max(0, Math.min(newY, sceneRect.height - productPanel.offsetHeight));
+
+                    productPanel.style.left = `${newX}px`;
+                    productPanel.style.top = `${newY}px`;
+                    e.preventDefault();
+                });
+
+                scene.addEventListener('touchend', () => {
+                    isDragging = false;
+                    productPanel.style.cursor = 'grab';
+                });
+            }
+
+            loadColors(); // Initial load of colors
+
+            // --- Navigation for Footer links ---
+            const footerLinks = document.querySelectorAll('footer a');
+            footerLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Only prevent default if it's an internal link (not a social media link or external link)
+                    if (link.getAttribute('href').startsWith('./') || link.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetPage = link.getAttribute('href');
+                        if (targetPage.startsWith('./')) {
+                            window.location.href = targetPage;
+                        } else if (targetPage === '#') {
+                            // Handle internal anchor links if any, though none are provided in this snippet
+                        }
+                    }
+                    // For external links like social media, let the default behavior happen
+                });
+            });
         });
     </script>
 </body>
