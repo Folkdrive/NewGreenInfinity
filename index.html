@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenInfinity - Your Partner in Premium Wood Solutions</title>
+    <title>GreenInfinity - Premium Wood Solutions</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Three.js for 3D visualization -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Cannon.js for physics (if needed, though not explicitly used for the panel itself) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
     <style>
         /* Custom Tailwind Configuration for Blue Shades and White */
         :root {
@@ -49,9 +55,9 @@
         .text-green-600 { color: var(--color-green-600); }
         .focus\:ring-green-500:focus { --tw-ring-color: #22C55E; } /* Tailwind green-500 */
 
-        /* General styles for Inter font */
+        /* General styles for Roboto font */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif;
             color: #333; /* Default text color */
         }
 
@@ -153,7 +159,7 @@
             z-index: 11;
         }
 
-        .dot {
+        .carousel-dot {
             width: 10px;
             height: 10px;
             background-color: rgba(255, 255, 255, 0.5);
@@ -162,7 +168,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .dot.active {
+        .carousel-dot.active {
             background-color: var(--color-white);
         }
 
@@ -282,7 +288,7 @@
             transform: translateY(0);
         }
 
-        /* Our Collection Club Crests Section */
+        /* Our Collection Cub Crests Section */
         .sticky-tabs {
             position: sticky;
             top: 6rem; /* Adjust based on navbar height */
@@ -397,11 +403,15 @@
         }
 
         .key-features-nav-arrow.up {
-            top: 1rem;
+            top: 25%; /* Adjusted positioning */
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centered vertically at 25% */
         }
 
         .key-features-nav-arrow.down {
-            bottom: 1rem;
+            bottom: 25%; /* Adjusted positioning */
+            left: 50%;
+            transform: translate(-50%, 50%); /* Centered vertically at 75% */
         }
 
         /* Product Visualizer Section */
@@ -444,11 +454,11 @@
 
         .product-panel {
             position: absolute;
-            width: 300px; /* Example size */
-            height: 450px; /* Example size */
+            width: 200px; /* Example size */
+            height: 300px; /* Example size */
             background-color: #f0f0f0; /* Default panel color */
             border: 2px solid #ccc;
-            cursor: grab;
+            /* Removed cursor: grab; */
             border-radius: 0.5rem;
             transition: background-color 0.3s ease, border-color 0.3s ease;
             background-size: cover;
@@ -662,7 +672,7 @@
     <nav class="fixed-navbar py-4 px-6 flex justify-between items-center">
         <div class="h-20 w-auto flex justify-center items-center">
             <!-- Logo Image -->
-            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" class="h-full w-auto object-contain rounded-lg shadow-md">
+            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" class="h-full w-auto object-contain rounded-lg shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/100x80/e2e8f0/4a5568?text=Logo';">
         </div>
         <div class="hidden md:flex space-x-8 pr-10">
             <a href="./index.html" class="nav-item py-1"><i class="fas fa-home"></i> Consumer</a>
@@ -677,9 +687,9 @@
         <section class="hero-section">
             <div class="carousel-container">
                 <!-- Carousel Slides - Replace with actual images -->
-                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner1.jpg" class="carousel-slide active" alt="Hero Image 1">
-                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner2.jpg" class="carousel-slide" alt="Hero Image 2">
-                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner3.jpg" class="carousel-slide" alt="Hero Image 3">
+                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner1.jpg" class="carousel-slide active" alt="Hero Image 1" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/e2e8f0/4a5568?text=Hero+Image+1';">
+                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner2.jpg" class="carousel-slide" alt="Hero Image 2" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/e2e8f0/4a5568?text=Hero+Image+2';">
+                <img src="https://clubcrests.greenply.com/wp-content/uploads/banner3.jpg" class="carousel-slide" alt="Hero Image 3" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/e2e8f0/4a5568?text=Hero+Image+3';">
             </div>
             <div class="hero-overlay">
                 <h1 class="text-5xl font-bold mb-2">Your Partner in Premium Wood Solutions</h1>
@@ -728,34 +738,33 @@
             </div>
         </div>
 
-
         <!-- Introduction Section -->
         <section class="py-16 px-6 md:px-12 bg-gray-100">
             <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8">
                 <div class="md:w-auto flex justify-center mb-8 md:mb-0">
                     <img src="./Cub Crests Logo-01.png" height="300px" width="300px"
-                         alt="Club Crests Logo/Image"
-                         class="rounded-xl shadow-lg w-[300px] h-[300px] object-contain"
-                         onerror="this.onerror=null;this.src='https://placehold.co/300x300/e2e8f0/4a5568?text=Image+Not+Found';">
+                            alt="Cub Crests Logo/Image"
+                            class="rounded-xl shadow-lg w-[300px] h-[300px] object-contain"
+                            onerror="this.onerror=null;this.src='https://placehold.co/300x300/e2e8f0/4a5568?text=Image+Not+Found';">
                 </div>
                 <div class="md:w-2/3 text-center md:text-left">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">INTRODUCTION</h2>
                     <p class="text-gray-600 leading-relaxed mb-4">
-                        THE LATEST INNOVATION FROM GREENINFINITY INDUSTRIES LIMITED, HERALDS A NEW ERA IN DECORATIVE SURFACES, EMBODYING BOTH INNOVATION AND EXCELLENCE. FROM GREENINFINITY, A LEADER IN THE WOOD PANEL INDUSTRY WITH A DISTINGUISHED HISTORY OF DELIVERING TOP-TIER PRODUCTS THAT EXCEED CUSTOMER EXPECTATIONS, CLUB CRESTS IS HERE TO REDEFINE THE DECORATIVE SURFACES LANDSCAPE.
+                        THE LATEST INNOVATION FROM GREENINFINITY INDUSTRIES LIMITED, HERALDS A NEW ERA IN DECORATIVE SURFACES, EMBODYING BOTH INNOVATION AND EXCELLENCE. FROM GREENINFINITY, A LEADER IN THE WOOD PANEL INDUSTRY WITH A DISTINGUISHED HISTORY OF DELIVERING TOP-TIER PRODUCTS THAT EXCEED CUSTOMER EXPECTATIONS, CUB CRESTS IS HERE TO REDEFINE THE DECORATIVE SURFACES LANDSCAPE.
                     </p>
                     <p class="text-gray-600 leading-relaxed">
-                        Club Crests is uber-premium collection caters to visionary designers seeking materials that embody distinctiveness and technical excellence. With a focus on creating exquisite finishes and intricate detailing, these laminates are inspired by unconventional, niche designs and materials. Experience the unparalleled quality of the Club Crests Collection, a testament to the inspiring heights of craftsmanship and innovation.
+                        Cub Crests is uber-premium collection caters to visionary designers seeking materials that embody distinctiveness and technical excellence. With a focus on creating exquisite finishes and intricate detailing, these laminates are inspired by unconventional, niche designs and materials. Experience the unparalleled quality of the Cub Crests Collection, a testament to the inspiring heights of craftsmanship and innovation.
                     </p>
-                    <a href="#" class="mt-6 inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md">VIEW ALL &rarr;</a>
+                    <a href="./products.html" class="mt-6 inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md">VIEW ALL &rarr;</a>
                 </div>
             </div>
         </section>
 
-        <!-- Our Collection Club Crests Section -->
+        <!-- Our Collection Cub Crests Section -->
         <section class="py-16 px-6 md:px-12 bg-white">
             <div class="max-w-7xl mx-auto">
                 <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">OUR COLLECTION CLUB CRESTS</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4 md:mb-0">OUR COLLECTION CUB CRESTS</h2>
                     <a href="#" class="text-red-600 hover:underline flex items-center font-semibold">
                         VIEW ALL
                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
@@ -778,39 +787,47 @@
                                 Opulent offers a diverse collection of meticulously crafted surfaces, each a masterpiece of artistry designed to bring grandeur and refinement to any space. Whether you're aiming for a bold statement or a subtle, elegant ambiance, Opulent transforms ordinary interiors into extraordinary works of art. Experience the unparalleled blend of beauty, craftsmanship, and timeless elegance that only Opulent can provide, and elevate your interior design to new heights of refinement and style.
                             </p>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                                <!-- Opulent Polymer 1 with mini-carousel -->
+                                <!-- Opulent Pastels Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <div class="mini-carousel-container" id="opulent-p1-carousel">
-                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/4.png" class="mini-carousel-slide active" alt="Opulent Polymer 1 Image 1">
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/4.png" class="mini-carousel-slide active" alt="Opulent Pastels Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Pastels+Img';">
                                     </div>
-                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 1 (10)</h4>
-                                    <p class="text-gray-600 text-sm mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Pastels (52)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Bring serenity and elegance to your spaces with soothing pastel shades, fostering a harmonious connection with nature.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
-                                <!-- Opulent Polymer 2 -->
+                                <!-- Opulent Stone Surfaces Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/3.png" alt="Opulent Polymer 2 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 2 (15)</h4>
-                                    <p class="text-gray-600 text-sm mb-3">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/3.png" class="mini-carousel-slide active" alt="Opulent Stone Surfaces Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Stone+Surfaces+Img';">
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Stone Surfaces (28)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Discover our Stone Surface collection, featuring luxurious marbles and rugged lava stones that bring sophistication and natural allure to your living spaces.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
-                                <!-- Opulent Polymer 3 -->
+                                <!-- Opulent Wood Surfaces Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/1.png" alt="Opulent Polymer 3 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 3 (8)</h4>
-                                    <p class="text-gray-600 text-sm mb-3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/1.png" class="mini-carousel-slide active" alt="Opulent Wood Surfaces Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Wood+Surfaces+Img';">
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Wood Surfaces (59)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">Experience the timeless charm of authentic wood with our textured woodgrains, meticulously designed for minimalism and subtle light reflection.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
-                                <!-- Opulent Polymer 4 -->
+                                <!-- Opulent Wood Synchro Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/2.png" alt="Opulent Polymer 4 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
-                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Opulent Polymer 4 (12)</h4>
-                                    <p class="text-gray-600 text-sm mb-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/2.png" class="mini-carousel-slide active" alt="Opulent Wood Synchro Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Wood+Synchro+Img';">
+                                    </div>
+                                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Wood Synchro (25)</h4>
+                                    <p class="text-gray-600 text-sm mb-3">The Wood Synchro collection features patented embossing technology, perfectly synchronizing grain patterns for unmatched precision and innovation.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Wellness Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/Wellness.jpg" alt="Wellness Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/wellness.jpg" class="mini-carousel-slide active" alt="Wellness Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Wellness+Img';">
+                                    </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Wellness (15)</h4>
                                     <p class="text-gray-600 text-sm mb-3">Transform your interiors with our 1.5mm acrylic laminates, blending vibrant hues with effortless elegance. Enjoy captivating spaces that remain impressive and easy to maintain.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
@@ -820,13 +837,14 @@
                         <div id="aspire-content" class="hidden">
                             <h3 class="text-2xl text-gray-900 mb-4">THESE PREMIUM PANELS OFFER A HARMONIOUS FUSION OF UNMATCHED QUALITY AND REFINED STYLE, ENSURING YOUR INTERIORS EXUDE A CHARISMATIC AURA OF DISTINCTION. EACH PANEL IS CRAFTED WITH METICULOUS ATTENTION TO DETAIL, EMBODYING THE ESSENCE OF ELEGANCE AND SOPHISTICATION THAT TRANSFORMS ANY SPACE INTO A SHOWCASE OF OPULENCE.</h3>
                             <p class="text-gray-600 leading-relaxed mb-6">
-                                Discover Aspire and let your spaces reflect the pinnacle of luxury. With its innovative design and superior materials, Aspire is more than just a panel; it’s a statement of exquisite taste and high-end living. Elevate your environment to new heights of grandeur and embrace the art of living well with Aspire by Club Crests.
+                                Discover Aspire and let your spaces reflect the pinnacle of luxury. With its innovative design and superior materials, Aspire is more than just a panel; it’s a statement of exquisite taste and high-end living. Elevate your environment to new heights of grandeur and embrace the art of living well with Aspire by Cub Crests.
                             </p>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                                 <!-- Aspire Polymer 1 with mini-carousel -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
                                     <div class="mini-carousel-container" id="aspire-p1-carousel">
-                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/CANE-STITCH-Polymer-1.jpg" class="mini-carousel-slide active" alt="Aspire Polymer 1 Image 1">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/CANE-STITCH-Polymer-1.jpg" class="mini-carousel-slide active" alt="Aspire Polymer 1 Image 1" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Aspire+P1+Img1';">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/CANE-STITCH-Polymer-1.jpg" class="mini-carousel-slide" alt="Aspire Polymer 1 Image 2" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Aspire+P1+Img2';">
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 1 (23)</h4>
                                     <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
@@ -834,23 +852,29 @@
                                 </div>
                                 <!-- Polymer 2 -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/MOSAIC-Polymer-3.jpg" alt="Polymer 2 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/POLE-STAR-Polymer-2.jpg" class="mini-carousel-slide active" alt="Polymer 2 Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Aspire+P2+Img';">
+                                    </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 2 (6)</h4>
                                     <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Polymer 3 -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/POLE-STAR-Polymer-2.jpg" alt="Polymer 3 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/MOSAIC-Polymer-3.jpg" class="mini-carousel-slide active" alt="Polymer 3 Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Aspire+P3+Img';">
+                                    </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 3 (20)</h4>
                                     <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Polymer 4 -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
-                                    <img src="https://clubcrests.greenply.com/wp-content/uploads/RIPPLE-Polymer-4.jpg" alt="Polymer 4 Image" class="rounded-lg mb-4 w-full h-auto object-cover">
+                                    <div class="mini-carousel-container">
+                                        <img src="https://clubcrests.greenply.com/wp-content/uploads/RIPPLE-Polymer-4.jpg" class="mini-carousel-slide active" alt="Polymer 4 Image" onerror="this.onerror=null;this.src='https://placehold.co/300x200/e2e8f0/4a5568?text=Aspire+P4+Img';">
+                                    </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 4 (2)</h4>
-                                    <p class="text-gray-600 text-sm mb-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
                                     <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                             </div>
@@ -892,17 +916,17 @@
                     <div class="lg:w-1/2 flex justify-center order-2 relative"> <!-- Image slider on the right -->
                         <div class="key-features-image-slider">
                             <!-- Images for vertical slider -->
-                            <img src="https://clubcrests.greenply.com/wp-content/uploads/anki-finger-impression.jpg" class="key-features-image-slide active" data-feature="anti-finger" alt="Anti-Finger Impression">
-                            <img src="https://img.freepik.com/free-photo/isolated-feather-studio_23-2151436548.jpg?semt=ais_hybrid&w=740" class="key-features-image-slide" data-feature="feather-touch" alt="Feather Touch">
-                            <img src="https://clubcrests.greenply.com/wp-content/uploads/water-resistant.jpg" class="key-features-image-slide" data-feature="water-resistant" alt="Water Resistant">
-                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQXtfKQSjJU5tZsIPor_AimLcH121urFnceUk1g5CBLcVirCK1r" class="key-features-image-slide" data-feature="easy-clean" alt="Easy To Clean">
-                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS8yckxIgs8cmoy2CRvGjPSnIP66ceQbSCnfrpclGH6DXk-I2-P" class="key-features-image-slide" data-feature="long-durability" alt="Long Durability">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXaGhffi_TO3vsihAE3z7wEC6c_hORPnN3bDx11N8ZUEvsLaV9" class="key-features-image-slide active" data-feature="anti-finger" alt="Anti-Finger Impression" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Anti-Finger';">
+                            <img src="https://img.freepik.com/free-photo/isolated-feather-studio_23-2151436548.jpg?semt=ais_hybrid&w=740" class="key-features-image-slide" data-feature="feather-touch" alt="Feather Touch" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Feather+Touch';">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaWNiYABvi1m8f6P1z9hC_QgR204AgIRtSpVDsrl6Pr8CaxnTB" class="key-features-image-slide" data-feature="water-resistant" alt="Water Resistant" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Water+Resistant';">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBmyRU8JadmjdmyDN36dfCsZdJRN_GNg_w7rTVbzBj3pCeg5Ad" class="key-features-image-slide" data-feature="easy-clean" alt="Easy To Clean" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Easy+Clean';">
+                            <img src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/1200x675/photo/2025/01/26/4148759254.jpeg" class="key-features-image-slide" data-feature="long-durability" alt="Long Durability" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Long+Durability';">
                         </div>
                         <!-- Navigation arrows for vertical slider -->
-                        <div id="key-features-up" class="key-features-nav-arrow up top-2 left-1/2 transform -translate-x-1/2">
+                        <div id="key-features-up" class="key-features-nav-arrow up">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
                         </div>
-                        <div id="key-features-down" class="key-features-nav-arrow down bottom-2 left-1/2 transform -translate-x-1/2">
+                        <div id="key-features-down" class="key-features-nav-arrow down">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                         </div>
                     </div>
@@ -910,67 +934,6 @@
             </div>
         </section>
 
-        <!-- Product Visualizer Section -->
-        <section class="py-16 px-6 md:px-12 bg-gray-200">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">PRODUCT VISUALIZER</h2>
-                <div class="visualizer-container">
-                    <div class="visualizer-header">
-                        <div class="flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-red-500">
-                                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-10S17.385 2.25 12 2.25ZM12 1.5a8.25 8.25 0 1 0 0 16.5 8.25 8.25 0 0 0 0-16.5ZM12 7.5a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V8.25A.75.75 0 0 1 12 7.5ZM12 15a.75.75 0 0 0-.75.75v.008a.75.75 0 0 0 1.5 0v-.008A.75.75 0 0 0 12 15Z" clip-rule="evenodd" />
-                            </svg>
-                            <span class="text-lg font-semibold text-gray-800">PRODUCT VISUALIZER</span>
-                        </div>
-                        <div class="flex gap-4 items-center">
-                            <!-- Room type select dropdown is removed -->
-                        </div>
-                    </div>
-
-                    <div class="visualizer-main-content">
-                        <div id="scene" class="scene">
-                            <!-- Only one product panel div is needed now -->
-                            <div id="productPanel" class="product-panel" style="left: 47%; top: 0%;"></div>
-
-                            <button id="togglePickerButton" class="toggle-picker-button">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
-                                    <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.979-1.077 2.427 0l.717 1.725 1.453.377a1.5 1.5 0 0 1 1.023 1.023l.377 1.453 1.725.717c1.077.448 1.077 1.979 0 2.427l-1.725.717-.377 1.453a1.5 1.5 0 0 1-1.023 1.023l-1.453.377-.717 1.725c-.448 1.077-1.979 1.077-2.427 0l-.717-1.725-1.453-.377a1.5 1.5 0 0 1-1.023-1.023l-.377-1.453-1.725-.717c-1.077-.448-1.077-1.979 0-2.427l1.725-.717.377-1.453a1.5 1.5 0 0 1 1.023-1.023l1.453-.377.717-1.725ZM15.375 16.05a2.25 2.25 0 0 1-3 3m3-3h.008v.008H15.375ZM12 12.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-                                </svg>
-                                Choose Your Panel
-                            </button>
-                        </div>
-
-                        <div id="colorPickerModal" class="color-picker-modal">
-                            <button class="close-button" id="closeModalButton">&times;</button>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Choose Your Panel</h3>
-
-                            <div class="flex gap-4 mb-4">
-                                <div class="dropdown flex-1">
-                                    <select id="panelTypeSelect" class="dropdown-select">
-                                        <option value="opulent">Opulent</option>
-                                        <option value="modern">Modern</option>
-                                        <option value="classic">Classic</option>
-                                    </select>
-                                    <span class="dropdown-arrow">&#9662;</span>
-                                </div>
-                                <div class="dropdown flex-1">
-                                    <select id="panelStyleSelect" class="dropdown-select">
-                                        <option value="pastels">Pastels</option>
-                                        <option value="neutrals">Neutrals</option>
-                                        <option value="vibrant">Vibrant</option>
-                                    </select>
-                                    <span class="dropdown-arrow">&#9662;</span>
-                                </div>
-                            </div>
-
-                            <div id="colorGrid" class="color-grid">
-                                <!-- Color options will be dynamically loaded here -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Footer Section -->
         <footer class="bg-footer-bg py-8">
@@ -979,469 +942,524 @@
                     <div class="footer-section">
                         <h3>Brand</h3>
                         <ul>
-                            <li><a href="./opulent.html">Opulent</a></li>
-                            <li><a href="./Aspire.html">Aspire</a></li>
+                            <li><a href="./opulent.html"><i class="fas fa-gem"></i> Opulent</a></li>
+                            <li><a href="./Aspire.html"><i class="fas fa-star"></i> Aspire</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
                         <h3>Furniture Type</h3>
                         <ul>
-                            <li><a href="./chair.html">Chair</a></li>
-                            <li><a href="./Study table.html">Study Table</a></li>
-                            <li><a href="./Sofa.html">Sofa</a></li>
-                            <li><a href="./bed.html">Bed</a></li>
+                            <li><a href="./chair.html"><i class="fas fa-chair"></i> Chair</a></li>
+                            <li><a href="./Study table.html"><i class="fas fa-book-open"></i> Study Table</a></li>
+                            <li><a href="./Sofa.html"><i class="fas fa-couch"></i> Sofa</a></li>
+                            <li><a href="./bed.html"><i class="fas fa-bed"></i> Bed</a></li>
                         </ul>
                     </div>
                     <div class="footer-section">
                         <h3>Quick Links & More</h3>
                         <ul>
-                            <li><a href="./about.html">About Us</a></li>
-                            <li><a href="./contact.html">Contact Us</a></li>
-                            <li><a href="./Sustainable.html">Sustainability</a></li>
-                            <li><a href="./Privacy Policy.html">Privacy Policy</a></li>
-                            <li><a href="./Disclaimer.html">Disclaimer</a></li>
+                            <li><a href="./about.html"><i class="fas fa-users"></i> About Us</a></li>
+                            <li><a href="./contact.html"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                            <li><a href="./Sustainable.html"><i class="fas fa-leaf"></i> Sustainability</a></li>
+                            <li><a href="./Privacy Policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                            <li><a href="./Disclaimer.html"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="follow-us">
                     <h3>Follow us on</h3>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/GreenplyPlywood/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/greenplyplywood" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/greenply_plywood/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/greenply-industries-ltd" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/user/GreenplyPlywood" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
-                    <p class="mt-6 text-sm">Copyright © 2025 GreenInfinity.com. All Rights Reserved.</p>
+                </div>
+                <div class="text-center text-gray-400 text-sm mt-8">
+                    &copy; 2023 GreenInfinity Industries Limited. All rights reserved.
                 </div>
             </div>
         </footer>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Hero Carousel Logic ---
-            const slides = document.querySelectorAll('.carousel-slide');
-            const dotsContainer = document.querySelector('.carousel-dots');
-            let currentSlide = 0;
+        // Carousel functionality
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.querySelector('.carousel-dots');
+        let currentSlide = 0;
 
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                    if (i === index) {
-                        slide.classList.add('active');
-                    }
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            updateDots(index);
+        }
+
+        function updateDots(index) {
+            dotsContainer.innerHTML = ''; // Clear existing dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.classList.add('carousel-dot');
+                if (i === index) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    currentSlide = i;
+                    showSlide(currentSlide);
                 });
-                updateDots(index);
-            }
+                dotsContainer.appendChild(dot);
+            });
+        }
 
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }
-
-            function createDots() {
-                slides.forEach((_, i) => {
-                    const dot = document.createElement('span');
-                    dot.classList.add('dot');
-                    dot.addEventListener('click', () => {
-                        currentSlide = i;
-                        showSlide(currentSlide);
-                    });
-                    dotsContainer.appendChild(dot);
-                });
-            }
-
-            function updateDots(index) {
-                const dots = document.querySelectorAll('.dot');
-                dots.forEach((dot, i) => {
-                    dot.classList.remove('active');
-                    if (i === index) {
-                        dot.classList.add('active');
-                    }
-                });
-            }
-
-            createDots();
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
             showSlide(currentSlide);
-            setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
 
-            // --- Inquiry Modal Logic ---
-            const openInquiryModalButton = document.getElementById('open-inquiry-modal');
-            const inquiryModalOverlay = document.getElementById('inquiry-modal-overlay');
-            const closeInquiryModalButton = document.getElementById('close-inquiry-modal');
-            const submitInquiryButton = document.getElementById('submit-inquiry-button');
-            const inquiryForm = inquiryModalOverlay.querySelector('form');
+        // Auto-advance carousel
+        let carouselInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
 
-            const messageBoxOverlay = document.getElementById('message-box-overlay');
-            const messageBoxText = document.getElementById('message-box-text');
-            const messageBoxCloseButton = document.getElementById('message-box-close');
+        // Pause on hover
+        const heroSection = document.querySelector('.hero-section');
+        heroSection.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+        heroSection.addEventListener('mouseleave', () => {
+            carouselInterval = setInterval(nextSlide, 5000);
+        });
 
-            if (openInquiryModalButton) {
-                openInquiryModalButton.addEventListener('click', () => {
-                    inquiryModalOverlay.style.display = 'flex';
-                    setTimeout(() => inquiryModalOverlay.classList.add('show'), 10);
-                });
+        // Initialize carousel
+        if (slides.length > 0) {
+            showSlide(currentSlide);
+        }
+
+
+        // Inquiry Modal functionality
+        const openInquiryModalBtn = document.getElementById('open-inquiry-modal');
+        const closeInquiryModalBtn = document.getElementById('close-inquiry-modal');
+        const inquiryModalOverlay = document.getElementById('inquiry-modal-overlay');
+        const submitInquiryButton = document.getElementById('submit-inquiry-button');
+        const messageBoxOverlay = document.getElementById('message-box-overlay');
+        const messageBoxText = document.getElementById('message-box-text');
+        const messageBoxCloseBtn = document.getElementById('message-box-close');
+
+        openInquiryModalBtn.addEventListener('click', () => {
+            inquiryModalOverlay.classList.add('active');
+        });
+
+        closeInquiryModalBtn.addEventListener('click', () => {
+            inquiryModalOverlay.classList.remove('active');
+        });
+
+        inquiryModalOverlay.addEventListener('click', (e) => {
+            if (e.target === inquiryModalOverlay) {
+                inquiryModalOverlay.classList.remove('active');
+            }
+        });
+
+        submitInquiryButton.addEventListener('click', () => {
+            const name = document.getElementById('inquiry-name').value;
+            const mobile = document.getElementById('inquiry-mobile').value;
+            const pincode = document.getElementById('inquiry-pincode').value;
+            const inquiryType = document.getElementById('inquiry-type').value;
+            const robotCheck = document.getElementById('robot-check').checked;
+
+            if (!name || !mobile || !pincode || !inquiryType) {
+                showMessageBox('Please fill in all required fields.');
+                return;
             }
 
-            if (closeInquiryModalButton) {
-                closeInquiryModalButton.addEventListener('click', () => {
-                    inquiryModalOverlay.classList.remove('show');
-                    setTimeout(() => inquiryModalOverlay.style.display = 'none', 300);
-                });
+            if (!/^\d{10}$/.test(mobile)) {
+                showMessageBox('Please enter a valid 10-digit mobile number.');
+                return;
             }
 
-            window.addEventListener('click', (event) => {
-                if (event.target === inquiryModalOverlay) {
-                    inquiryModalOverlay.classList.remove('show');
-                    setTimeout(() => inquiryModalOverlay.style.display = 'none', 300);
-                }
-                if (event.target === messageBoxOverlay) {
-                    messageBoxOverlay.classList.remove('show');
-                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300);
-                }
-            });
-
-            if (submitInquiryButton) {
-                submitInquiryButton.addEventListener('click', (event) => {
-                    event.preventDefault(); // Prevent default form submission
-
-                    const name = document.getElementById('inquiry-name').value;
-                    const mobile = document.getElementById('inquiry-mobile').value;
-                    const pincode = document.getElementById('inquiry-pincode').value;
-                    const inquiryType = document.getElementById('inquiry-type').value;
-                    const robotCheck = document.getElementById('robot-check').checked;
-
-                    if (!robotCheck) {
-                        messageBoxText.textContent = "Please confirm you are not a robot.";
-                        messageBoxOverlay.style.display = 'flex';
-                        setTimeout(() => messageBoxOverlay.classList.add('show'), 10);
-                        return;
-                    }
-
-                    const whatsappNumber = '919945015544'; // Replace with your WhatsApp number
-                    const whatsappMessage = `Hello GreenInfinity, I have an enquiry.\n\n` +
-                                            `Name: ${name}\n` +
-                                            `Mobile: ${mobile}\n` +
-                                            `Pincode: ${pincode}\n` +
-                                            `Inquiry Type: ${inquiryType}`;
-
-                    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-
-                    window.open(whatsappUrl, '_blank');
-
-                    inquiryModalOverlay.classList.remove('show');
-                    setTimeout(() => inquiryModalOverlay.style.display = 'none', 300);
-                    inquiryForm.reset(); // Reset the form fields
-
-                    messageBoxText.textContent = 'Thank you for your enquiry! You will be redirected to WhatsApp to send your message.';
-                    messageBoxOverlay.style.display = 'flex';
-                    setTimeout(() => messageBoxOverlay.classList.add('show'), 10);
-                });
+            if (!/^\d{6}$/.test(pincode)) {
+                showMessageBox('Please enter a valid 6-digit pincode.');
+                return;
             }
 
-            if (messageBoxCloseButton) {
-                messageBoxCloseButton.addEventListener('click', () => {
-                    messageBoxOverlay.classList.remove('show');
-                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300);
-                });
+            if (!robotCheck) {
+                showMessageBox('Please confirm you are not a robot.');
+                return;
             }
 
-            // --- Our Collection Tabs Logic ---
-            const opulentTab = document.getElementById('opulent-tab');
-            const aspireTab = document.getElementById('aspire-tab');
-            const opulentContent = document.getElementById('opulent-content');
-            const aspireContent = document.getElementById('aspire-content');
+            // Simulate form submission
+            console.log('Inquiry Submitted:', { name, mobile, pincode, inquiryType });
+            showMessageBox('Your inquiry has been submitted successfully!');
+            inquiryModalOverlay.classList.remove('active'); // Close inquiry modal after submission
+            // Clear form fields
+            document.getElementById('inquiry-name').value = '';
+            document.getElementById('inquiry-mobile').value = '';
+            document.getElementById('inquiry-pincode').value = '';
+            document.getElementById('inquiry-type').value = '';
+            document.getElementById('robot-check').checked = false;
+        });
 
-            function showTabContent(tabId) {
-                opulentTab.classList.remove('active-tab');
-                aspireTab.classList.remove('active-tab');
-                opulentContent.classList.add('hidden');
-                aspireContent.classList.add('hidden');
+        messageBoxCloseBtn.addEventListener('click', () => {
+            messageBoxOverlay.classList.remove('active');
+        });
 
-                if (tabId === 'opulent') {
-                    opulentTab.classList.add('active-tab');
-                    opulentContent.classList.remove('hidden');
-                } else if (tabId === 'aspire') {
-                    aspireTab.classList.add('active-tab');
-                    aspireContent.classList.remove('hidden');
-                }
+        messageBoxOverlay.addEventListener('click', (e) => {
+            if (e.target === messageBoxOverlay) {
+                messageBoxOverlay.classList.remove('active');
             }
+        });
 
-            opulentTab.addEventListener('click', (e) => {
-                e.preventDefault();
-                showTabContent('opulent');
-            });
+        function showMessageBox(message) {
+            messageBoxText.textContent = message;
+            messageBoxOverlay.classList.add('active');
+        }
 
-            aspireTab.addEventListener('click', (e) => {
-                e.preventDefault();
-                showTabContent('aspire');
-            });
+        // Our Collection Tabs functionality
+        const opulentTab = document.getElementById('opulent-tab');
+        const aspireTab = document.getElementById('aspire-tab');
+        const opulentContent = document.getElementById('opulent-content');
+        const aspireContent = document.getElementById('aspire-content');
 
-            // --- Mini-Carousel Logic (for Opulent Polymer 1 and Aspire Polymer 1) ---
-            function setupMiniCarousel(carouselId) {
-                const miniCarouselContainer = document.getElementById(carouselId);
-                const slides = miniCarouselContainer.querySelectorAll('.mini-carousel-slide');
+        opulentTab.addEventListener('click', (e) => {
+            e.preventDefault();
+            opulentTab.classList.add('active-tab');
+            aspireTab.classList.remove('active-tab');
+            opulentContent.classList.remove('hidden');
+            aspireContent.classList.add('hidden');
+        });
+
+        aspireTab.addEventListener('click', (e) => {
+            e.preventDefault();
+            aspireTab.classList.add('active-tab');
+            opulentTab.classList.remove('active-tab');
+            aspireContent.classList.remove('hidden');
+            opulentContent.classList.add('hidden');
+        });
+
+        // Mini-Carousel functionality for product cards
+        function initializeMiniCarousels() {
+            document.querySelectorAll('.mini-carousel-container').forEach(container => {
+                const miniSlides = container.querySelectorAll('.mini-carousel-slide');
                 let currentMiniSlide = 0;
 
-                function showMiniSlide(index) {
-                    slides.forEach((slide, i) => {
-                        slide.classList.remove('active');
-                        if (i === index) {
-                            slide.classList.add('active');
-                        }
-                    });
+                if (miniSlides.length > 1) {
+                    setInterval(() => {
+                        miniSlides[currentMiniSlide].classList.remove('active');
+                        currentMiniSlide = (currentMiniSlide + 1) % miniSlides.length;
+                        miniSlides[currentMiniSlide].classList.add('active');
+                    }, 3000); // Change mini-slide every 3 seconds
                 }
-
-                function nextMiniSlide() {
-                    currentMiniSlide = (currentMiniSlide + 1) % slides.length;
-                    showMiniSlide(currentMiniSlide);
-                }
-
-                if (slides.length > 1) {
-                    setInterval(nextMiniSlide, 3000); // Change slide every 3 seconds
-                }
-            }
-
-            setupMiniCarousel('opulent-p1-carousel');
-            setupMiniCarousel('aspire-p1-carousel');
-
-            // --- Key Features Vertical Slider Logic ---
-            const featureListItems = document.querySelectorAll('#key-features-list li');
-            const featureImageSlides = document.querySelectorAll('.key-features-image-slide');
-            const keyFeaturesUpArrow = document.getElementById('key-features-up');
-            const keyFeaturesDownArrow = document.getElementById('key-features-down');
-            let currentFeatureIndex = 0;
-
-            function showFeature(index) {
-                featureListItems.forEach((item, i) => {
-                    item.classList.remove('active');
-                    if (i === index) {
-                        item.classList.add('active');
-                    }
-                });
-
-                featureImageSlides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                    if (i === index) {
-                        slide.classList.add('active');
-                    }
-                });
-            }
-
-            featureListItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    currentFeatureIndex = index;
-                    showFeature(currentFeatureIndex);
-                });
             });
+        }
+        initializeMiniCarousels();
 
-            if (keyFeaturesUpArrow) {
-                keyFeaturesUpArrow.addEventListener('click', () => {
-                    currentFeatureIndex = (currentFeatureIndex - 1 + featureListItems.length) % featureListItems.length;
-                    showFeature(currentFeatureIndex);
-                });
-            }
 
-            if (keyFeaturesDownArrow) {
-                keyFeaturesDownArrow.addEventListener('click', () => {
-                    currentFeatureIndex = (currentFeatureIndex + 1) % featureListItems.length;
-                    showFeature(currentFeatureIndex);
-                });
-            }
+        // Key Features Vertical Slider functionality
+        const featureList = document.getElementById('key-features-list');
+        const featureSlides = document.querySelectorAll('.key-features-image-slide');
+        const featureUpArrow = document.getElementById('key-features-up');
+        const featureDownArrow = document.getElementById('key-features-down');
+        let currentFeatureIndex = 0;
 
-            showFeature(currentFeatureIndex); // Initialize first feature as active
-
-            // --- Product Visualizer Logic ---
-            const productPanel = document.getElementById('productPanel');
-            const togglePickerButton = document.getElementById('togglePickerButton');
-            const colorPickerModal = document.getElementById('colorPickerModal');
-            const closeModalButton = document.getElementById('closeModalButton');
-            const panelTypeSelect = document.getElementById('panelTypeSelect');
-            const panelStyleSelect = document.getElementById('panelStyleSelect');
-            const colorGrid = document.getElementById('colorGrid');
-            const scene = document.getElementById('scene');
-
-            // Sample data for panels (replace with actual image URLs as needed)
-            const panelData = {
-                opulent: {
-                    pastels: [
-                        { name: "Opulent Pastel 1", img: "https://placehold.co/80x80/FFD1DC/333?text=OpulentP1" },
-                        { name: "Opulent Pastel 2", img: "https://placehold.co/80x80/B0E0E6/333?text=OpulentP2" },
-                        { name: "Opulent Pastel 3", img: "https://placehold.co/80x80/D8BFD8/333?text=OpulentP3" },
-                        { name: "Opulent Pastel 4", img: "https://placehold.co/80x80/FFEFD5/333?text=OpulentP4" },
-                    ],
-                    neutrals: [
-                        { name: "Opulent Neutral 1", img: "https://placehold.co/80x80/F5F5DC/333?text=OpulentN1" },
-                        { name: "Opulent Neutral 2", img: "https://placehold.co/80x80/D3D3D3/333?text=OpulentN2" },
-                        { name: "Opulent Neutral 3", img: "https://placehold.co/80x80/A9A9A9/333?text=OpulentN3" },
-                    ],
-                    vibrant: [
-                        { name: "Opulent Vibrant 1", img: "https://placehold.co/80x80/FF4500/FFF?text=OpulentV1" },
-                        { name: "Opulent Vibrant 2", img: "https://placehold.co/80x80/8A2BE2/FFF?text=OpulentV2" },
-                        { name: "Opulent Vibrant 3", img: "https://placehold.co/80x80/008000/FFF?text=OpulentV3" },
-                    ]
-                },
-                modern: {
-                    pastels: [
-                        { name: "Modern Pastel 1", img: "https://placehold.co/80x80/ADD8E6/333?text=ModernP1" },
-                        { name: "Modern Pastel 2", img: "https://placehold.co/80x80/90EE90/333?text=ModernP2" },
-                    ],
-                    neutrals: [
-                        { name: "Modern Neutral 1", img: "https://placehold.co/80x80/F0F8FF/333?text=ModernN1" },
-                        { name: "Modern Neutral 2", img: "https://placehold.co/80x80/DCDCDC/333?text=ModernN2" },
-                    ],
-                    vibrant: [
-                        { name: "Modern Vibrant 1", img: "https://placehold.co/80x80/FF6347/FFF?text=ModernV1" },
-                        { name: "Modern Vibrant 2", img: "https://placehold.co/80x80/4682B4/FFF?text=ModernV2" },
-                    ]
-                },
-                classic: {
-                    pastels: [
-                        { name: "Classic Pastel 1", img: "https://placehold.co/80x80/F5DEB3/333?text=ClassicP1" },
-                    ],
-                    neutrals: [
-                        { name: "Classic Neutral 1", img: "https://placehold.co/80x80/A0522D/FFF?text=ClassicN1" },
-                        { name: "Classic Neutral 2", img: "https://placehold.co/80x80/8B4513/FFF?text=ClassicN2" },
-                    ],
-                    vibrant: [
-                        { name: "Classic Vibrant 1", img: "https://placehold.co/80x80/800000/FFF?text=ClassicV1" },
-                    ]
+        function showFeatureSlide(index) {
+            featureSlides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
                 }
-            };
-
-            function loadColors() {
-                const selectedType = panelTypeSelect.value;
-                const selectedStyle = panelStyleSelect.value;
-                const colors = panelData[selectedType]?.[selectedStyle] || [];
-
-                colorGrid.innerHTML = ''; // Clear previous colors
-                colors.forEach(color => {
-                    const colorOption = document.createElement('div');
-                    colorOption.classList.add('color-option');
-                    colorOption.style.backgroundImage = `url('${color.img}')`;
-                    colorOption.title = color.name;
-                    colorOption.dataset.img = color.img;
-                    colorOption.addEventListener('click', () => {
-                        // Remove 'selected' from all options
-                        document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
-                        // Add 'selected' to the clicked option
-                        colorOption.classList.add('selected');
-                        // Apply the selected image to the product panel
-                        productPanel.style.backgroundImage = `url('${color.img}')`;
-                    });
-                    colorGrid.appendChild(colorOption);
-                });
-
-                // Select the first color by default if available
-                if (colors.length > 0) {
-                    colorGrid.querySelector('.color-option').click();
+            });
+            featureList.querySelectorAll('li').forEach((item, i) => {
+                item.classList.remove('active');
+                if (i === index) {
+                    item.classList.add('active');
                 }
-            }
+            });
+        }
 
-            // Event listeners for dropdowns
-            panelTypeSelect.addEventListener('change', loadColors);
-            panelStyleSelect.addEventListener('change', loadColors);
-
-            // Toggle color picker modal
-            if (togglePickerButton) {
-                togglePickerButton.addEventListener('click', () => {
-                    colorPickerModal.style.display = 'block';
-                    setTimeout(() => colorPickerModal.classList.add('show'), 10);
-                });
-            }
-
-            if (closeModalButton) {
-                closeModalButton.addEventListener('click', () => {
-                    colorPickerModal.classList.remove('show');
-                    setTimeout(() => colorPickerModal.style.display = 'none', 300);
-                });
-            }
-
-            // Make the product panel draggable
-            let isDragging = false;
-            let offsetX, offsetY;
-
-            if (productPanel) {
-                productPanel.addEventListener('mousedown', (e) => {
-                    isDragging = true;
-                    offsetX = e.clientX - productPanel.getBoundingClientRect().left;
-                    offsetY = e.clientY - productPanel.getBoundingClientRect().top;
-                    productPanel.style.cursor = 'grabbing';
-                });
-
-                scene.addEventListener('mousemove', (e) => {
-                    if (!isDragging) return;
-
-                    const sceneRect = scene.getBoundingClientRect();
-                    let newX = e.clientX - sceneRect.left - offsetX;
-                    let newY = e.clientY - sceneRect.top - offsetY;
-
-                    // Boundary checks
-                    newX = Math.max(0, Math.min(newX, sceneRect.width - productPanel.offsetWidth));
-                    newY = Math.max(0, Math.min(newY, sceneRect.height - productPanel.offsetHeight));
-
-                    productPanel.style.left = `${newX}px`;
-                    productPanel.style.top = `${newY}px`;
-                });
-
-                scene.addEventListener('mouseup', () => {
-                    isDragging = false;
-                    productPanel.style.cursor = 'grab';
-                });
-
-                // Touch events for dragging
-                productPanel.addEventListener('touchstart', (e) => {
-                    isDragging = true;
-                    const touch = e.touches[0];
-                    offsetX = touch.clientX - productPanel.getBoundingClientRect().left;
-                    offsetY = touch.clientY - productPanel.getBoundingClientRect().top;
-                    productPanel.style.cursor = 'grabbing';
-                    e.preventDefault(); // Prevent scrolling while dragging
-                });
-
-                scene.addEventListener('touchmove', (e) => {
-                    if (!isDragging) return;
-                    const touch = e.touches[0];
-
-                    const sceneRect = scene.getBoundingClientRect();
-                    let newX = touch.clientX - sceneRect.left - offsetX;
-                    let newY = touch.clientY - sceneRect.top - offsetY;
-
-                    // Boundary checks
-                    newX = Math.max(0, Math.min(newX, sceneRect.width - productPanel.offsetWidth));
-                    newY = Math.max(0, Math.min(newY, sceneRect.height - productPanel.offsetHeight));
-
-                    productPanel.style.left = `${newX}px`;
-                    productPanel.style.top = `${newY}px`;
-                    e.preventDefault();
-                });
-
-                scene.addEventListener('touchend', () => {
-                    isDragging = false;
-                    productPanel.style.cursor = 'grab';
-                });
-            }
-
-            loadColors(); // Initial load of colors
-
-            // --- Navigation for Footer links ---
-            const footerLinks = document.querySelectorAll('footer a');
-            footerLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // Only prevent default if it's an internal link (not a social media link or external link)
-                    if (link.getAttribute('href').startsWith('./') || link.getAttribute('href').startsWith('#')) {
-                        e.preventDefault();
-                        const targetPage = link.getAttribute('href');
-                        if (targetPage.startsWith('./')) {
-                            window.location.href = targetPage;
-                        } else if (targetPage === '#') {
-                            // Handle internal anchor links if any, though none are provided in this snippet
-                        }
-                    }
-                    // For external links like social media, let the default behavior happen
-                });
+        featureList.querySelectorAll('li').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentFeatureIndex = index;
+                showFeatureSlide(currentFeatureIndex);
             });
         });
+
+        featureUpArrow.addEventListener('click', () => {
+            currentFeatureIndex = (currentFeatureIndex - 1 + featureSlides.length) % featureSlides.length;
+            showFeatureSlide(currentFeatureIndex);
+        });
+
+        featureDownArrow.addEventListener('click', () => {
+            currentFeatureIndex = (currentFeatureIndex + 1) % featureSlides.length;
+            showFeatureSlide(currentFeatureIndex);
+        });
+
+        // Initialize key features slider
+        if (featureSlides.length > 0) {
+            showFeatureSlide(currentFeatureIndex);
+        }
+
+        // Product Visualizer (Three.js)
+        let scene, camera, renderer, panelMesh;
+        let isDragging = false;
+        let previousMousePosition = {
+            x: 0,
+            y: 0
+        };
+
+        const panelData = {
+            opulent: {
+                pastels: [
+                    { name: 'Pastel Pink', color: 0xFFB6C1 },
+                    { name: 'Pastel Blue', color: 0xADD8E6 },
+                    { name: 'Pastel Green', color: 0x90EE90 },
+                    { name: 'Pastel Yellow', color: 0xFFFFE0 },
+                ],
+                neutrals: [
+                    { name: 'Cream', color: 0xFFFDD0 },
+                    { name: 'Light Grey', color: 0xD3D3D3 },
+                    { name: 'Beige', color: 0xF5F5DC },
+                    { name: 'Taupe', color: 0x483C32 },
+                ],
+                vibrant: [
+                    { name: 'Ruby Red', color: 0xE0115F },
+                    { name: 'Emerald Green', color: 0x50C878 },
+                    { name: 'Sapphire Blue', color: 0x0F52BA },
+                    { name: 'Sunshine Yellow', color: 0xFFD700 },
+                ]
+            },
+            modern: {
+                pastels: [
+                    { name: 'Sky Blue', color: 0x87CEEB },
+                    { name: 'Mint Green', color: 0x98FB98 },
+                    { name: 'Lavender', color: 0xE6E6FA },
+                ],
+                neutrals: [
+                    { name: 'Charcoal', color: 0x36454F },
+                    { name: 'Silver', color: 0xC0C0C0 },
+                    { name: 'White', color: 0xFFFFFF },
+                ],
+                vibrant: [
+                    { name: 'Electric Blue', color: 0x7DF9FF },
+                    { name: 'Lime Green', color: 0x32CD32 },
+                    { name: 'Orange', color: 0xFFA500 },
+                ]
+            },
+            classic: {
+                pastels: [
+                    { name: 'Rose Gold', color: 0xB76E79 },
+                    { name: 'Dusty Blue', color: 0x6A8EAE },
+                ],
+                neutrals: [
+                    { name: 'Dark Wood', color: 0x8B4513 }, // Example wood texture via color
+                    { name: 'Marble', color: 0xF2F2F2 }, // Example marble texture via color
+                    { name: 'Black', color: 0x000000 },
+                ],
+                vibrant: [
+                    { name: 'Deep Red', color: 0x8B0000 },
+                    { name: 'Royal Blue', color: 0x4169E1 },
+                ]
+            }
+        };
+
+        function initVisualizer() {
+            const sceneContainer = document.getElementById('scene');
+
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf0f0f0); // Light grey background
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(75, sceneContainer.clientWidth / sceneContainer.clientHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(sceneContainer.clientWidth, sceneContainer.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            sceneContainer.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(1, 1, 1).normalize();
+            scene.add(directionalLight);
+
+            // Initial Panel
+            const geometry = new THREE.BoxGeometry(2, 3, 0.1); // Width, Height, Depth
+            const material = new THREE.MeshPhongMaterial({ color: panelData.opulent.pastels[0].color });
+            panelMesh = new THREE.Mesh(geometry, material);
+            scene.add(panelMesh);
+
+            // Handle window resize
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Mouse interaction for rotation
+            renderer.domElement.addEventListener('mousedown', onMouseDown, false);
+            renderer.domElement.addEventListener('mouseup', onMouseUp, false);
+            renderer.domElement.addEventListener('mousemove', onMouseMove, false);
+
+            // Touch interaction for rotation
+            renderer.domElement.addEventListener('touchstart', onTouchStart, false);
+            renderer.domElement.addEventListener('touchend', onTouchEnd, false);
+            renderer.domElement.addEventListener('touchmove', onTouchMove, false);
+
+            animate();
+        }
+
+        function onWindowResize() {
+            const sceneContainer = document.getElementById('scene');
+            camera.aspect = sceneContainer.clientWidth / sceneContainer.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(sceneContainer.clientWidth, sceneContainer.clientHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        function onMouseDown(event) {
+            isDragging = true;
+            previousMousePosition = {
+                x: event.clientX,
+                y: event.clientY
+            };
+        }
+
+        function onMouseUp(event) {
+            isDragging = false;
+        }
+
+        function onMouseMove(event) {
+            if (!isDragging) return;
+
+            const deltaMove = {
+                x: event.clientX - previousMousePosition.x,
+                y: event.clientY - previousMousePosition.y
+            };
+
+            // Rotate the panel based on mouse movement
+            panelMesh.rotation.y += deltaMove.x * 0.01;
+            panelMesh.rotation.x += deltaMove.y * 0.01;
+
+            previousMousePosition = {
+                x: event.clientX,
+                y: event.clientY
+            };
+        }
+
+        function onTouchStart(event) {
+            if (event.touches.length === 1) {
+                isDragging = true;
+                previousMousePosition = {
+                    x: event.touches[0].clientX,
+                    y: event.touches[0].clientY
+                };
+            }
+        }
+
+        function onTouchEnd(event) {
+            isDragging = false;
+        }
+
+        function onTouchMove(event) {
+            if (!isDragging || event.touches.length !== 1) return;
+
+            const deltaMove = {
+                x: event.touches[0].clientX - previousMousePosition.x,
+                y: event.touches[0].clientY - previousMousePosition.y
+            };
+
+            panelMesh.rotation.y += deltaMove.x * 0.01;
+            panelMesh.rotation.x += deltaMove.y * 0.01;
+
+            previousMousePosition = {
+                x: event.touches[0].clientX,
+                y: event.touches[0].clientY
+            };
+        }
+
+        // Color Picker Modal functionality
+        const togglePickerButton = document.getElementById('togglePickerButton');
+        const colorPickerModal = document.getElementById('colorPickerModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const panelTypeSelect = document.getElementById('panelTypeSelect');
+        const panelStyleSelect = document.getElementById('panelStyleSelect');
+        const colorGrid = document.getElementById('colorGrid');
+
+        togglePickerButton.addEventListener('click', () => {
+            colorPickerModal.classList.add('active');
+            populateColorGrid();
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            colorPickerModal.classList.remove('active');
+        });
+
+        panelTypeSelect.addEventListener('change', populateColorGrid);
+        panelStyleSelect.addEventListener('change', populateColorGrid);
+
+        function populateColorGrid() {
+            const selectedType = panelTypeSelect.value;
+            const selectedStyle = panelStyleSelect.value;
+            const colors = panelData[selectedType]?.[selectedStyle] || [];
+
+            colorGrid.innerHTML = ''; // Clear previous colors
+
+            if (colors.length === 0) {
+                colorGrid.innerHTML = '<p class="text-gray-500 col-span-full text-center">No colors available for this selection.</p>';
+                return;
+            }
+
+            colors.forEach(item => {
+                const colorOption = document.createElement('div');
+                colorOption.classList.add('color-option');
+                colorOption.style.backgroundColor = `#${item.color.toString(16).padStart(6, '0')}`;
+                colorOption.title = item.name;
+                colorOption.dataset.color = item.color; // Store color value
+
+                // Add a checkmark for selected color
+                const checkmark = document.createElement('span');
+                checkmark.classList.add('checkmark', 'hidden', 'text-white', 'text-2xl');
+                checkmark.innerHTML = '&#10003;'; // Checkmark symbol
+                colorOption.appendChild(checkmark);
+
+                colorOption.addEventListener('click', () => {
+                    // Remove 'selected' from all options
+                    document.querySelectorAll('.color-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                        opt.querySelector('.checkmark').classList.add('hidden');
+                    });
+                    // Add 'selected' to the clicked option
+                    colorOption.classList.add('selected');
+                    colorOption.querySelector('.checkmark').classList.remove('hidden');
+                    updatePanelColor(parseInt(colorOption.dataset.color));
+                });
+                colorGrid.appendChild(colorOption);
+            });
+
+            // Select the first color by default if available
+            if (colors.length > 0) {
+                const firstColorOption = colorGrid.querySelector('.color-option');
+                if (firstColorOption) {
+                    firstColorOption.classList.add('selected');
+                    firstColorOption.querySelector('.checkmark').classList.remove('hidden');
+                    updatePanelColor(parseInt(firstColorOption.dataset.color));
+                }
+            }
+        }
+
+        function updatePanelColor(color) {
+            if (panelMesh) {
+                panelMesh.material.color.set(color);
+            }
+        }
+
+        // Initialize visualizer on window load
+        window.onload = function() {
+            initVisualizer();
+            populateColorGrid(); // Populate color grid initially
+        };
     </script>
 </body>
 </html>
