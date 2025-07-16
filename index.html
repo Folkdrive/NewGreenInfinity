@@ -284,7 +284,7 @@
             transform: translateY(20px);
             transition: transform 0.3s ease-in-out;
         }
-        .message-box-overlay.show .message-box-content {
+        .modal-overlay.show .message-box-content {
             transform: translateY(0);
         }
 
@@ -434,35 +434,38 @@
         .visualizer-main-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Keeps content horizontally centered by default */
             padding: 1.5rem;
         }
 
         .scene {
             position: relative;
             width: 100%;
-            max-width: 800px; /* Max width for the scene */
-            height: 450px; /* Fixed height for the scene */
-            background-image: url('https://clubcrests.greenply.com/wp-content/uploads/office-image-left.png'); /* Updated background image */
+            max-width: 1300px; /* Increased width for the scene */
+            height: 500px; /* Increased height for the scene */
+            /* Background image for the scene */
+            background-image: url('https://clubcrests.greenply.com/wp-content/uploads/office-image-left.png');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat; /* Ensure the image doesn't repeat */
             border-radius: 0.75rem;
             overflow: hidden;
             margin-bottom: 1.5rem;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* --- Position Adjustment --- */
+            margin-left: auto; /* Centers the element horizontally */
+            margin-right: auto; /* Centers the element horizontally */
         }
 
-        .product-panel {
-            position: absolute;
-            width: 200px; /* Example size */
-            height: 300px; /* Example size */
-            background-color: #f0f0f0; /* Default panel color */
-            border: 2px solid #ccc;
-            /* Removed cursor: grab; */
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-            background-size: cover;
-            background-position: center;
+        /* Ensure the Three.js canvas fills the scene container */
+        .scene canvas {
+            position: relative;
+            top: 0%;
+            left: 3%;
+            width: 500px;
+            height: 100px;
+            display: flex;
+            margin-top: -12%; /* Remove extra space below canvas */
         }
 
         .toggle-picker-button {
@@ -494,16 +497,18 @@
             border-radius: 1rem;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             z-index: 1002; /* Higher than other modals */
-            display: none;
             opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            visibility: hidden; /* Hidden by default */
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Only opacity and transform transition for hiding */
             width: 90%;
             max-width: 600px;
         }
 
         .color-picker-modal.show {
             opacity: 1;
+            visibility: visible; /* Becomes visible immediately when 'show' is added */
             transform: translate(-50%, -50%) scale(1);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* No delay, immediate visibility change */
         }
 
         .color-picker-modal .close-button {
@@ -755,7 +760,7 @@
                     <p class="text-gray-600 leading-relaxed">
                         Cub Crests is uber-premium collection caters to visionary designers seeking materials that embody distinctiveness and technical excellence. With a focus on creating exquisite finishes and intricate detailing, these laminates are inspired by unconventional, niche designs and materials. Experience the unparalleled quality of the Cub Crests Collection, a testament to the inspiring heights of craftsmanship and innovation.
                     </p>
-                    <a href="./products.html" class="mt-6 inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md">VIEW ALL &rarr;</a>
+                    <a href="#" class="mt-6 inline-block bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md">VIEW ALL &rarr;</a>
                 </div>
             </div>
         </section>
@@ -777,6 +782,7 @@
                         <ul class="space-y-4">
                             <li><a href="#" id="opulent-tab" class="block p-3 rounded-lg bg-red-600 text-white hover:bg-red-700 transition duration-300 ease-in-out font-medium shadow-md cursor-pointer active-tab">OPULENT</a></li>
                             <li><a href="#" id="aspire-tab" class="block p-3 rounded-lg text-gray-700 hover:bg-gray-200 transition duration-300 ease-in-out font-medium cursor-pointer">ASPIRE</a></li>
+                            <li><a href="./lwl.html" id="lwl-tab" class="block p-3 rounded-lg text-gray-700 hover:bg-gray-200 transition duration-300 ease-in-out font-medium cursor-pointer">LWL</a></li>
                         </ul>
                     </div>
                     <!-- Content Area - scrolls with the main page -->
@@ -794,7 +800,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Pastels (52)</h4>
                                     <p class="text-gray-600 text-sm mb-3">Bring serenity and elegance to your spaces with soothing pastel shades, fostering a harmonious connection with nature.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./opulent.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Opulent Stone Surfaces Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -803,7 +809,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Stone Surfaces (28)</h4>
                                     <p class="text-gray-600 text-sm mb-3">Discover our Stone Surface collection, featuring luxurious marbles and rugged lava stones that bring sophistication and natural allure to your living spaces.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./opulent.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Opulent Wood Surfaces Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -812,7 +818,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Wood Surfaces (59)</h4>
                                     <p class="text-gray-600 text-sm mb-3">Experience the timeless charm of authentic wood with our textured woodgrains, meticulously designed for minimalism and subtle light reflection.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./opulent.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Opulent Wood Synchro Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -821,7 +827,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Wood Synchro (25)</h4>
                                     <p class="text-gray-600 text-sm mb-3">The Wood Synchro collection features patented embossing technology, perfectly synchronizing grain patterns for unmatched precision and innovation.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./opulent.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Wellness Card -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -830,7 +836,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Wellness (15)</h4>
                                     <p class="text-gray-600 text-sm mb-3">Transform your interiors with our 1.5mm acrylic laminates, blending vibrant hues with effortless elegance. Enjoy captivating spaces that remain impressive and easy to maintain.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./opulent.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                             </div>
                         </div>
@@ -848,7 +854,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 1 (23)</h4>
                                     <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./Aspire.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Polymer 2 -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -857,7 +863,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 2 (6)</h4>
                                     <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./Aspire.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Polymer 3 -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -866,7 +872,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 3 (20)</h4>
                                     <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./Aspire.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                                 <!-- Polymer 4 -->
                                 <div class="bg-white p-4 rounded-lg shadow-sm">
@@ -875,7 +881,7 @@
                                     </div>
                                     <h4 class="text-lg font-semibold text-gray-800 mb-2">Polymer 4 (2)</h4>
                                     <p class="text-gray-600 text-sm mb-3">We are interior designers with a strong architectural sensibility, dedicated to enhancing everyday environments and contributing to better quality of life. Since our launch in 2009, Material Creative has focused on creating unexpected design to bring people together and command attention, which has earned us an award winning reputation both nationally and internationally.</p>
-                                    <a href="#" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
+                                    <a href="./Aspire.html" class="text-red-600 hover:underline text-sm font-medium">VIEW ALL</a>
                                 </div>
                             </div>
                         </div>
@@ -916,11 +922,11 @@
                     <div class="lg:w-1/2 flex justify-center order-2 relative"> <!-- Image slider on the right -->
                         <div class="key-features-image-slider">
                             <!-- Images for vertical slider -->
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXaGhffi_TO3vsihAE3z7wEC6c_hORPnN3bDx11N8ZUEvsLaV9" class="key-features-image-slide active" data-feature="anti-finger" alt="Anti-Finger Impression" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Anti-Finger';">
+                            <img src="https://cubcrests.greenply.com/wp-content/uploads/anki-finger-impression.jpg" class="key-features-image-slide active" data-feature="anti-finger" alt="Anti-Finger Impression" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Anti-Finger';">
                             <img src="https://img.freepik.com/free-photo/isolated-feather-studio_23-2151436548.jpg?semt=ais_hybrid&w=740" class="key-features-image-slide" data-feature="feather-touch" alt="Feather Touch" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Feather+Touch';">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaWNiYABvi1m8f6P1z9hC_QgR204AgIRtSpVDsrl6Pr8CaxnTB" class="key-features-image-slide" data-feature="water-resistant" alt="Water Resistant" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Water+Resistant';">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBmyRU8JadmjdmyDN36dfCsZdJRN_GNg_w7rTVbzBj3pCeg5Ad" class="key-features-image-slide" data-feature="easy-clean" alt="Easy To Clean" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Easy+Clean';">
-                            <img src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/1200x675/photo/2025/01/26/4148759254.jpeg" class="key-features-image-slide" data-feature="long-durability" alt="Long Durability" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Long+Durability';">
+                            <img src="https://cubcrests.greenply.com/wp-content/uploads/water-resistant.jpg" class="key-features-image-slide" data-feature="water-resistant" alt="Water Resistant" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Water+Resistant';">
+                            <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQXtfKQSjJU5tZsIPor_AimLcH121urFnceUk1g5CBLcVirCK1r" class="key-features-image-slide" data-feature="easy-clean" alt="Easy To Clean" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Easy+Clean';">
+                            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS8yckxIgs8cmoy2CRvGjPSnfrpclGH6DXk-I2-P" class="key-features-image-slide" data-feature="long-durability" alt="Long Durability" onerror="this.onerror=null;this.src='https://placehold.co/500x400/e2e8f0/4a5568?text=Long+Durability';">
                         </div>
                         <!-- Navigation arrows for vertical slider -->
                         <div id="key-features-up" class="key-features-nav-arrow up">
@@ -934,6 +940,66 @@
             </div>
         </section>
 
+        <!-- Product Visualizer Section -->
+        <section class="py-16 px-6 md:px-12 bg-gray-200">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">PRODUCT VISUALIZER</h2>
+                <div class="visualizer-container">
+                    <div class="visualizer-header">
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-red-500">
+                                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-10S17.385 2.25 12 2.25ZM12 1.5a8.25 8.25 0 1 0 0 16.5 8.25 8.25 0 0 0 0-16.5ZM12 7.5a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V8.25A.75.75 0 0 1 12 7.5ZM12 15a.75.75 0 0 0-.75.75v.008a.75.75 0 0 0 1.5 0v-.008A.75.75 0 0 0 12 15Z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="text-lg font-semibold text-gray-800">PRODUCT VISUALIZER</span>
+                        </div>
+                        <div class="flex gap-4 items-center">
+                            <!-- Room type select dropdown is removed -->
+                        </div>
+                    </div>
+
+                    <div class="visualizer-main-content">
+                        <div id="scene" class="scene">
+                            <!-- The Three.js canvas will be appended here by JavaScript -->
+                        </div>
+                        <!-- Moved button outside the scene div to ensure it's clickable -->
+                        <button id="togglePickerButton" class="toggle-picker-button mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.979-1.077 2.427 0l.717 1.725 1.453.377a1.5 1.5 0 0 1 1.023 1.023l.377 1.453 1.725.717c1.077.448 1.077 1.979 0 2.427l-1.725.717-.377 1.453a1.5 1.5 0 0 1-1.023 1.023l-1.453.377-.717 1.725c-.448 1.077-1.979 1.077-2.427 0l-.717-1.725-1.453-.377a1.5 1.5 0 0 1-1.023-1.023l-.377-1.453-1.725-.717c-1.077-.448-1.077-1.979 0-2.427l1.725-.717.377-1.453a1.5 1.5 0 0 1 1.023-1.023l1.453-.377.717-1.725ZM15.375 16.05a2.25 2.25 0 0 1-3 3m3-3h.008v.008H15.375ZM12 12.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+                            </svg>
+                            Choose Your Panel
+                        </button>
+
+                        <div id="colorPickerModal" class="color-picker-modal">
+                            <button class="close-button" id="closeModalButton">&times;</button>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Choose Your Panel</h3>
+
+                            <div class="flex gap-4 mb-4">
+                                <div class="dropdown flex-1">
+                                    <select id="panelTypeSelect" class="dropdown-select">
+                                        <option value="opulent">Opulent</option>
+                                        <option value="modern">Modern</option>
+                                        <option value="classic">Classic</option>
+                                    </select>
+                                    <span class="dropdown-arrow">&#9662;</span>
+                                </div>
+                                <div class="dropdown flex-1">
+                                    <select id="panelStyleSelect" class="dropdown-select">
+                                        <option value="pastels">Pastels</option>
+                                        <option value="neutrals">Neutrals</option>
+                                        <option value="vibrant">Vibrant</option>
+                                    </select>
+                                    <span class="dropdown-arrow">&#9662;</span>
+                                </div>
+                            </div>
+
+                            <div id="colorGrid" class="color-grid">
+                                <!-- Color options will be dynamically loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer Section -->
         <footer class="bg-footer-bg py-8">
@@ -952,7 +1018,7 @@
                             <li><a href="./chair.html"><i class="fas fa-chair"></i> Chair</a></li>
                             <li><a href="./Study table.html"><i class="fas fa-book-open"></i> Study Table</a></li>
                             <li><a href="./Sofa.html"><i class="fas fa-couch"></i> Sofa</a></li>
-                            <li><a href="./bed.html"><i class="fas fa-bed"></i> Bed</a></li>
+                            <li><a href="./bed.html"><i class="fas fa-bed"></i> Bed</li>
                         </ul>
                     </div>
                     <div class="footer-section">
@@ -1116,6 +1182,7 @@
         // Our Collection Tabs functionality
         const opulentTab = document.getElementById('opulent-tab');
         const aspireTab = document.getElementById('aspire-tab');
+        const lwlTab = document.getElementById('lwl-tab'); // Get the new LWL tab
         const opulentContent = document.getElementById('opulent-content');
         const aspireContent = document.getElementById('aspire-content');
 
@@ -1123,6 +1190,7 @@
             e.preventDefault();
             opulentTab.classList.add('active-tab');
             aspireTab.classList.remove('active-tab');
+            lwlTab.classList.remove('active-tab'); // Ensure LWL tab is not active
             opulentContent.classList.remove('hidden');
             aspireContent.classList.add('hidden');
         });
@@ -1131,9 +1199,13 @@
             e.preventDefault();
             aspireTab.classList.add('active-tab');
             opulentTab.classList.remove('active-tab');
+            lwlTab.classList.remove('active-tab'); // Ensure LWL tab is not active
             aspireContent.classList.remove('hidden');
             opulentContent.classList.add('hidden');
         });
+
+        // The LWL tab will navigate directly, so no content switching logic needed here.
+        // lwlTab.addEventListener('click', (e) => { ... }); // No need for this if it navigates
 
         // Mini-Carousel functionality for product cards
         function initializeMiniCarousels() {
@@ -1265,17 +1337,18 @@
 
             // Scene
             scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xf0f0f0); // Light grey background
+            // The background image is set via CSS for the .scene div
+            // scene.background = new THREE.Color(0xf0f0f0); // No longer needed if CSS handles background
 
             // Camera
             camera = new THREE.PerspectiveCamera(75, sceneContainer.clientWidth / sceneContainer.clientHeight, 0.1, 1000);
             camera.position.z = 5;
 
             // Renderer
-            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Set alpha to true for transparent background
             renderer.setSize(sceneContainer.clientWidth, sceneContainer.clientHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
-            sceneContainer.appendChild(renderer.domElement);
+            sceneContainer.appendChild(renderer.domElement); // Append the canvas here
 
             // Lighting
             const ambientLight = new THREE.AmbientLight(0x404040); // Soft white light
@@ -1293,15 +1366,15 @@
             // Handle window resize
             window.addEventListener('resize', onWindowResize, false);
 
-            // Mouse interaction for rotation
-            renderer.domElement.addEventListener('mousedown', onMouseDown, false);
-            renderer.domElement.addEventListener('mouseup', onMouseUp, false);
-            renderer.domElement.addEventListener('mousemove', onMouseMove, false);
+            // Mouse interaction for rotation - these lines are commented out to prevent rotation
+            // renderer.domElement.addEventListener('mousedown', onMouseDown, false);
+            // renderer.domElement.addEventListener('mouseup', onMouseUp, false);
+            // renderer.domElement.addEventListener('mousemove', onMouseMove, false); // Commented out to stop rotation
 
-            // Touch interaction for rotation
-            renderer.domElement.addEventListener('touchstart', onTouchStart, false);
-            renderer.domElement.addEventListener('touchend', onTouchEnd, false);
-            renderer.domElement.addEventListener('touchmove', onTouchMove, false);
+            // Touch interaction for rotation - these lines are commented out to prevent rotation
+            // renderer.domElement.addEventListener('touchstart', onTouchStart, false);
+            // renderer.domElement.addEventListener('touchend', onTouchEnd, false);
+            // renderer.domElement.addEventListener('touchmove', onTouchMove, false); // Commented out to stop rotation
 
             animate();
         }
@@ -1319,64 +1392,65 @@
         }
 
         function onMouseDown(event) {
-            isDragging = true;
-            previousMousePosition = {
-                x: event.clientX,
-                y: event.clientY
-            };
+            // isDragging = true; // No longer needed if rotation is disabled
+            // previousMousePosition = {
+            //     x: event.clientX,
+            //     y: event.clientY
+            // };
         }
 
         function onMouseUp(event) {
-            isDragging = false;
+            // isDragging = false; // No longer needed if rotation is disabled
         }
 
         function onMouseMove(event) {
-            if (!isDragging) return;
+            // if (!isDragging) return; // No longer needed if rotation is disabled
 
-            const deltaMove = {
-                x: event.clientX - previousMousePosition.x,
-                y: event.clientY - previousMousePosition.y
-            };
+            // const deltaMove = {
+            //     x: event.clientX - previousMousePosition.x,
+            //     y: event.clientY - previousMousePosition.y
+            // };
 
-            // Rotate the panel based on mouse movement
-            panelMesh.rotation.y += deltaMove.x * 0.01;
-            panelMesh.rotation.x += deltaMove.y * 0.01;
+            // // Rotate the panel based on mouse movement - these lines are commented out to prevent rotation
+            // panelMesh.rotation.y += deltaMove.x * 0.01;
+            // panelMesh.rotation.x += deltaMove.y * 0.01;
 
-            previousMousePosition = {
-                x: event.clientX,
-                y: event.clientY
-            };
+            // previousMousePosition = {
+            //     x: event.clientX,
+            //     y: event.clientY
+            // };
         }
 
         function onTouchStart(event) {
-            if (event.touches.length === 1) {
-                isDragging = true;
-                previousMousePosition = {
-                    x: event.touches[0].clientX,
-                    y: event.touches[0].clientY
-                };
-            }
+            // if (event.touches.length === 1) { // No longer needed if rotation is disabled
+            //     isDragging = true;
+            //     previousMousePosition = {
+            //         x: event.touches[0].clientX,
+            //         y: event.touches[0].clientY
+            //     };
+            // }
         }
 
         function onTouchEnd(event) {
-            isDragging = false;
+            // isDragging = false; // No longer needed if rotation is disabled
         }
 
         function onTouchMove(event) {
-            if (!isDragging || event.touches.length !== 1) return;
+            // if (!isDragging || event.touches.length !== 1) return; // No longer needed if rotation is disabled
 
-            const deltaMove = {
-                x: event.touches[0].clientX - previousMousePosition.x,
-                y: event.touches[0].clientY - previousMousePosition.y
-            };
+            // const deltaMove = {
+            //     x: event.touches[0].clientX - previousMousePosition.x,
+            //     y: event.touches[0].clientY - previousMousePosition.y
+            // };
 
-            panelMesh.rotation.y += deltaMove.x * 0.01;
-            panelMesh.rotation.x += deltaMove.y * 0.01;
+            // // Rotate the panel based on touch movement - these lines are commented out to prevent rotation
+            // panelMesh.rotation.y += deltaMove.x * 0.01;
+            // panelMesh.rotation.x += deltaMove.y * 0.01;
 
-            previousMousePosition = {
-                x: event.touches[0].clientX,
-                y: event.touches[0].clientY
-            };
+            // previousMousePosition = {
+            //     x: event.touches[0].clientX,
+            //     y: event.touches[0].clientY
+            // };
         }
 
         // Color Picker Modal functionality
@@ -1388,12 +1462,12 @@
         const colorGrid = document.getElementById('colorGrid');
 
         togglePickerButton.addEventListener('click', () => {
-            colorPickerModal.classList.add('active');
+            colorPickerModal.classList.add('show'); /* Use 'show' class for fade-in effect */
             populateColorGrid();
         });
 
         closeModalButton.addEventListener('click', () => {
-            colorPickerModal.classList.remove('active');
+            colorPickerModal.classList.remove('show');
         });
 
         panelTypeSelect.addEventListener('change', populateColorGrid);
@@ -1457,8 +1531,15 @@
 
         // Initialize visualizer on window load
         window.onload = function() {
-            initVisualizer();
+            initVisualizer(); // Initialize the Three.js visualizer
             populateColorGrid(); // Populate color grid initially
+            initializeMiniCarousels(); // Still initialize mini carousels if they exist
+            if (slides.length > 0) { // Initialize main carousel
+                showSlide(currentSlide);
+            }
+            if (featureSlides.length > 0) { // Initialize key features slider
+                showFeatureSlide(currentFeatureIndex);
+            }
         };
     </script>
 </body>

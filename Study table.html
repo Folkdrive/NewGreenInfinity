@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Table - GreenInfinity</title>
+    <title>Study Table Ideas - Folkdrive</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome CDN for icons -->
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* Custom Tailwind Configuration for Blue Shades and White */
         :root {
@@ -19,11 +21,8 @@
             --color-red: #DC2626; /* Red for nav items and footer headings */
             --color-black: #000000; /* Black for nav options */
             --color-light-yellow: #FFFACD; /* Light Yellow for footer headings */
-            --color-text-dark: #333; /* Dark text for general content */
             --color-custom-red: #DC2626; /* Specific red for form elements */
-            --color-custom-red-dark: #B91C1C; /* Darker red for form hover */
-            --color-green-600: #16A34A; /* Tailwind green-600 */
-            --color-green-700: #15803D; /* Tailwind green-700 */
+            --color-custom-red-dark: #B91C1C; /* Darker red for hover */
         }
 
         .bg-primary-blue { background-color: var(--color-primary-blue); }
@@ -39,21 +38,13 @@
 
         .bg-footer-bg { background-color: var(--color-dark-blue); } /* Using dark blue for footer */
 
-        .text-custom-red { color: var(--color-custom-red); }
-        .bg-custom-red { background-color: var(--color-custom-red); }
-        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
-        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
-
-        .bg-green-600 { background-color: var(--color-green-600); }
-        .hover\:bg-green-700:hover { background-color: var(--color-green-700); }
-        .text-green-600 { color: var(--color-green-600); }
-        .focus\:ring-green-500:focus { --tw-ring-color: #22C55E; } /* Tailwind green-500 */
-
-
-        /* General styles for Inter font */
+        /* General styles for Roboto font */
         body {
             font-family: 'Roboto', sans-serif;
             color: #333; /* Default text color */
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Light grey background for the whole page */
         }
 
         /* Fixed Navbar Styling */
@@ -84,135 +75,173 @@
             transform: translateY(-2px); /* Subtle lift on hover */
         }
 
-        /* Hero Section for Study Table */
-        .hero-study-table {
-            position: relative;
-            width: 100%;
-            height: 400px; /* Adjust height as needed */
-            background-image: url('https://www.greenply.com:5001/banner1713361384044-5317.jpg'); /* Placeholder, adjust as needed */
+        /* Mobile Menu Specific Styling */
+        #navbar-menu {
+            background-color: var(--color-white); /* White background */
+            top: 100%; /* Position below the navbar */
+            left: 0;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            overflow: hidden; /* Hide content when collapsed */
+            transition: max-height 0.3s ease-out; /* Smooth transition for height */
+            max-height: 0; /* Initially collapsed */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #navbar-menu.show {
+            max-height: 200px; /* Adjust as needed for content */
+        }
+
+        #navbar-menu a {
+            color: var(--color-black); /* Black text */
+            padding: 0.75rem 1.5rem;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        #navbar-menu a:hover {
+            background-color: var(--color-light-gray); /* Light gray background on hover */
+            color: var(--color-red); /* Red on hover */
+        }
+
+        /* Hero Section for Study Table (adapted from contact-hero) */
+        .hero-section {
+            background-image: url('https://www.greenply.com:5001/banner1710848955363-890.png'); /* Reusing chair banner for consistency */
             background-size: cover;
             background-position: center;
+            color: var(--color-white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            padding: 10rem 1rem 4rem; /* Adjusted top padding for fixed navbar */
+            position: relative;
+            z-index: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--color-white);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            padding: 0 1rem;
-            margin-top: 8rem; /* Space for fixed navbar */
-            border-bottom-left-radius: 1rem;
+            min-height: 350px; /* Adjusted height for hero */
+            border-bottom-left-radius: 1rem; /* Rounded bottom corners */
             border-bottom-right-radius: 1rem;
-            overflow: hidden;
+            overflow: hidden; /* Ensure content stays within rounded corners */
         }
 
-        .hero-study-table::before {
+        .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.4); /* Dark overlay */
-            z-index: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: -1;
         }
 
-        .hero-study-table .breadcrumbs {
+        .hero-section .breadcrumb {
             position: absolute;
-            top: 1rem;
+            top: 7rem; /* Adjust based on navbar height */
             left: 1rem;
-            font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.8);
-            z-index: 1;
+            font-size: 0.9rem;
+            z-index: 10;
         }
-        .hero-study-table .breadcrumbs a {
+
+        .hero-section .breadcrumb a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        .hero-study-table .breadcrumbs a:hover {
-            color: var(--color-white);
+
+        .hero-section .breadcrumb a:hover {
+            color: var(--color-accent-blue);
         }
 
-        .hero-study-table h1 {
-            position: relative;
-            z-index: 1;
-            font-size: 3rem;
+        .hero-section-content {
+            text-align: center;
+            margin-top: 2rem; /* Adjust to move content down from breadcrumb */
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem; /* Larger for impact */
             font-weight: bold;
             margin-bottom: 0.5rem;
-            text-align: center;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         @media (min-width: 768px) {
-            .hero-study-table h1 {
-                font-size: 4rem;
+            .hero-section h1 {
+                font-size: 5rem;
+            }
+            .hero-section p {
+                font-size: 1.5rem;
             }
         }
 
         /* Section Header Styling */
         .section-header {
-            font-size: 2.25rem; /* text-3xl */
-            font-weight: bold;
-            margin-bottom: 2rem; /* mb-8 */
-            color: #333; /* text-gray-800 */
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-dark-blue); /* Changed to dark blue */
+            margin-bottom: 2.5rem;
         }
 
         /* Image Grid Card Styling */
         .image-grid-card {
-            background-color: var(--color-white);
-            border-radius: 1rem;
+            background-color: white;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* shadow-lg */
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            justify-content: space-between; /* Ensures text is at the bottom */
+            height: 100%; /* Ensures cards in a row have similar height */
         }
 
         .image-grid-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
         }
 
         .image-grid-card img {
             width: 100%;
-            height: 200px; /* Fixed height for consistency */
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .image-grid-card:hover img {
-            transform: scale(1.05);
+            height: 200px; /* Fixed height for images */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
         }
 
         .image-grid-card p {
-            padding: 1rem;
-            font-weight: 600;
-            color: var(--color-dark-blue);
+            padding: 1rem; /* p-4 */
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            text-align: center;
         }
 
-        /* Show More Button */
+        /* Show More Button Styling */
         .show-more-button {
-            background-color: var(--color-primary-blue);
-            color: var(--color-white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            text-decoration: none;
+            background-color: var(--color-custom-red);
+            color: white;
             font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: block; /* For centering */
-            margin: 2rem auto 0 auto; /* Center the button */
-            border: none;
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border-radius: 0.375rem; /* rounded-md */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-lg */
+            transition: background-color 0.3s ease;
+            margin-top: 2.5rem; /* mt-10 */
             cursor: pointer;
+            border: none;
+            display: none; /* Hidden by default, shown by JS if needed */
         }
 
         .show-more-button:hover {
-            background-color: var(--color-accent-blue);
-            transform: translateY(-2px);
+            background-color: var(--color-custom-red-dark);
         }
 
-        /* Fixed Enquiry Button */
+        /* Fixed Enquiry Button Styling */
         .enquiry-button {
             position: fixed;
             bottom: 1.5rem;
@@ -250,7 +279,7 @@
             }
         }
 
-        /* Modal Styling */
+        /* Modal Overlay Styling (for floating inquiry form) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -261,13 +290,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000; /* Increased z-index */
             display: none; /* Hidden by default */
             opacity: 0; /* Initial state for fade-in */
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Added visibility transition */
+            visibility: hidden; /* Hidden by default */
         }
         .modal-overlay.show {
             opacity: 1;
+            visibility: visible;
         }
 
         .modal-content {
@@ -285,21 +316,38 @@
             transform: translateY(0);
         }
 
-        .modal-close-button { /* Changed from modal-close to modal-close-button */
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: var(--color-primary-blue); /* Blue header */
+            color: var(--color-white);
+            margin: -2rem -2rem 1.5rem -2rem; /* Extend background to edges */
+            padding: 1.5rem 2rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
+        .modal-close-button { /* Changed from .modal-close to .modal-close-button */
             background: none;
             border: none;
             font-size: 2rem;
-            color: #999;
+            color: var(--color-white);
             cursor: pointer;
             line-height: 1;
             transition: color 0.3s ease-in-out;
         }
 
         .modal-close-button:hover {
-            color: #666;
+            color: var(--color-accent-blue); /* Lighter blue on hover */
         }
 
         .form-group {
@@ -314,8 +362,8 @@
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid #ccc;
@@ -325,17 +373,69 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--color-primary-blue);
             box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Blue focus ring */
         }
 
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Spacing between checkbox and privacy policy */
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            margin-top: 1rem;
+        }
+
+        .checkbox-group-inner {
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: #25D366; /* Green checkbox */
+            margin-right: 0.5rem;
+            border-radius: 0.25rem; /* rounded */
+            border: 1px solid #ccc;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked {
+            background-color: #25D366; /* Green checkbox */
+            border-color: #25D366;
+        }
+
+        .checkbox-group input[type="checkbox"]:checked::before {
+            content: '\2713'; /* Checkmark character */
+            display: block;
+            color: white;
+            font-size: 0.9rem;
+            text-align: center;
+            line-height: 1.25rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0; /* Override default label margin */
+        }
+
         .inquire-now-button {
             width: 100%;
             padding: 0.85rem 1.5rem;
-            background-color: var(--color-custom-red);
+            background-color: var(--color-custom-red); /* Red */
             color: var(--color-white);
             border: none;
             border-radius: 0.75rem;
@@ -351,8 +451,63 @@
         }
 
         .inquire-now-button:hover {
-            background-color: var(--color-custom-red-dark);
+            background-color: var(--color-custom-red-dark); /* Darker Red */
             transform: translateY(-1px);
+        }
+        
+        /* Custom red for form elements in modal */
+        .text-custom-red { color: var(--color-custom-red); }
+        .bg-custom-red { background-color: var(--color-custom-red); }
+        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
+        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
+
+        /* Custom Message Box Styling (similar to modal) */
+        #message-box-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none; /* Hidden by default */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #message-box-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            display: flex;
+        }
+
+        #message-box-overlay .modal-content {
+            padding: 2rem;
+            text-align: center;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #message-box-overlay.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #message-box-text {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            color: #333; /* text-gray-800 */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+
+        #message-box-close {
+            background-color: var(--color-primary-blue);
+            color: white;
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        #message-box-close:hover {
+            background-color: var(--color-accent-blue);
         }
 
         /* Footer Styling */
@@ -368,6 +523,16 @@
             font-weight: bold;
             margin-bottom: 1rem;
             color: var(--color-light-yellow); /* Light Yellow headers in footer */
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.75rem;
         }
 
         .footer-section ul li a {
@@ -427,26 +592,39 @@
         }
     </style>
 </head>
-<body class="bg-white">
-    <!-- Fixed Navbar -->
-    <nav class="fixed-navbar py-4 px-6 flex justify-between items-center">
-        <div class="h-20 w-auto flex justify-center items-center">
-            <!-- Logo Image -->
-            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" class="h-full w-auto object-contain rounded-lg shadow-md">
+<body class="font-roboto">
+    <!-- Fixed Navbar (Added based on new CSS styles) -->
+    <nav class="fixed-navbar py-4 px-6 md:px-12 flex justify-between items-center">
+        <!-- Logo Image -->
+        <div class="flex items-center">
+            <img src="./Adobe Express - file.png" alt="Folkdrive Logo" class="h-10 w-auto rounded-md"> <!-- Added rounded-md -->
         </div>
-        <div class="hidden md:flex space-x-8 pr-10">
-            <a href="./index.html" class="nav-item py-1"><i class="fas fa-home"></i> Consumer</a>
-            <a href="./about.html" class="nav-item py-1"><i class="fas fa-info-circle"></i> About Us</a>
-            <a href="./Inspiration.html" class="nav-item py-1"><i class="fas fa-lightbulb"></i> Inspiration</a>
-            <a href="./products.html" class="nav-item py-1"><i class="fas fa-box"></i> Products</a>
+        <div class="hidden md:flex space-x-8">
+            <a href="./index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+            <a href="./about.html" class="nav-item"><i class="fas fa-users"></i> About Us</a>
+            <a href="./contact.html" class="nav-item"><i class="fas fa-envelope"></i> Contact Us</a>
+            <a href="./Sustainable.html" class="nav-item"><i class="fas fa-leaf"></i> Sustainability</a>
         </div>
+        <button id="hamburger-menu" class="md:hidden text-2xl text-dark-blue focus:outline-none">
+            <i class="fas fa-bars"></i>
+        </button>
     </nav>
 
-    <main>
-        <!-- Hero Section for Study Table -->
-        <section class="hero-study-table">
-            <p class="breadcrumbs">Home > Inspiration > Study Table</p>
-            <h1>Study table ideas to match your interior style</h1>
+    <!-- Mobile Menu (Added based on new CSS styles) -->
+    <div id="navbar-menu" class="md:hidden absolute w-full flex flex-col items-center">
+        <a href="./index.html" class="w-full text-center nav-item py-3">Home</a>
+        <a href="./about.html" class="w-full text-center nav-item py-3">About Us</a>
+        <a href="./contact.html" class="w-full text-center nav-item py-3">Contact Us</a>
+        <a href="./Sustainable.html" class="w-full text-center nav-item py-3">Sustainability</a>
+    </div>
+
+    <main class="pt-20"> <!-- Added padding-top to account for fixed navbar -->
+        <!-- Hero Section for Study Table (Updated with contact-hero styles) -->
+        <section class="hero-section">
+            <p class="breadcrumb">Home > Inspiration > Study Table</p>
+            <div class="hero-section-content">
+                <h1>Study table ideas to match your interior style</h1>
+            </div>
         </section>
 
         <!-- Discover Study Table Ideas Section -->
@@ -455,74 +633,52 @@
                 <h2 class="section-header">Discover study table ideas</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10" id="study-table-grid">
                     <div class="image-grid-card">
-                        <img src="https://www.greenply.com:5001/originalimage11731402504301-4789.jpg" alt="Classic wooden desk old charm">
+                        <img src="https://www.greenply.com:5001/originalimage11731402504301-4789.jpg" alt="Classic wooden desk old charm" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
                         <p>Classic wooden desk old charm</p>
                     </div>
                     <div class="image-grid-card">
-                        <img src="https://www.greenply.com:5001/originalimage21731402504302-5454.jpg" alt="Modern Desk with Cozy Chair">
-                        <div class="p-4">
-                            <p>Modern Desk with Cozy Chair</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage21731402504302-5454.jpg" alt="Modern Desk with Cozy Chair" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Modern Desk with Cozy Chair</p>
                     </div>
                     <div class="image-grid-card">
-                        <img src="https://www.greenply.com:5001/originalimage41731402504379-2571.jpg" alt="Minimalistic Office with storage">
-                        <div class="p-4">
-                            <p>Minimalistic Office with storage</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage41731402504379-2571.jpg" alt="Minimalistic Office with storage" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Minimalistic Office with storage</p>
                     </div>
                     <div class="image-grid-card">
-                        <img src="https://www.greenply.com:5001/originalimage31731402504319-6430.jpg" alt="Wooden finished Home Office setup">
-                        <div class="p-4">
-                            <p>Wooden finished Home Office setup</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage31731402504319-6430.jpg" alt="Wooden finished Home Office setup" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Wooden finished Home Office setup</p>
                     </div>
                     <div class="image-grid-card">
-                        <img src="https://www.greenply.com:5001/originalimage51731402504400-6849.jpg" alt="Contemporary workplace home office">
-                        <div class="p-4">
-                            <p>Contemporary workplace home office</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage51731402504400-6849.jpg" alt="Contemporary workplace home office" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Contemporary workplace home office</p>
                     </div>
                     <div class="image-grid-card">
-                        <img src="https://www.greenply.com:5001/originalimage61731402504420-3254.jpg" alt="Light Brown table and chair">
-                        <div class="p-4">
-                            <p>Light Brown table and chair</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage61731402504420-3254.jpg" alt="Light Brown table and chair" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Light Brown table and chair</p>
                     </div>
                     <div class="image-grid-card hidden"> <!-- Hidden by default -->
-                        <img src="https://www.greenply.com:5001/originalimage11731411230640-2137.jpg" alt="Elegant wooden desk">
-                        <div class="p-4">
-                            <p>Elegant wooden desk</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage11731411230640-2137.jpg" alt="Elegant wooden desk" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Elegant wooden desk</p>
                     </div>
                     <div class="image-grid-card hidden"> <!-- Hidden by default -->
-                        <img src="https://www.greenply.com:5001/originalimage21731411230640-7608.jpg" alt="Luxury classic library sitting room">
-                        <div class="p-4">
-                            <p>Luxury classic library sitting room</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage21731411230640-7608.jpg" alt="Luxury classic library sitting room" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Luxury classic library sitting room</p>
                     </div>
                     <div class="image-grid-card hidden"> <!-- Hidden by default -->
-                        <img src="https://www.greenply.com:5001/originalimage41731411230723-9589.jpg" alt="Simple wooden worktable">
-                        <div class="p-4">
-                            <p>Simple wooden worktable</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage41731411230723-9589.jpg" alt="Simple wooden worktable" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Simple wooden worktable</p>
                     </div>
                     <div class="image-grid-card hidden"> <!-- Hidden by default -->
-                        <img src="https://www.greenply.com:5001/originalimage31731411230653-9341.jpg" alt="Antique Floral dark brown study table">
-                        <div class="p-4">
-                            <p>Antique Floral dark brown study table</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage31731411230653-9341.jpg" alt="Antique Floral dark brown study table" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Antique Floral dark brown study table</p>
                     </div>
                     <div class="image-grid-card hidden"> <!-- Hidden by default -->
-                        <img src="https://www.greenply.com:5001/originalimage51731411230927-8427.jpg" alt="Vintage wooden study or work table">
-                        <div class="p-4">
-                            <p>Vintage wooden study or work table</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage51731411230927-8427.jpg" alt="Vintage wooden study or work table" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Vintage wooden study or work table</p>
                     </div>
                     <div class="image-grid-card hidden"> <!-- Hidden by default -->
-                        <img src="https://www.greenply.com:5001/originalimage61731411230927-6706.jpg" alt="Classic style leather wood furniture">
-                        <div class="p-4">
-                            <p>Classic style leather wood furniture</p>
-                        </div>
+                        <img src="https://www.greenply.com:5001/originalimage61731411230927-6706.jpg" alt="Classic style leather wood furniture" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
+                        <p>Classic style leather wood furniture</p>
                     </div>
                 </div>
                 <button class="show-more-button" id="show-more-study-tables">Show more</button>
@@ -533,17 +689,17 @@
         <section class="bg-white py-16 px-6 md:px-12">
             <div class="max-w-7xl mx-auto text-center">
                 <h2 class="section-header">Explore other furniture</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 explore-greenply-products-section">
                     <div class="image-grid-card" data-navigate-to="./chair.html">
-                        <img src="https://www.greenply.com:5001/thumbnail1704784068044-4260.jpg" alt="Chair ideas to match your interior style">
+                        <img src="https://www.greenply.com:5001/thumbnail1704784068044-4260.jpg" alt="Chair ideas to match your interior style" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
                         <p>Chair ideas to match your interior style</p>
                     </div>
                     <div class="image-grid-card" data-navigate-to="./bed.html">
-                        <img src="https://www.greenply.com:5001/thumbnail1721225695746-9846.jpg" alt="Discover bed ideas">
+                        <img src="https://www.greenply.com:5001/thumbnail1721225695746-9846.jpg" alt="Discover bed ideas" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
                         <p>Discover bed ideas</p>
                     </div>
                     <div class="image-grid-card" data-navigate-to="./Sofa.html">
-                        <img src="https://www.greenply.com:5001/thumbnail1704786306364-9806.jpg" alt="Discover Sofa ideas">
+                        <img src="https://www.greenply.com:5001/thumbnail1704786306364-9806.jpg" alt="Discover Sofa ideas" onerror="this.onerror=null;this.src='https://placehold.co/400x200/cccccc/333333?text=Image+Error';">
                         <p>Discover Sofa ideas</p>
                     </div>
                 </div>
@@ -606,7 +762,6 @@
             <button id="message-box-close" class="bg-primary-blue text-white py-2 px-4 rounded-lg hover:bg-accent-blue transition duration-300 ease-in-out">OK</button>
         </div>
     </div>
-    </main>
 
     <footer class="bg-footer-bg py-8">
         <div class="container mx-auto px-6 py-8">
@@ -617,6 +772,7 @@
                     <ul>
                         <li><a href="./opulent.html"><i class="fas fa-gem"></i> Opulent</a></li>
                         <li><a href="./Aspire.html"><i class="fas fa-star"></i> Aspire</a></li>
+                        <li><a href="#"><i class="fas fa-lightbulb"></i> LWL</a></li> <!-- Added LWL -->
                     </ul>
                 </div>
 
@@ -670,26 +826,35 @@
             const messageBoxText = document.getElementById('message-box-text');
             const messageBoxCloseButton = document.getElementById('message-box-close');
 
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navbarMenu = document.getElementById('navbar-menu');
+
+            // Toggle mobile menu
+            if (hamburgerMenu && navbarMenu) {
+                hamburgerMenu.addEventListener('click', () => {
+                    navbarMenu.classList.toggle('show');
+                });
+            }
 
             // --- Inquiry Modal Logic (triggered by floating button) ---
             if (enquiryButton) {
                 enquiryButton.addEventListener('click', () => {
-                    enquiryModalOverlay.style.display = 'flex';
-                    setTimeout(() => enquiryModalOverlay.classList.add('show'), 10);
+                    enquiryModalOverlay.style.display = 'flex'; // Ensure display is flex before adding show class
+                    setTimeout(() => enquiryModalOverlay.classList.add('show'), 10); // Add slight delay for transition
                 });
             }
 
             if (modalCloseButton) {
                 modalCloseButton.addEventListener('click', () => {
                     enquiryModalOverlay.classList.remove('show');
-                    setTimeout(() => enquiryModalOverlay.style.display = 'none', 300);
+                    setTimeout(() => enquiryModalOverlay.style.display = 'none', 300); // Hide after transition
                 });
             }
 
             window.addEventListener('click', (event) => {
                 if (event.target == enquiryModalOverlay) {
                     enquiryModalOverlay.classList.remove('show');
-                    setTimeout(() => enquiryModalOverlay.style.display = 'none', 300);
+                    setTimeout(() => enquiryModalOverlay.style.display = 'none', 300); // Hide after transition
                 }
             });
 
@@ -705,8 +870,8 @@
 
                     if (!robotCheckbox) {
                         messageBoxText.textContent = "Please confirm you are not a robot.";
-                        messageBoxOverlay.style.display = 'flex';
-                        setTimeout(() => messageBoxOverlay.classList.add('show'), 10);
+                        messageBoxOverlay.style.display = 'flex'; // Ensure display is flex before adding show class
+                        setTimeout(() => messageBoxOverlay.classList.add('show'), 10); // Add slight delay for transition
                         return;
                     }
 
@@ -722,12 +887,12 @@
                     window.open(whatsappUrl, '_blank');
 
                     enquiryModalOverlay.classList.remove('show');
-                    setTimeout(() => enquiryModalOverlay.style.display = 'none', 300);
+                    setTimeout(() => enquiryModalOverlay.style.display = 'none', 300); // Hide after transition
                     enquiryForm.reset();
 
                     messageBoxText.textContent = 'Thank you for your enquiry! You will be redirected to WhatsApp to send your message.';
-                    messageBoxOverlay.style.display = 'flex';
-                    setTimeout(() => messageBoxOverlay.classList.add('show'), 10);
+                    messageBoxOverlay.style.display = 'flex'; // Ensure display is flex before adding show class
+                    setTimeout(() => messageBoxOverlay.classList.add('show'), 10); // Add slight delay for transition
                 });
             }
 
@@ -735,19 +900,20 @@
             if (messageBoxCloseButton) {
                 messageBoxCloseButton.addEventListener('click', () => {
                     messageBoxOverlay.classList.remove('show');
-                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300);
+                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300); // Hide after transition
                 });
             }
 
             window.addEventListener('click', (event) => {
                 if (event.target == messageBoxOverlay) {
                     messageBoxOverlay.classList.remove('show');
-                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300);
+                    setTimeout(() => messageBoxOverlay.style.display = 'none', 300); // Hide after transition
                 }
             });
 
             // --- Discover Study Table Ideas - Show More/Less Logic ---
-            const studyTableCards = document.querySelectorAll('#study-table-grid .image-grid-card');
+            const studyTableGrid = document.getElementById('study-table-grid');
+            const studyTableCards = studyTableGrid ? studyTableGrid.querySelectorAll('.image-grid-card') : [];
             const showMoreButton = document.getElementById('show-more-study-tables');
             const initialDisplayCount = 6; // Number of cards to show initially
 
@@ -785,9 +951,13 @@
                 for (let i = initialDisplayCount; i < studyTableCards.length; i++) {
                     studyTableCards[i].classList.add('hidden');
                 }
-                showMoreButton.style.display = 'block'; // Ensure button is visible
+                if (showMoreButton) {
+                    showMoreButton.style.display = 'block'; // Ensure button is visible
+                }
             } else {
-                showMoreButton.style.display = 'none'; // Hide button if all cards are shown
+                if (showMoreButton) {
+                    showMoreButton.style.display = 'none'; // Hide button if all cards are shown
+                }
             }
 
             if (showMoreButton) {
@@ -795,7 +965,9 @@
             }
             
             // --- Navigation for "Explore Other Furniture" section ---
-            const clickableCards = document.querySelectorAll('.explore-greenply-products-section .image-grid-card');
+            // Targeting the specific section's cards to avoid conflicts if other sections also use .image-grid-card
+            const exploreFurnitureSection = document.querySelector('.explore-greenply-products-section');
+            const clickableCards = exploreFurnitureSection ? exploreFurnitureSection.querySelectorAll('.image-grid-card') : [];
 
             clickableCards.forEach(item => {
                 item.addEventListener('click', () => {

@@ -8,6 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF for PDF generation (not directly used on this static content page, but kept for consistency) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         /* Custom Tailwind Configuration for Blue Shades and White */
         :root {
@@ -19,11 +23,8 @@
             --color-red: #DC2626; /* Red for nav items and footer headings */
             --color-black: #000000; /* Black for nav options */
             --color-light-yellow: #FFFACD; /* Light Yellow for footer headings */
-            --color-text-dark: #333; /* Dark text for general content */
-            --color-custom-red: #DC2626; /* Specific red for form elements */
-            --color-custom-red-dark: #B91C1C; /* Darker red for form hover */
-            --color-green-600: #16A34A; /* Tailwind green-600 */
-            --color-green-700: #15803D; /* Tailwind green-700 */
+            --color-custom-red: #DC2626; /* Specific red for form elements and headings */
+            --color-custom-red-dark: #B91C1C; /* Darker red for hover and subheadings */
         }
 
         .bg-primary-blue { background-color: var(--color-primary-blue); }
@@ -39,18 +40,7 @@
 
         .bg-footer-bg { background-color: var(--color-dark-blue); } /* Using dark blue for footer */
 
-        .text-custom-red { color: var(--color-custom-red); }
-        .bg-custom-red { background-color: var(--color-custom-red); }
-        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
-        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
-
-        .bg-green-600 { background-color: var(--color-green-600); }
-        .hover\:bg-green-700:hover { background-color: var(--color-green-700); }
-        .text-green-600 { color: var(--color-green-600); }
-        .focus\:ring-green-500:focus { --tw-ring-color: #22C55E; } /* Tailwind green-500 */
-
-
-        /* General styles for Inter font */
+        /* General styles for Roboto font */
         body {
             font-family: 'Roboto', sans-serif;
             color: #333; /* Default text color */
@@ -84,37 +74,75 @@
             transform: translateY(-2px); /* Subtle lift on hover */
         }
 
-        /* Hero Section - Sofa ideas to match your interior style */
+        /* Mobile Menu Specific Styling */
+        #navbar-menu {
+            background-color: var(--color-white); /* White background */
+            top: 100%; /* Position below the navbar */
+            left: 0;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            overflow: hidden; /* Hide content when collapsed */
+            transition: max-height 0.3s ease-out; /* Smooth transition for height */
+            max-height: 0; /* Initially collapsed */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #navbar-menu.show {
+            max-height: 200px; /* Adjust as needed for content */
+        }
+
+        #navbar-menu a {
+            color: var(--color-black); /* Black text */
+            padding: 0.75rem 1.5rem;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        #navbar-menu a:hover {
+            background-color: var(--color-light-gray); /* Light gray background on hover */
+            color: var(--color-red); /* Red on hover */
+        }
+
+        /* Hero Section - Sofa ideas */
         .hero-section-sofa {
             position: relative;
-            width: 100%;
-            height: 400px; /* Adjust height as needed */
             background-size: cover;
             background-position: center;
+            color: var(--color-white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            padding: 10rem 1rem 4rem; /* Adjusted top padding for fixed navbar */
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--color-white);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            padding: 0 1rem;
-            margin-top: 8rem; /* Space for fixed navbar */
+            min-height: 400px; /* Increased height for visual impact */
             border-bottom-left-radius: 1rem;
             border-bottom-right-radius: 1rem;
             overflow: hidden;
+            margin-top: 6rem; /* Space for fixed navbar */
         }
 
-        .hero-section-sofa .relative {
-            z-index: 1;
+        .hero-section-sofa .breadcrumb {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-section-sofa h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section-sofa h1 {
+                font-size: 4.5rem;
+            }
         }
 
         /* Discover Sofa Ideas Section */
-        .discover-sofa-ideas-section {
-            background-color: var(--color-white);
-            border-radius: 1rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            padding: 2.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .discover-sofa-ideas-section h2 {
+            color: var(--color-dark-blue);
         }
 
         .sofa-grid {
@@ -125,22 +153,18 @@
         }
 
         .sofa-item {
-            border-radius: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             cursor: pointer;
         }
 
         .sofa-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .sofa-item img {
-            transition: transform 0.3s ease;
-        }
-
-        .sofa-item:hover img {
-            transform: scale(1.05);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         /* Explore Greenply Products Section */
@@ -149,8 +173,12 @@
             border-radius: 1rem;
             margin-top: 2rem;
             margin-bottom: 2rem;
-            padding: 2.5rem;
+            padding: 3rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .explore-greenply-products-section h2 {
+            color: var(--color-dark-blue);
         }
 
         .product-grid {
@@ -161,28 +189,21 @@
         }
 
         .product-item {
-            background-color: var(--color-white);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             cursor: pointer;
         }
 
         .product-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .product-item img {
-            transition: transform 0.3s ease;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .product-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Fixed Enquiry Button */
+        /* Floating Inquiry Button */
         .enquiry-button {
             position: fixed;
             bottom: 1.5rem;
@@ -220,7 +241,7 @@
             }
         }
 
-        /* Modal Styling */
+        /* Modal Styling (for floating inquiry form) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -255,21 +276,38 @@
             transform: translateY(0);
         }
 
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: var(--color-primary-blue); /* Blue header */
+            color: var(--color-white);
+            margin: -2rem -2rem 1.5rem -2rem; /* Extend background to edges */
+            padding: 1.5rem 2rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
         .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             background: none;
             border: none;
             font-size: 2rem;
-            color: #999;
+            color: var(--color-white);
             cursor: pointer;
             line-height: 1;
             transition: color 0.3s ease-in-out;
         }
 
         .modal-close:hover {
-            color: #666;
+            color: var(--color-accent-blue); /* Lighter blue on hover */
         }
 
         .form-group {
@@ -284,8 +322,8 @@
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid #ccc;
@@ -295,8 +333,8 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--color-primary-blue);
             box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Blue focus ring */
@@ -305,7 +343,7 @@
         .inquire-now-button {
             width: 100%;
             padding: 0.85rem 1.5rem;
-            background-color: var(--color-custom-red);
+            background-color: var(--color-custom-red); /* Red */
             color: var(--color-white);
             border: none;
             border-radius: 0.75rem;
@@ -321,9 +359,15 @@
         }
 
         .inquire-now-button:hover {
-            background-color: var(--color-custom-red-dark);
+            background-color: var(--color-custom-red-dark); /* Darker Red */
             transform: translateY(-1px);
         }
+        
+        /* Custom red for form elements in modal */
+        .text-custom-red { color: var(--color-custom-red); }
+        .bg-custom-red { background-color: var(--color-custom-red); }
+        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
+        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
 
         /* Footer Styling */
         footer {
@@ -409,6 +453,18 @@
             <a href="./about.html" class="nav-item py-1"><i class="fas fa-info-circle"></i> About Us</a>
             <a href="./Inspiration.html" class="nav-item py-1"><i class="fas fa-lightbulb"></i> Inspiration</a>
             <a href="./products.html" class="nav-item py-1"><i class="fas fa-box"></i> Products</a>
+        </div>
+        <div class="md:hidden">
+            <button class="focus:outline-none text-primary-blue" id="menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="navbar-menu" class="hidden md:hidden absolute w-full shadow-md z-50">
+            <a href="./index.html" class="block px-6 py-2 font-medium"><i class="fas fa-home"></i> Consumer</a>
+            <a href="./about.html" class="block px-6 py-2 font-medium"><i class="fas fa-info-circle"></i> About Us</a>
+            <a href="./Inspiration.html" class="block px-6 py-2 font-medium"><i class="fas fa-lightbulb"></i> Inspiration</a>
+            <a href="./products.html" class="block px-6 py-2 font-medium"><i class="fas fa-box"></i> Products</a>
         </div>
     </nav>
 
@@ -575,6 +631,7 @@
                     <ul>
                         <li><a href="./opulent.html"><i class="fas fa-gem"></i> Opulent</a></li>
                         <li><a href="./Aspire.html"><i class="fas fa-star"></i> Aspire</a></li>
+                        <li><a href="./lwl.html"><i class="fas fa-cube"></i> LWL</a></li>
                     </ul>
                 </div>
 
@@ -619,6 +676,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const navbarMenu = document.getElementById('navbar-menu');
+
             const enquiryButton = document.getElementById('enquiry-button');
             const enquiryModalOverlay = document.getElementById('enquiry-modal-overlay');
             const modalCloseButton = document.getElementById('modal-close-button');
@@ -628,6 +688,13 @@
             const messageBoxText = document.getElementById('message-box-text');
             const messageBoxCloseButton = document.getElementById('message-box-close');
 
+            // --- Mobile Menu Toggle Logic ---
+            if (menuButton) {
+                menuButton.addEventListener('click', () => {
+                    navbarMenu.classList.toggle('hidden');
+                    navbarMenu.classList.toggle('show');
+                });
+            }
 
             // --- Inquiry Modal Logic (triggered by floating button) ---
             if (enquiryButton) {

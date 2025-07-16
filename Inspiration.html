@@ -8,6 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF for PDF generation (not directly used on this static content page, but kept for consistency) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         /* Custom Tailwind Configuration for Blue Shades and White */
         :root {
@@ -19,11 +23,8 @@
             --color-red: #DC2626; /* Red for nav items and footer headings */
             --color-black: #000000; /* Black for nav options */
             --color-light-yellow: #FFFACD; /* Light Yellow for footer headings */
-            --color-text-dark: #333; /* Dark text for general content */
-            --color-custom-red: #DC2626; /* Specific red for form elements */
-            --color-custom-red-dark: #B91C1C; /* Darker red for form hover */
-            --color-green-600: #16A34A; /* Tailwind green-600 */
-            --color-green-700: #15803D; /* Tailwind green-700 */
+            --color-custom-red: #DC2626; /* Specific red for form elements and headings */
+            --color-custom-red-dark: #B91C1C; /* Darker red for hover and subheadings */
         }
 
         .bg-primary-blue { background-color: var(--color-primary-blue); }
@@ -39,18 +40,7 @@
 
         .bg-footer-bg { background-color: var(--color-dark-blue); } /* Using dark blue for footer */
 
-        .text-custom-red { color: var(--color-custom-red); }
-        .bg-custom-red { background-color: var(--color-custom-red); }
-        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
-        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
-
-        .bg-green-600 { background-color: var(--color-green-600); }
-        .hover\:bg-green-700:hover { background-color: var(--color-green-700); }
-        .text-green-600 { color: var(--color-green-600); }
-        .focus\:ring-green-500:focus { --tw-ring-color: #22C55E; } /* Tailwind green-500 */
-
-
-        /* General styles for Inter font */
+        /* General styles for Roboto font */
         body {
             font-family: 'Roboto', sans-serif;
             color: #333; /* Default text color */
@@ -112,6 +102,285 @@
             color: var(--color-red); /* Red on hover */
         }
 
+        /* Hero Section with Image Slider */
+        .hero-slider-container {
+            position: relative;
+            width: 100%;
+            height: 500px; /* Fixed height for the slider */
+            overflow: hidden;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            margin-top: 6rem; /* Space for fixed navbar */
+        }
+
+        .hero-slider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 0;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero-content .breadcrumb {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-slider-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--color-white);
+            border: none;
+            padding: 1rem 0.75rem;
+            cursor: pointer;
+            z-index: 3;
+            transition: background-color 0.3s ease;
+            border-radius: 0.5rem;
+        }
+
+        .hero-slider-nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-slider-nav-btn.prev {
+            left: 1rem;
+        }
+
+        .hero-slider-nav-btn.next {
+            right: 1rem;
+        }
+
+        .hero-slider-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .hero-dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero-dot.active {
+            background-color: var(--color-white);
+            transform: scale(1.2);
+        }
+
+        @media (min-width: 768px) {
+            .hero-content h1 {
+                font-size: 4.5rem;
+            }
+            .hero-content p {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Room Type Filter Section */
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            color: #666;
+            font-weight: 500;
+            gap: 0.5rem;
+        }
+
+        .filter-item i {
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .filter-item.active {
+            background-color: var(--color-primary-blue);
+            color: var(--color-white);
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-item:hover:not(.active) {
+            background-color: var(--color-light-gray);
+            color: var(--color-primary-blue);
+            transform: translateY(-2px);
+        }
+
+        .room-gallery {
+            margin-top: 2rem;
+        }
+
+        .inspiration-card {
+            background-color: var(--color-white);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .inspiration-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .inspiration-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .inspiration-card-content {
+            padding: 1rem;
+        }
+
+        .inspiration-card-title {
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Trending Design Ideas Section */
+        .slider-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .slider-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--color-white);
+            border: none;
+            padding: 0.75rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+            border-radius: 9999px; /* Fully rounded */
+        }
+
+        .slider-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        #trending-slider {
+            display: flex;
+            overflow-x: hidden; /* Hide scrollbar */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+
+        .trending-card-wrapper {
+            flex: 0 0 auto; /* Prevent cards from shrinking */
+            width: 300px; /* Fixed width for each card in slider */
+            margin-right: 1.5rem; /* Space between cards */
+        }
+
+        .trending-card {
+            background-color: var(--color-white);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .trending-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .trending-img-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .trending-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .trending-label {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background-color: var(--color-custom-red);
+            color: var(--color-white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* GreenSpaces Section */
+        .green-spaces-section .inspiration-card img {
+            height: 250px; /* Slightly larger images for GreenSpaces */
+        }
+
         /* Floating Inquiry Button */
         .enquiry-button {
             position: fixed;
@@ -150,7 +419,7 @@
             }
         }
 
-        /* Modal Styling */
+        /* Modal Styling (for floating inquiry form) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -185,21 +454,38 @@
             transform: translateY(0);
         }
 
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: var(--color-primary-blue); /* Blue header */
+            color: var(--color-white);
+            margin: -2rem -2rem 1.5rem -2rem; /* Extend background to edges */
+            padding: 1.5rem 2rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
         .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             background: none;
             border: none;
             font-size: 2rem;
-            color: #999;
+            color: var(--color-white);
             cursor: pointer;
             line-height: 1;
             transition: color 0.3s ease-in-out;
         }
 
         .modal-close:hover {
-            color: #666;
+            color: var(--color-accent-blue); /* Lighter blue on hover */
         }
 
         .form-group {
@@ -214,8 +500,8 @@
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid #ccc;
@@ -225,17 +511,17 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--color-primary-blue);
             box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Blue focus ring */
         }
 
-        .send-whatsapp-button {
+        .inquire-now-button {
             width: 100%;
             padding: 0.85rem 1.5rem;
-            background-color: #25D366; /* WhatsApp Green */
+            background-color: var(--color-custom-red); /* Red */
             color: var(--color-white);
             border: none;
             border-radius: 0.75rem;
@@ -250,324 +536,16 @@
             gap: 0.5rem;
         }
 
-        .send-whatsapp-button:hover {
-            background-color: #1DA851; /* Darker WhatsApp Green */
+        .inquire-now-button:hover {
+            background-color: var(--color-custom-red-dark); /* Darker Red */
             transform: translateY(-1px);
         }
-
-        /* Hero Section with Image Slider */
-        .hero-slider-container {
-            position: relative;
-            width: 100%;
-            height: 500px; /* Adjust height as needed */
-            overflow: hidden;
-            border-bottom-left-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-            margin-top: 8rem; /* Space for fixed navbar */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-white);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            padding: 0 1rem;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slider-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-        }
-
-        .hero-content .breadcrumb {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-slider-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: var(--color-white);
-            border: none;
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            z-index: 3;
-            font-size: 1.5rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .hero-slider-nav-btn:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        .hero-slider-nav-btn.prev {
-            left: 1rem;
-        }
-
-        .hero-slider-nav-btn.next {
-            right: 1rem;
-        }
-
-        .hero-slider-dots {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .hero-dot {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .hero-dot.active {
-            background-color: var(--color-white);
-        }
-
-        /* Room Type Filter Section */
-        #room-type-filters {
-            background-color: var(--color-white);
-            border-radius: 1rem;
-            padding: 1.5rem 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .filter-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            padding: 0.75rem 1rem;
-            border-radius: 0.75rem;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-            color: #555; /* Default text color */
-            font-weight: 500;
-            border: 1px solid transparent; /* Default transparent border */
-        }
-
-        .filter-item i {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--color-primary-blue); /* Blue icon color */
-            transition: color 0.3s ease;
-        }
-
-        .filter-item.active {
-            background-color: var(--color-primary-blue); /* Active background */
-            color: var(--color-white); /* Active text color */
-            border-color: var(--color-primary-blue); /* Active border */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(26, 115, 232, 0.2);
-        }
-
-        .filter-item.active i {
-            color: var(--color-white); /* Active icon color */
-        }
-
-        .filter-item:hover:not(.active) {
-            background-color: var(--color-light-gray); /* Hover for non-active */
-            color: var(--color-primary-blue);
-            transform: translateY(-2px);
-        }
-
-        .filter-item:hover:not(.active) i {
-            color: var(--color-primary-blue);
-        }
-
-        .room-gallery {
-            margin-top: 2rem;
-        }
-
-        .inspiration-card {
-            background-color: var(--color-white);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .inspiration-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .inspiration-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .inspiration-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .inspiration-card-content {
-            padding: 1rem;
-            text-align: center;
-        }
-
-        .inspiration-card-title {
-            font-weight: 600;
-            color: var(--color-dark-blue);
-        }
-
-        /* Trending Design Ideas Section */
-        .trending-card-wrapper {
-            flex: 0 0 auto; /* Do not grow, do not shrink, base on content */
-            width: 100%; /* Default to full width on small screens */
-            padding: 0.5rem; /* Padding for spacing between cards */
-        }
-
-        @media (min-width: 640px) { /* sm breakpoint */
-            .trending-card-wrapper {
-                width: 50%; /* Two cards per row on small screens */
-            }
-        }
-
-        @media (min-width: 768px) { /* md breakpoint */
-            .trending-card-wrapper {
-                width: 33.33%; /* Three cards per row on medium screens */
-            }
-        }
-
-        @media (min-width: 1024px) { /* lg breakpoint */
-            .trending-card-wrapper {
-                width: 25%; /* Four cards per row on large screens */
-            }
-        }
-
-        .trending-card {
-            background-color: var(--color-white);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            height: 100%; /* Ensure cards in a row have equal height */
-            display: flex;
-            flex-direction: column;
-        }
-
-        .trending-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .trending-img-container {
-            position: relative;
-            width: 100%;
-            height: 180px; /* Fixed height for trending images */
-            overflow: hidden;
-        }
-
-        .trending-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .trending-card:hover .trending-img-container img {
-            transform: scale(1.05);
-        }
-
-        .trending-label {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            background-color: var(--color-custom-red);
-            color: var(--color-white);
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.5rem;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .slider-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .slider-button {
-            background-color: rgba(26, 115, 232, 0.8); /* Primary blue with opacity */
-            color: var(--color-white);
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            z-index: 10;
-        }
-
-        .slider-button:hover {
-            background-color: var(--color-primary-blue);
-        }
-
-        .view-all-btn {
-            background-color: var(--color-primary-blue);
-            color: var(--color-white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            display: inline-block; /* For mobile centering */
-        }
-
-        .view-all-btn:hover {
-            background-color: var(--color-accent-blue);
-            transform: translateY(-2px);
-        }
-
-        /* GreenSpaces Section */
-        .green-spaces-section .inspiration-card img {
-            height: 250px; /* Slightly larger images for GreenSpaces */
-        }
+        
+        /* Custom red for form elements in modal */
+        .text-custom-red { color: var(--color-custom-red); }
+        .bg-custom-red { background-color: var(--color-custom-red); }
+        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
+        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
 
         /* Footer Styling */
         footer {
@@ -1043,6 +1021,7 @@
                     <ul>
                         <li><a href="./opulent.html"><i class="fas fa-gem"></i> Opulent</a></li>
                         <li><a href="./Aspire.html"><i class="fas fa-star"></i> Aspire</a></li>
+                        <li><a href="./lwl.html"><i class="fas fa-cube"></i> LWL</a></li>
                     </ul>
                 </div>
 
@@ -1099,6 +1078,29 @@
             const messageBoxText = document.getElementById('message-box-text');
             const messageBoxCloseButton = document.getElementById('message-box-close');
 
+            let logoBase64 = ''; // To store the base64 representation of the logo
+
+            // --- Function to fetch image and convert to base64 ---
+            async function getBase64Image(url) {
+                try {
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+                } catch (error) {
+                    console.error('Error fetching image for base64 conversion:', error);
+                    return null;
+                }
+            }
+
+            // Load the logo as base64 once on page load
+            getBase64Image('./Adobe Express - file.png').then(base64 => {
+                logoBase64 = base64;
+            });
 
             // --- Mobile Menu Toggle Logic ---
             if (menuButton) {
@@ -1228,19 +1230,35 @@
                 clearInterval(slideInterval);
             }
 
-            if (prevButton) prevButton.addEventListener('click', () => { stopAutoSlide(); prevSlide(); startAutoSlide(); });
-            if (nextButton) nextButton.addEventListener('click', () => { stopAutoSlide(); nextSlide(); startAutoSlide(); });
-            dots.forEach(dot => {
-                dot.addEventListener('click', (e) => {
+            // Event listeners for hero slider navigation
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
                     stopAutoSlide();
-                    const slideIndex = parseInt(e.target.dataset.slide);
+                    prevSlide();
+                    startAutoSlide();
+                });
+            }
+
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    stopAutoSlide();
+                    nextSlide();
+                    startAutoSlide();
+                });
+            }
+
+            // Event listeners for hero slider dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', (event) => {
+                    stopAutoSlide();
+                    const slideIndex = parseInt(event.target.dataset.slide);
                     currentSlide = slideIndex;
                     showSlide(currentSlide);
                     startAutoSlide();
                 });
             });
 
-            // Start the auto-slide when the page loads
+            // Start auto-slide on load
             showSlide(currentSlide);
             startAutoSlide();
 
@@ -1250,17 +1268,16 @@
 
             filterItems.forEach(item => {
                 item.addEventListener('click', () => {
-                    // Remove 'active' from all filter items
+                    // Remove active class from all filter items
                     filterItems.forEach(fi => fi.classList.remove('active'));
-                    // Add 'active' to the clicked filter item
+                    // Add active class to the clicked filter item
                     item.classList.add('active');
-
-                    const roomType = item.dataset.room;
 
                     // Hide all galleries
                     roomGalleries.forEach(gallery => gallery.classList.add('hidden'));
 
                     // Show the selected gallery
+                    const roomType = item.dataset.room;
                     const selectedGallery = document.getElementById(`${roomType}-gallery`);
                     if (selectedGallery) {
                         selectedGallery.classList.remove('hidden');
@@ -1268,27 +1285,35 @@
                 });
             });
 
-            // --- Trending Design Ideas Carousel Logic ---
+            // --- Trending Design Ideas Slider Logic ---
             const trendingSlider = document.getElementById('trending-slider');
-            const trendingPrevBtn = document.getElementById('trending-prev');
-            const trendingNextBtn = document.getElementById('trending-next');
+            const trendingPrevButton = document.getElementById('trending-prev');
+            const trendingNextButton = document.getElementById('trending-next');
+            const trendingCards = document.querySelectorAll('#trending-slider .trending-card-wrapper');
 
-            if (trendingSlider && trendingPrevBtn && trendingNextBtn) {
-                // Function to scroll the trending slider
-                function scrollTrending(direction) {
-                    const scrollAmount = trendingSlider.offsetWidth / 2; // Scroll half the visible width
-                    if (direction === 'next') {
-                        trendingSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-                    } else {
-                        trendingSlider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-                    }
-                }
+            const cardWidth = trendingCards[0] ? trendingCards[0].offsetWidth + 24 : 0; // Card width + margin-right (1.5rem = 24px)
+            let trendingScrollPosition = 0;
 
-                trendingPrevBtn.addEventListener('click', () => scrollTrending('prev'));
-                trendingNextBtn.addEventListener('click', () => scrollTrending('next'));
+            function updateTrendingSlider() {
+                trendingSlider.style.transform = `translateX(-${trendingScrollPosition}px)`;
             }
 
-            // --- Navigation for Furniture Type Section ---
+            if (trendingPrevButton) {
+                trendingPrevButton.addEventListener('click', () => {
+                    trendingScrollPosition = Math.max(0, trendingScrollPosition - cardWidth);
+                    updateTrendingSlider();
+                });
+            }
+
+            if (trendingNextButton) {
+                trendingNextButton.addEventListener('click', () => {
+                    const maxScroll = trendingSlider.scrollWidth - trendingSlider.clientWidth;
+                    trendingScrollPosition = Math.min(maxScroll, trendingScrollPosition + cardWidth);
+                    updateTrendingSlider();
+                });
+            }
+
+            // Handle navigation for furniture types
             document.querySelectorAll('.furniture-type-section .filter-item').forEach(item => {
                 item.addEventListener('click', (event) => {
                     const navigateTo = event.currentTarget.dataset.navigateTo;

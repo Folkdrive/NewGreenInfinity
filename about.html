@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom Tailwind Configuration for Blue Shades and White */
         :root {
@@ -34,7 +36,7 @@
 
         .bg-footer-bg { background-color: var(--color-dark-blue); } /* Using dark blue for footer */
 
-        /* General styles for Inter font */
+        /* General styles for Roboto font */
         body {
             font-family: 'Roboto', sans-serif;
             color: #333; /* Default text color */
@@ -51,7 +53,7 @@
             z-index: 1000;
             border-bottom-left-radius: 1rem; /* Rounded bottom corners */
             border-bottom-right-radius: 1rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            /* Removed box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
         }
 
         .nav-item {
@@ -78,7 +80,7 @@
             overflow: hidden; /* Hide content when collapsed */
             transition: max-height 0.3s ease-out; /* Smooth transition for height */
             max-height: 0; /* Initially collapsed */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Removed box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
         }
 
         #navbar-menu.show {
@@ -142,8 +144,8 @@
             background-color: var(--color-white);
             padding: 2rem;
             border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.3), 0 4px 6px -2px rgba(220, 38, 38, 0.1); /* Red shadow */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Added background-color */
+            /* Removed box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.3), 0 4px 6px -2px rgba(220, 38, 38, 0.1); */
+            transition: transform 0.3s ease-in-out, /* Removed box-shadow from transition */ background-color 0.3s ease-in-out; /* Added background-color */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -159,7 +161,7 @@
 
         .core-value-card:hover {
             transform: translateY(-8px) scale(1.02); /* More noticeable lift and slight scale */
-            box-shadow: 0 15px 20px -5px rgba(220, 38, 38, 0.4), 0 6px 10px -3px rgba(220, 38, 38, 0.2); /* Enhanced red shadow */
+            /* Removed box-shadow: 0 15px 20px -5px rgba(220, 38, 38, 0.4), 0 6px 10px -3px rgba(220, 38, 38, 0.2); */
             background-color: var(--color-light-gray); /* Slight background change on hover */
         }
 
@@ -190,7 +192,7 @@
             justify-content: center;
             align-items: center;
             font-size: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            /* Removed box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); */
             cursor: pointer;
             transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
             z-index: 999;
@@ -206,11 +208,11 @@
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                /* Removed box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); */
             }
             50% {
                 transform: scale(1.05);
-                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+                /* Removed box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04); */
             }
         }
 
@@ -238,7 +240,7 @@
             background-color: var(--color-white);
             padding: 2rem;
             border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            /* Removed box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); */
             width: 90%;
             max-width: 500px;
             position: relative;
@@ -308,7 +310,7 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--color-primary-blue);
-            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Blue focus ring */
+            /* Removed box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); */
         }
 
         .checkbox-group {
@@ -354,7 +356,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            /* Removed box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
         }
 
         .inquire-now-button:hover {
@@ -386,7 +388,7 @@
             background-color: var(--color-white);
             padding: 2rem;
             border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            /* Removed box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); */
             text-align: center;
             width: 90%;
             max-width: 400px;
@@ -488,7 +490,7 @@
     <nav class="fixed-navbar py-4 px-6 flex justify-between items-center">
         <div class="h-20 w-auto flex justify-center items-center">
             <!-- Logo Image -->
-            <img src="image_dab480.jpg" alt="GreenInfinity Logo" class="h-full w-auto object-contain rounded-lg shadow-md">
+            <img src="./Adobe Express - file.png" alt="GreenInfinity Logo" class="h-full w-auto object-contain rounded-lg">
         </div>
         <div class="hidden md:flex space-x-8 pr-10">
             <a href="./index.html" class="nav-item py-1"><i class="fas fa-home"></i> Consumer</a>
@@ -502,7 +504,7 @@
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="navbar-menu" class="hidden md:hidden absolute w-full shadow-md z-50">
+        <div id="navbar-menu" class="hidden md:hidden absolute w-full z-50">
             <a href="./index.html" class="block px-6 py-2 font-medium"><i class="fas fa-home"></i> Consumer</a>
             <a href="./about.html" class="block px-6 py-2 font-medium"><i class="fas fa-info-circle"></i> About Us</a>
             <a href="./Inspiration.html" class="block px-6 py-2 font-medium"><i class="fas fa-lightbulb"></i> Inspiration</a>
@@ -529,7 +531,7 @@
                 <h2 class="section-header">Progressing Sustainably</h2>
                 <div class="flex flex-col lg:flex-row items-center gap-12 mt-10">
                     <div class="lg:w-1/2">
-                        <img src="https://placehold.co/600x400/1A73E8/FFFFFF?text=Sustainable+Practices" alt="Sustainable Practices" class="rounded-xl shadow-xl mx-auto mb-6 lg:mb-0 w-full h-auto object-cover">
+                        <img src="https://placehold.co/600x400/1A73E8/FFFFFF?text=Sustainable+Practices" alt="Sustainable Practices" class="rounded-xl mx-auto mb-6 lg:mb-0 w-full h-auto object-cover">
                     </div>
                     <div class="lg:w-1/2 text-lg text-gray-700 text-left">
                         <p class="mb-4">
@@ -542,7 +544,7 @@
                             We believe that a thriving business and a healthy planet go hand in hand, and we are continuously exploring new ways to innovate for a more sustainable future.
                         </p>
                         <div class="text-center lg:text-left">
-                            <a href="./contact.html" class="inline-block bg-primary-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-accent-blue transition duration-300 ease-in-out shadow-md hover:shadow-lg contact-button">
+                            <a href="./contact.html" class="inline-block bg-primary-blue text-white px-8 py-3 rounded-lg font-semibold hover:bg-accent-blue transition duration-300 ease-in-out contact-button">
                                 Contact Us
                             </a>
                         </div>
@@ -648,6 +650,7 @@
                     <ul>
                         <li><a href="./opulent.html"><i class="fas fa-gem"></i> Opulent</a></li>
                         <li><a href="./Aspire.html"><i class="fas fa-star"></i> Aspire</a></li>
+                        <li><a href="./lwl.html"><i class="fas fa-cube"></i> LWL</a></li>
                     </ul>
                 </div>
 
@@ -771,7 +774,6 @@
                         setTimeout(() => messageBoxOverlay.classList.add('show'), 10);
                         return;
                     }
-
 
                     const whatsappNumber = '919945015544'; // <--- REPLACE THIS WITH YOUR NUMBER (e.g., 919876543210)
                     const whatsappMessage = `Hello GreenInfinity, I have an enquiry.\n\n` +

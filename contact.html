@@ -8,6 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jsPDF for PDF generation (though not directly used on this static content page, kept for consistency) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         /* Custom Tailwind Configuration for Blue Shades and White */
         :root {
@@ -19,11 +23,8 @@
             --color-red: #DC2626; /* Red for nav items and footer headings */
             --color-black: #000000; /* Black for nav options */
             --color-light-yellow: #FFFACD; /* Light Yellow for footer headings */
-            --color-text-dark: #333; /* Dark text for general content */
             --color-custom-red: #DC2626; /* Specific red for form elements */
-            --color-custom-red-dark: #B91C1C; /* Darker red for form hover */
-            --color-green-600: #16A34A; /* Tailwind green-600 */
-            --color-green-700: #15803D; /* Tailwind green-700 */
+            --color-custom-red-dark: #B91C1C; /* Darker red for hover */
         }
 
         .bg-primary-blue { background-color: var(--color-primary-blue); }
@@ -39,18 +40,7 @@
 
         .bg-footer-bg { background-color: var(--color-dark-blue); } /* Using dark blue for footer */
 
-        .text-custom-red { color: var(--color-custom-red); }
-        .bg-custom-red { background-color: var(--color-custom-red); }
-        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
-        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
-
-        .bg-green-600 { background-color: var(--color-green-600); }
-        .hover\:bg-green-700:hover { background-color: var(--color-green-700); }
-        .text-green-600 { color: var(--color-green-600); }
-        .focus\:ring-green-500:focus { --tw-ring-color: #22C55E; } /* Tailwind green-500 */
-
-
-        /* General styles for Inter font */
+        /* General styles for Roboto font */
         body {
             font-family: 'Roboto', sans-serif;
             color: #333; /* Default text color */
@@ -112,9 +102,183 @@
             color: var(--color-red); /* Red on hover */
         }
 
-        /* Hero Section - Reused for general page top padding */
-        .page-top-padding {
-            padding-top: 8rem; /* To account for fixed navbar height */
+        /* Hero Section for Contact Us */
+        .contact-hero {
+            background-image: url('https://www.greenply.com:5001/banner1710848955363-890.png'); /* Reusing chair banner for consistency */
+            background-size: cover;
+            background-position: center;
+            color: var(--color-white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            padding: 10rem 1rem 4rem; /* Adjusted top padding for fixed navbar */
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 350px; /* Adjusted height for contact hero */
+            border-bottom-left-radius: 1rem; /* Rounded bottom corners */
+            border-bottom-right-radius: 1rem;
+            overflow: hidden; /* Ensure content stays within rounded corners */
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            z-index: -1;
+        }
+
+        .contact-hero .breadcrumb {
+            position: absolute;
+            top: 7rem; /* Adjust based on navbar height */
+            left: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .contact-hero .breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-hero .breadcrumb a:hover {
+            color: var(--color-accent-blue);
+        }
+
+        .contact-hero-content {
+            text-align: center;
+            margin-top: 2rem; /* Adjust to move content down from breadcrumb */
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem; /* Larger for impact */
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .contact-hero h1 {
+                font-size: 5rem;
+            }
+            .contact-hero p {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            background-color: var(--color-white);
+            border-radius: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form-section h2 {
+            color: var(--color-dark-blue);
+        }
+
+        .contact-form-section p {
+            color: #555;
+        }
+
+        .contact-form-section label {
+            color: #333;
+        }
+
+        .contact-form-section input,
+        .contact-form-section textarea {
+            border-color: #ccc;
+        }
+
+        .contact-form-section input:focus,
+        .contact-form-section textarea:focus {
+            border-color: #25D366; /* Green for focus */
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2); /* Green focus ring */
+        }
+
+        .contact-form-section .checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Spacing between checkbox and privacy policy */
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            margin-top: 1rem;
+        }
+
+        .contact-form-section .checkbox-group-inner {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-form-section input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: #25D366; /* Green checkbox */
+            margin-right: 0.5rem;
+        }
+
+        .contact-form-section .send-whatsapp-button {
+            background-color: #25D366; /* WhatsApp Green */
+            color: var(--color-white);
+            padding: 0.85rem 1.5rem;
+            border-radius: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .contact-form-section .send-whatsapp-button:hover {
+            background-color: #1DA851; /* Darker WhatsApp Green */
+            transform: translateY(-1px);
+        }
+
+        /* Contact Information and Map Section */
+        .contact-info-map-section {
+            background-color: var(--color-light-gray); /* Light gray background */
+            border-radius: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info-map-section h2 {
+            color: var(--color-dark-blue);
+        }
+
+        .contact-info-map-section p {
+            color: #555;
+        }
+
+        .contact-info-map-section .social-icon-footer {
+            color: var(--color-primary-blue); /* Blue for social icons */
+            transition: color 0.3s ease-in-out;
+        }
+
+        .contact-info-map-section .social-icon-footer:hover {
+            color: var(--color-accent-blue);
+        }
+
+        .contact-info-map-section iframe {
+            border-radius: 0.75rem; /* Rounded corners for map */
         }
 
         /* Floating Inquiry Button */
@@ -155,7 +319,7 @@
             }
         }
 
-        /* Modal Styling */
+        /* Modal Styling (for floating inquiry form) */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -190,21 +354,38 @@
             transform: translateY(0);
         }
 
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: var(--color-primary-blue); /* Blue header */
+            color: var(--color-white);
+            margin: -2rem -2rem 1.5rem -2rem; /* Extend background to edges */
+            padding: 1.5rem 2rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.75rem;
+            font-weight: bold;
+        }
+
         .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             background: none;
             border: none;
             font-size: 2rem;
-            color: #999;
+            color: var(--color-white);
             cursor: pointer;
             line-height: 1;
             transition: color 0.3s ease-in-out;
         }
 
         .modal-close:hover {
-            color: #666;
+            color: var(--color-accent-blue); /* Lighter blue on hover */
         }
 
         .form-group {
@@ -219,8 +400,8 @@
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid #ccc;
@@ -230,17 +411,17 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--color-primary-blue);
             box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Blue focus ring */
         }
 
-        .send-whatsapp-button {
+        .inquire-now-button {
             width: 100%;
             padding: 0.85rem 1.5rem;
-            background-color: #25D366; /* WhatsApp Green */
+            background-color: var(--color-custom-red); /* Red */
             color: var(--color-white);
             border: none;
             border-radius: 0.75rem;
@@ -255,145 +436,16 @@
             gap: 0.5rem;
         }
 
-        .send-whatsapp-button:hover {
-            background-color: #1DA851; /* Darker WhatsApp Green */
+        .inquire-now-button:hover {
+            background-color: var(--color-custom-red-dark); /* Darker Red */
             transform: translateY(-1px);
         }
-
-        /* Hero Section for Contact Us */
-        .contact-hero {
-            background-image: url('https://www.greenply.com:5001/banner1710848955363-890.png'); /* Placeholder, replace with actual image */
-            background-size: cover;
-            background-position: center;
-            color: var(--color-white);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            padding: 6rem 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-            position: relative;
-            margin-top: 8rem; /* Space for fixed navbar */
-            border-bottom-left-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-            overflow: hidden;
-        }
-
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5); /* Dark overlay */
-            z-index: 0;
-        }
-
-        .contact-hero .breadcrumb {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            z-index: 1;
-        }
-        .contact-hero .breadcrumb a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .contact-hero .breadcrumb a:hover {
-            color: var(--color-white);
-        }
-
-        .contact-hero-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .contact-hero h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-hero p {
-            font-size: 1.25rem;
-        }
-
-        @media (min-width: 768px) {
-            .contact-hero h1 {
-                font-size: 5rem;
-            }
-            .contact-hero p {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Contact Form Section */
-        .contact-form-section {
-            border-radius: 1rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .contact-form-section h2 {
-            color: var(--color-dark-blue);
-        }
-        .contact-form-section p {
-            color: #555;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-
-        .checkbox-group-inner {
-            display: flex;
-            align-items: center;
-        }
-
-        .checkbox-group-inner input[type="checkbox"] {
-            margin-right: 0.5rem;
-            width: 1.1rem;
-            height: 1.1rem;
-            accent-color: var(--color-green-600); /* Green accent for checkbox */
-        }
-
-        .checkbox-group-inner label {
-            font-size: 0.95rem;
-            color: #555;
-            cursor: pointer;
-        }
-
-        /* Contact Info and Map Section */
-        .contact-info-map-section {
-            background-color: var(--color-light-gray);
-            border-radius: 1rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .contact-info-map-section h2 {
-            color: var(--color-dark-blue);
-        }
-        .contact-info-map-section p {
-            color: #555;
-        }
-
-        .social-icon-footer {
-            color: var(--color-primary-blue); /* Blue icons for contact section */
-            transition: color 0.3s ease-in-out;
-        }
-        .social-icon-footer:hover {
-            color: var(--color-accent-blue);
-        }
+        
+        /* Custom red for form elements in modal */
+        .text-custom-red { color: var(--color-custom-red); }
+        .bg-custom-red { background-color: var(--color-custom-red); }
+        .hover\:bg-custom-red-dark:hover { background-color: var(--color-custom-red-dark); }
+        .focus\:ring-custom-red:focus { --tw-ring-color: var(--color-custom-red); }
 
         /* Footer Styling */
         footer {
@@ -650,6 +702,7 @@
                     <ul>
                         <li><a href="./opulent.html"><i class="fas fa-gem"></i> Opulent</a></li>
                         <li><a href="./Aspire.html"><i class="fas fa-star"></i> Aspire</a></li>
+                        <li><a href="./lwl.html"><i class="fas fa-cube"></i> LWL</a></li>
                     </ul>
                 </div>
 
@@ -707,6 +760,29 @@
             const messageBoxText = document.getElementById('message-box-text');
             const messageBoxCloseButton = document.getElementById('message-box-close');
 
+            let logoBase64 = ''; // To store the base64 representation of the logo
+
+            // --- Function to fetch image and convert to base64 ---
+            async function getBase64Image(url) {
+                try {
+                    const response = await fetch(url);
+                    const blob = await response.blob();
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(blob);
+                    });
+                } catch (error) {
+                    console.error('Error fetching image for base64 conversion:', error);
+                    return null;
+                }
+            }
+
+            // Load the logo as base64 once on page load
+            getBase64Image('./Adobe Express - file.png').then(base64 => {
+                logoBase64 = base64;
+            });
 
             // --- Mobile Menu Toggle Logic ---
             if (menuButton) {
